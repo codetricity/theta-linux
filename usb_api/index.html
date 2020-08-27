@@ -1,0 +1,642 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Configure Jetson Nano to use RICOH THETA USB API">
+      
+      
+      
+        <meta name="author" content="Oppkey">
+      
+      <link rel="shortcut icon" href="../images/logo-white.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.9">
+    
+    
+      
+        <title>USB API - RICOH THETA USB API For Jetson Nano</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.36ee6aaa.min.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/palette.83bccb1f.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#8bc34a">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-73311422-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview")})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="light-green" data-md-color-accent="lime">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#usb-api-with-libptp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="RICOH THETA USB API For Jetson Nano" class="md-header-nav__button md-logo" aria-label="RICOH THETA USB API For Jetson Nano">
+      
+  <img src="../images/logo-white.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            RICOH THETA USB API For Jetson Nano
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              USB API
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="RICOH THETA USB API For Jetson Nano" class="md-nav__button md-logo" aria-label="RICOH THETA USB API For Jetson Nano">
+      
+  <img src="../images/logo-white.png" alt="logo">
+
+    </a>
+    RICOH THETA USB API For Jetson Nano
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        USB API
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="USB API" class="md-nav__link md-nav__link--active">
+      USB API
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usb-api-with-libptp" class="md-nav__link">
+    USB API with libptp
+  </a>
+  
+    <nav class="md-nav" aria-label="USB API with libptp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#equipment" class="md-nav__link">
+    Equipment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-libptp-source" class="md-nav__link">
+    Download libptp source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-libptp" class="md-nav__link">
+    build libptp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-libusb-dev" class="md-nav__link">
+    install libusb-dev
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-libptp" class="md-nav__link">
+    install libptp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-usrlocallib-in-library-path" class="md-nav__link">
+    set /usr/local/lib in library path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-ldconfig" class="md-nav__link">
+    run ldconfig
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-ptpcam" class="md-nav__link">
+    Test ptpcam
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-problem-with-libptp-response" class="md-nav__link">
+    Fix problem with libptp response
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-ptpcam-response-again" class="md-nav__link">
+    test ptpcam response again
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-camera-to-live-streaming-mode" class="md-nav__link">
+    Set camera to live streaming mode
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usb-api-with-libptp" class="md-nav__link">
+    USB API with libptp
+  </a>
+  
+    <nav class="md-nav" aria-label="USB API with libptp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#equipment" class="md-nav__link">
+    Equipment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-libptp-source" class="md-nav__link">
+    Download libptp source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-libptp" class="md-nav__link">
+    build libptp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-libusb-dev" class="md-nav__link">
+    install libusb-dev
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-libptp" class="md-nav__link">
+    install libptp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-usrlocallib-in-library-path" class="md-nav__link">
+    set /usr/local/lib in library path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-ldconfig" class="md-nav__link">
+    run ldconfig
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-ptpcam" class="md-nav__link">
+    Test ptpcam
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-problem-with-libptp-response" class="md-nav__link">
+    Fix problem with libptp response
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-ptpcam-response-again" class="md-nav__link">
+    test ptpcam response again
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-camera-to-live-streaming-mode" class="md-nav__link">
+    Set camera to live streaming mode
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>USB API</h1>
+                
+                <h2 id="usb-api-with-libptp">USB API with libptp</h2>
+<h3 id="equipment">Equipment</h3>
+<ul>
+<li>Jetson Nano</li>
+<li>5V 4amp power connector, set to 10amp</li>
+<li>PWM fan blowing on heatsink and powered from the Nano board</li>
+<li>Jetpack 4.4, which is Ubuntu 18.04.5 LTS, Bionic Beaver</li>
+<li>RICOH THETA V</li>
+<li>drawing power over USB cable from Nano</li>
+</ul>
+<h3 id="download-libptp-source">Download libptp source</h3>
+<p><a href="https://sourceforge.net/projects/libptp/">libptp - Picture Transfer Protocol lib</a></p>
+<p>Get the newest version, which is 2-1.2 right now.</p>
+<p><img alt="libptp source download" src="../images/usb_api/01_sourceforge_download.png" /></p>
+<h3 id="build-libptp">build libptp</h3>
+<pre><code class="bash">$ ./configure
+$ make
+</code></pre>
+
+<p>If you have a build error when compiling libusb, you may need to install the 
+development libraries for libusb.</p>
+<p><img alt="libptp configuration error" src="../images/usb_api/02_libptp_configure_error.png" /></p>
+<h3 id="install-libusb-dev">install libusb-dev</h3>
+<pre><code class="bash">$ sudo apt install libusb-dev
+</code></pre>
+
+<p>You may not need this step if you already have the libusb development
+libraries installed.</p>
+<p><img alt="libusb-dev install" src="../images/usb_api/03_libusb-dev_install.png" /></p>
+<h3 id="install-libptp">install libptp</h3>
+<pre><code class="bash">$ sudo make install
+</code></pre>
+
+<p><img alt="confirm build" src="../images/usb_api/04_build_succeeded.png" /></p>
+<h3 id="set-usrlocallib-in-library-path">set /usr/local/lib in library path</h3>
+<p>The default location of the libptp install is <code>/usr/local/lib</code>.<br />
+Make sure that this is in your library path.  If it isn't,
+add it to a file such as <code>libc.conf</code> in <code>/etc/ld.so.conf/</code>.</p>
+<pre><code>$ cd /etc/ld.so.conf.d/
+$ ls
+$ cat libc.conf
+</code></pre>
+
+<p><img alt="library path" src="../images/usb_api/05_confirm_usr_local.png" /></p>
+<h3 id="run-ldconfig">run ldconfig</h3>
+<p>Load the library configuration.</p>
+<pre><code>$ sudo /sbin/ldconfig -v
+</code></pre>
+
+<p><img alt="ldconfig" src="../images/usb_api/06_ldconfig.png" /></p>
+<h3 id="test-ptpcam">Test ptpcam</h3>
+<p>Connect RICOH THETA to Jetson with a USB cable.</p>
+<p>Version of 2-1.2 of libptp has a bug in it.  Although
+ptpcam does take pictures and function normally,
+you will
+see an error about capture status.</p>
+<p><img alt="capture status" src="../images/usb_api/07_capture_status_error.png" /></p>
+<h3 id="fix-problem-with-libptp-response">Fix problem with libptp response</h3>
+<p>Go to line 77 of <code>ptp.h</code> and change <code>PTP_USB_INT_PACKET_LEN</code> 
+to <code>28</code>.</p>
+<p><img alt="edit libptp source" src="../images/usb_api/08_edit_libptp_source.png" /></p>
+<p>After modification, the code will look like this.</p>
+<p><img alt="fixed source" src="../images/usb_api/09_libptp_source_fix.png" /></p>
+<h3 id="test-ptpcam-response-again">test ptpcam response again</h3>
+<p>Take a still image picture with <code>ptpcam --capture</code>.</p>
+<p><img alt="results after fix" src="../images/usb_api/10_fix_results.png" /></p>
+<h3 id="set-camera-to-live-streaming-mode">Set camera to live streaming mode</h3>
+<p>Check on camera mode.</p>
+<pre><code>$ ptpcam --show-property=0x5013
+</code></pre>
+
+<p>Set to live streaming mode.</p>
+<pre><code>$ ptpcam --set-property=0x5013 --val=0x8005
+</code></pre>
+
+<p><img alt="set to live streaming mode" src="../images/usb_api/11_change_to_live_stream.png" /></p>
+<p>Using the official 
+<a href="https://api.ricoh/docs/theta-usb-api/property/still_capture_mode/">RICOH USB API documentation</a>, you can verify that
+<code>0x8005</code> is live streaming mode.  The camera LED should show that
+the THETA is in LIVE mode.</p>
+<p><img alt="live led v" src="../images/usb_api/live_led.png" /></p>
+<p>In our tests, the RICOH THETA Z1 could charge while streaming
+over a USB 3.0 port (blue insert).  </p>
+<p>After hours of streaming, the Z1 LED looks like this.</p>
+<p><img alt="live led z1" src="../images/usb_api/live_z1.jpeg" /></p>
+<p>The response codes are shown below.</p>
+<pre><code>    0x0001 = single-shot shooting
+    0x0003 = Interval shooting
+    0x8002 = Movie shooting
+    0x8003 = Interval composite shooting
+    0x8004 = Multi bracket shooting
+    0x8005 = Live streaming
+    0x8006 = Interval shooting - tripod stabilizatio is off 
+             (top/bottom correction and stitching optimized)
+    0x8007 = Interval shooting - tripod stabilization is on
+</code></pre>
+
+<p>If you set the camera back to still image, single shot mode,
+you will see this response.</p>
+<pre><code class="bash">$ ptpcam --set-property=0x5013 --val=0x0001
+
+Camera: RICOH THETA V
+'Still Capture Mode' is set to: 0x8005 (-32763)
+Changing property value to 0x0001 [(null)] succeeded.
+</code></pre>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href=".." title="Home" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made by
+        <a href="https://oppkey.com" target="_blank" rel="noopener">
+          Oppkey
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/theta360developers" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/theta360dev" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.facebook.com/theta360guide/" target="_blank" rel="noopener" title="www.facebook.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.df0def68.min.js"></script>
+      <script src="../assets/javascripts/bundle.ba57d267.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
