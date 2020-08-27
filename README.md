@@ -25,3 +25,4 @@ Uses MkDocs and Material MkDocs.
 
 * https://github.com/facelessuser/mkdocs-material-extensions/
 * https://github.com/squidfunk/mkdocs-material/issues/1577
+* [PDF Export](https://github.com/zhaoterryy/mkdocs-pdf-export-plugin)

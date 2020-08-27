@@ -1,6 +1,6 @@
-site_name: RICOH THETA USB API For Jetson Nano
+site_name: RICOH THETA Development on Linux
 site_url: 
-site_description: Configure Jetson Nano to use RICOH THETA USB API
+site_description: Configure Linux computers like the Jetson Nano to stream and use RICOH THETA USB API
 repo_url: 
 repo_name: 
 site_author: Oppkey
@@ -30,4 +30,8 @@ nav:
   - Home: index.md
   - USB API: usb_api.md
 
-  
+plugins:
+  - search
+  # - pdf-export:
+  #     media_type: print
+  #     combined: true  

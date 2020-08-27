@@ -9,6 +9,7 @@ verify_ssl = true
 mkdocs-material = "*"
 mkdocs = "*"
 mkdocs-material-extensions = "*"
+mkdocs-pdf-export-plugin = "*"
 
 [requires]
 python_version = "3.8"
