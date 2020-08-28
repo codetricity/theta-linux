@@ -1,6 +1,9 @@
 ## Ongoing Tests with Linux Streaming
 
-Using Nvidia Jetson Nano.
+![canny opencv](images/demos/canny_opencv_demo.png)
+
+Using Nvidia Jetson Nano live streaming from a THETA V.
+Processing done with Python3, OpenCV 4.4.
 
 ### DetectNet
 
@@ -82,6 +85,8 @@ cv2.destroyAllWindows()
 One script to install OpenCV 4.3 is from AastaNV [here](https://github.com/AastaNV/JEP/blob/master/script/install_opencv4.3.0_Jetson.sh).
 
 The script I used is from mdegans [here](https://github.com/AastaNV/JEP/blob/master/script/install_opencv4.3.0_Jetson.sh)
+
+[Code for OpenCV Demo with Canny from RICOH THETA V](https://gist.github.com/codetricity/d06068bee816e52eb7aba6b94eb5d119).
 
 
 ### OpenPose
