@@ -1,13 +1,6 @@
 ## USB API with libptp
 
-### Equipment
 
-* Jetson Nano
-  * 5V 4amp power connector, set to 10amp
-  * PWM fan blowing on heatsink and powered from the Nano board
-* Jetpack 4.4, which is Ubuntu 18.04.5 LTS, Bionic Beaver
-* RICOH THETA V
-  * drawing power over USB cable from Nano
 
 ### Download libptp source
 
