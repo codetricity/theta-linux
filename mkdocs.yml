@@ -30,6 +30,7 @@ nav:
   - Home: index.md
   - Equipment: equipment.md
   - Software: software.md
+  - Demos: demos.md
   - USB API: usb_api.md
   - Help: help.md
 
