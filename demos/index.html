@@ -410,7 +410,17 @@ the meetup.  :-)</p>
 <a href="https://github.com/dusty-nv/jetson-inference">https://github.com/dusty-nv/jetson-inference</a></p>
 <p>There is super small text in the green box that says, "person".  The
 system accurately detected the only person in the image.</p>
+<p>It is 88.6 percent confident that I am a person.  Nice.</p>
+<p><img alt="detect person" src="../images/demos/detect_close_front.jpg" /></p>
+<p>Despite the distorted view of my feet, the program does detect 
+the human form.</p>
+<p><img alt="detect person" src="../images/demos/detect_human.png" /></p>
+<p>Even at night, in low-light conditions with me on the 
+side of the shutter button, the program did detect me.</p>
 <p><img alt="detect person" src="../images/demos/output_v.jpg" /></p>
+<p>However, there were many frames where I was not detected.</p>
+<p>To proceed, you will likely need a database of fisheye or 
+equirectangular images to build your own model. </p>
 <h3 id="opencv-python">OpenCV Python</h3>
 <p>Works on live stream.  </p>
 <p><img alt="community opencv" src="../images/demos/community_opencv.jpeg" /></p>
