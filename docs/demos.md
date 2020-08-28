@@ -17,7 +17,25 @@ Code is available in the at
 There is super small text in the green box that says, "person".  The
 system accurately detected the only person in the image.
 
+It is 88.6 percent confident that I am a person.  Nice.
+
+![detect person](images/demos/detect_close_front.jpg)
+
+Despite the distorted view of my feet, the program does detect 
+the human form.
+
+![detect person](images/demos/detect_human.png)
+
+Even at night, in low-light conditions with me on the 
+side of the shutter button, the program did detect me.
+
+
 ![detect person](images/demos/output_v.jpg)
+
+However, there were many frames where I was not detected.
+
+To proceed, you will likely need a database of fisheye or 
+equirectangular images to build your own model. 
 
 
 ### OpenCV Python
