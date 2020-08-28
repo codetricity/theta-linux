@@ -1,23 +1,23 @@
 # RICOH THETA Development on Linux
 
-Control and stream the RICOH THETA from a Linux computer like a Jetson Nano with a USB cable.
-
 ![header](images/banner.jpg)
 
 ## Overview
 
-You can stream 4K video at 30fps with under 30ms latency 
-from a RICOH THETA V or 
-RICOH THETA Z1 over a USB cable to a Linux computer.
+Stream 360 video, control the RICOH THETA API, and supply power to
+the camera using the USB cable.  It's awesome!
 
-Information on the setup and usage of Linux live 
-streaming is available on the 
-[thet360.guide Linux Streaming Site](https://theta360.guide/special/linuxstreaming/)
+Video to your Linux computer is 4K at 30fps with under 30ms latency. 
+Works with the RICOH THETA V or RICOH THETA Z1.  It's perfect for
+OpenCV object detection, autonomous drones, building analysis,
+AI, and TensorFlow projects.
 
-In addition to streaming the camera, you may want to 
-control the camera API using the USB cable.
+The camera can be powered from the USB cable and can switch
+into live streaming mode, still image, video, or bracket shooting
+using API commands. We explain the tools, the repos, and the 
+API.
 
-You can stream, control the camera API, and supply power to
-it using the USB cable.  It's awesome!
+Up to date guides, events, and a general pile of great stuff is at the
+ [theta360.guide Linux Streaming Site](https://theta360.guide/special/linuxstreaming/).
 
-
+ It's an exciting world.  Let's getting started. 
