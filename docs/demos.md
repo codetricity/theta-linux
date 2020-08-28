@@ -60,6 +60,8 @@ Works on live stream.
 Recommend you recompile OpenCV 4.4 from source code.
 May take 2.5 hours if you compile on the Nano.
 
+#### Simple Python cv2 Test
+
 Frame resize test.
 
 ```python
@@ -84,12 +86,18 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
+#### Build OpenCV
+
 One script to install OpenCV 4.3 is from AastaNV [here](https://github.com/AastaNV/JEP/blob/master/script/install_opencv4.3.0_Jetson.sh).
 
 The script I used is from mdegans [here](https://github.com/AastaNV/JEP/blob/master/script/install_opencv4.3.0_Jetson.sh)
 
-[Code for OpenCV Demo with Canny from RICOH THETA V](https://gist.github.com/codetricity/d06068bee816e52eb7aba6b94eb5d119).  This is the edge detection demo with the white
+
+#### Canny Edge Detection Test
+
+* [Code for OpenCV Demo with Canny from RICOH THETA V](https://gist.github.com/codetricity/d06068bee816e52eb7aba6b94eb5d119).  This is the edge detection demo with the white
 lines on black background. 
+* [video demo](https://youtu.be/_p1cJZTqotg)
 
 
 ### OpenPose
