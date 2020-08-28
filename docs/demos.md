@@ -43,6 +43,8 @@ equirectangular images to build your own model.
 
 ### OpenCV Python
 
+![canny demo](images/demos/canny_only.png)
+
 Works on live stream.  
 
 ![community opencv](images/demos/community_opencv.jpeg)
@@ -86,7 +88,8 @@ One script to install OpenCV 4.3 is from AastaNV [here](https://github.com/Aasta
 
 The script I used is from mdegans [here](https://github.com/AastaNV/JEP/blob/master/script/install_opencv4.3.0_Jetson.sh)
 
-[Code for OpenCV Demo with Canny from RICOH THETA V](https://gist.github.com/codetricity/d06068bee816e52eb7aba6b94eb5d119).
+[Code for OpenCV Demo with Canny from RICOH THETA V](https://gist.github.com/codetricity/d06068bee816e52eb7aba6b94eb5d119).  This is the edge detection demo with the white
+lines on black background. 
 
 
 ### OpenPose
