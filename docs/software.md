@@ -18,7 +18,13 @@ walk you through it.
 
 #### How To Compile and Install
 
-* [x86 Ubuntu 20.04](https://youtu.be/Ji4WDvPHzQk)
+* [Build and install on x86 Ubuntu 20.04](https://youtu.be/Ji4WDvPHzQk)
 * [Jetson Nano with OpenCV and VLC on /dev/video0](https://youtu.be/1xUMOvO_X5E)
 * [Compile libuvc-theta on Jetson Nano - silent screencast](https://youtu.be/GoYi1tSIV80)
+* [Build and run v4l2loopback on Jetson Nano](https://youtu.be/KrKwUWSYp2U). Needed for `/dev/video0`
+
+### USB API
+
+* [libptp](https://sourceforge.net/projects/libptp/) - next section for detailed walkthrough
+
 

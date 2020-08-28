@@ -31,6 +31,7 @@ nav:
   - Equipment: equipment.md
   - Software: software.md
   - USB API: usb_api.md
+  - Help: help.md
 
 
 plugins:
