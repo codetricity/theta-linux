@@ -1,4 +1,4 @@
-## USB API with libptp
+## Setup libptp
 
 
 
@@ -87,6 +87,8 @@ After modification, the code will look like this.
 
 ![fixed source](images/usb_api/09_libptp_source_fix.png)
 
+## Using USB API
+
 ### test ptpcam response again
 
 Take a still image picture with `ptpcam --capture`.
@@ -147,3 +149,108 @@ Camera: RICOH THETA V
 'Still Capture Mode' is set to: 0x8005 (-32763)
 Changing property value to 0x0001 [(null)] succeeded.
 ```
+
+### Wake Camera From Sleep
+
+In this test, I have the Z1 power off disabled.  I left the camera
+in sleep mode overnight.  When I woke up in the morning,
+I work the Z1 up using an ssh session into the Jetson Nano and 
+running this command.
+
+```bash
+$ ptpcam --set-property=0xD80E --val=0x00
+
+Camera: RICOH THETA Z1
+'UNKNOWN' is set to: 1
+Changing property value to 0x00 [(null)] succeeded.
+```
+
+I tested the camera with the info command.
+
+```bash
+$ ptpcam --info
+
+Camera information
+==================
+Model: RICOH THETA Z1
+  manufacturer: Ricoh Company, Ltd.
+  serial number: '10010104'
+  device version: 1.50.1
+  extension ID: 0x00000006
+  extension description: (null)
+  extension version: 0x006e
+```
+
+In my initial tests, I had to run the `info` command twice after
+I woke the camera up from sleep. The first time, I could not
+open the session.
+
+I got this error.
+
+```bash
+$ ptpcam --info
+ERROR: Could not open session!
+```
+
+In the future, I'll run more tests using the
+camera [FunctionalMode](https://api.ricoh/docs/theta-usb-api/property/functional_mode/)
+to check status.
+
+### Put Camera in Still Image Mode
+
+You may want to take a detailed picture of the scene based on triggers
+from the live stream.
+
+To do this, you need to take the camera out of live streaming mode
+and put it into still image mode.  In the example below, I
+wrapped ptpcam in a script that explains the hexcode properties
+of the mode settings.  This helps me with testing.
+
+```
+$ ptpcam --set-property=0x5013 --val=0x0001
+
+Camera: RICOH THETA Z1
+'Still Capture Mode' is set to: [Normal]
+Changing property value to 0x0001 [(null)] succeeded.
+
+    0x0001 = single-shot shooting
+    0x0003 = Interval shooting
+    0x8002 = Movie shooting
+    0x8003 = Interval composite shooting
+    0x8004 = Multi bracket shooting
+    0x8005 = Live streaming
+    0x8006 = Interval shooting - tripod stabilizatio is off 
+             (top/bottom correction and stitching optimized)
+    0x8007 = Interval shooting - tripod stabilization is on
+```
+
+You can verify the mode of with 0x5013.
+
+```
+$ ptpcam --show-property=0x5013
+
+Camera: RICOH THETA Z1
+'Still Capture Mode' is set to: [Normal]
+```
+
+Compare this with the result when the camera is in live streaming
+mode.
+
+```
+$ ptpcam --show-property=0x5013
+
+Camera: RICOH THETA Z1
+'Still Capture Mode' is set to: 0x8005 (-32763)
+
+    0x0001 = single-shot shooting
+    0x0003 = Interval shooting
+    0x8002 = Movie shooting
+    0x8003 = Interval composite shooting
+    0x8004 = Multi bracket shooting
+    0x8005 = Live streaming
+    0x8006 = Interval shooting - tripod stabilizatio is off 
+             (top/bottom correction and stitching optimized)
+    0x8007 = Interval shooting - tripod stabilization is on
+```
+
+
