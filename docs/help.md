@@ -17,3 +17,33 @@ THETA.
 The V drains slowly.  It will last about 8 hours.  You may be able 
 to bypass the battery, but this is not tested.
 
+### /dev/video0 freezes on x86
+
+Change [line 190](https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L190) of gst_viewer.c.
+
+```c
+if (strcmp(cmd_name, "gst_loopback") == 0)
+    pipe_proc = "decodebin ! autovideoconvert ! "
+        "video/x-raw,format=I420 ! identity drop-allocation=true !"
+        "v4l2sink device=/dev/video0 qos=false sync=false";
+```
+
+### The THETA is not appearing on /dev/video0
+
+Install [v4l2loopback](https://github.com/umlaeute/v4l2loopback).
+
+### How do I reduce the default 4K stream to 2K to improve AI processing?
+
+If your AI processing is going to slowly, try to reduce resolution from 4K to 2K.  You likely need to do this
+on Jetson Nano as 4K often hangs due to limited resources on Nano.
+
+In gst_viewer.c, change [line 248](https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L248) from THETAUVC_MODE_UHD_2997 to THETAUVC_MODE_FHD_2997.
+
+Refer to [thetauvc.c#L55](https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/thetauvc.c#L55) for definition.
+
+### I can't use it on Xavier
+
+Change to:
+
+"nvv4l2decoder ! nv3dsink sync=false" 
+
