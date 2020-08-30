@@ -15,7 +15,7 @@
         <meta name="author" content="Oppkey">
       
       <link rel="shortcut icon" href="../images/logo-white.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.9">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.3">
     
     
       
@@ -23,9 +23,9 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.36ee6aaa.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.fe0cca5b.min.css">
       
-        <link rel="stylesheet" href="../assets/stylesheets/palette.83bccb1f.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a46bcfb3.min.css">
       
       
         
@@ -228,6 +228,19 @@
     x86 Linux
   </a>
   
+    <nav class="md-nav" aria-label="x86 Linux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#addtional-x86-information" class="md-nav__link">
+    Addtional x86 Information
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -347,6 +360,19 @@
     x86 Linux
   </a>
   
+    <nav class="md-nav" aria-label="x86 Linux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#addtional-x86-information" class="md-nav__link">
+    Addtional x86 Information
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -403,8 +429,23 @@ libuvc-theta-sample (streaming sample application)
 on x86 64bit Linux using Ubuntu 20.04 LTS, Focal Fossa.</p>
 <p><img alt="x86 screenshot" src="../images/usb_api/x86.jpeg" /></p>
 <p><img alt="x86 system info" src="../images/usb_api/x86_system.png" /></p>
-<p>Please note these limitations:</p>
-<p>It is easier if you don't use a dedicated graphics card on x86. In our tests on Ubuntu 20, Focal Fossa, the gstreamer vaapi plugin can't use the hardware decoder on the NVIDIA GPU with the proprietary NVIDIA driver. The causes gstreamer to use a software decoder instead.</p>
+<p>We've tested v4l2loopback with gst_loopback on a low-end Pentium
+x86 computer.  It works fine.  Thanks to commuity member Yu You
+for this fix to gst_view.c.  Note the addition of <code>qos=false</code> to
+the pipeline.  This is currently on 
+<a href="https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L190">line 190</a>.</p>
+<pre><code class="c">if (strcmp(cmd_name, &quot;gst_loopback&quot;) == 0)
+    pipe_proc = &quot;decodebin ! autovideoconvert ! &quot;
+        &quot;video/x-raw,format=I420 ! identity drop-allocation=true !&quot;
+        &quot;v4l2sink device=/dev/video0 qos=false sync=false&quot;;
+</code></pre>
+
+<p>Screenshot of loopback running on <code>/dev/video0</code>, tested with vlc.</p>
+<p><img alt="x86 and vlc" src="../images/hardware/x_86.png" /></p>
+<h4 id="addtional-x86-information">Addtional x86 Information</h4>
+<p>If you're having problems after making the modification
+described above, you can try to temporarily disable your
+dedicated graphics card on x86. In our tests on Ubuntu 20, Focal Fossa, the gstreamer vaapi plugin can't use the hardware decoder on the NVIDIA GPU with the proprietary NVIDIA driver. The causes gstreamer to use a software decoder instead.</p>
 <p>This will likely cause many frame drops on your system. You can verify this by setting the GST_DEBUG environment variable to 2 or 3 and then running gst_loopback. You will likely see many frame drop messages.</p>
 <p>There are two possible workarounds:</p>
 <ol>
@@ -516,15 +557,15 @@ Raspberry Pi 4.</p>
       
     </div>
     
-      <script src="../assets/javascripts/vendor.df0def68.min.js"></script>
-      <script src="../assets/javascripts/bundle.ba57d267.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../assets/javascripts/bundle.4a5ba8d6.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "..",
           features: [],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+            worker: "../assets/javascripts/worker/search.9b3611bd.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
