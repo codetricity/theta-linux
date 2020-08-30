@@ -278,6 +278,34 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#devvideo0-freezes-on-x86" class="md-nav__link">
+    /dev/video0 freezes on x86
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-theta-is-not-appearing-on-devvideo0" class="md-nav__link">
+    The THETA is not appearing on /dev/video0
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-reduce-the-default-4k-stream-to-2k-to-improve-ai-processing" class="md-nav__link">
+    How do I reduce the default 4K stream to 2K to improve AI processing?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-cant-use-it-on-xavier" class="md-nav__link">
+    I can't use it on Xavier
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -335,6 +363,34 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#devvideo0-freezes-on-x86" class="md-nav__link">
+    /dev/video0 freezes on x86
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-theta-is-not-appearing-on-devvideo0" class="md-nav__link">
+    The THETA is not appearing on /dev/video0
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-reduce-the-default-4k-stream-to-2k-to-improve-ai-processing" class="md-nav__link">
+    How do I reduce the default 4K stream to 2K to improve AI processing?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-cant-use-it-on-xavier" class="md-nav__link">
+    I can't use it on Xavier
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -373,6 +429,24 @@ attach a small fan to your tripod and point it at the body of the
 THETA.</p>
 <p>The V drains slowly.  It will last about 8 hours.  You may be able 
 to bypass the battery, but this is not tested.</p>
+<h3 id="devvideo0-freezes-on-x86">/dev/video0 freezes on x86</h3>
+<p>Change <a href="https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L190">line 190</a> of gst_viewer.c.</p>
+<pre><code class="c">if (strcmp(cmd_name, &quot;gst_loopback&quot;) == 0)
+    pipe_proc = &quot;decodebin ! autovideoconvert ! &quot;
+        &quot;video/x-raw,format=I420 ! identity drop-allocation=true !&quot;
+        &quot;v4l2sink device=/dev/video0 qos=false sync=false&quot;;
+</code></pre>
+
+<h3 id="the-theta-is-not-appearing-on-devvideo0">The THETA is not appearing on /dev/video0</h3>
+<p>Install <a href="https://github.com/umlaeute/v4l2loopback">v4l2loopback</a>.</p>
+<h3 id="how-do-i-reduce-the-default-4k-stream-to-2k-to-improve-ai-processing">How do I reduce the default 4K stream to 2K to improve AI processing?</h3>
+<p>If your AI processing is going to slowly, try to reduce resolution from 4K to 2K.  You likely need to do this
+on Jetson Nano as 4K often hangs due to limited resources on Nano.</p>
+<p>In gst_viewer.c, change <a href="https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L248">line 248</a> from THETAUVC_MODE_UHD_2997 to THETAUVC_MODE_FHD_2997.</p>
+<p>Refer to <a href="https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/thetauvc.c#L55">thetauvc.c#L55</a> for definition.</p>
+<h3 id="i-cant-use-it-on-xavier">I can't use it on Xavier</h3>
+<p>Change to:</p>
+<p>"nvv4l2decoder ! nv3dsink sync=false" </p>
                 
               
               
