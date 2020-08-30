@@ -245,6 +245,19 @@
     DetectNet
   </a>
   
+    <nav class="md-nav" aria-label="DetectNet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-code" class="md-nav__link">
+    Sample Code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -367,6 +380,19 @@
     DetectNet
   </a>
   
+    <nav class="md-nav" aria-label="DetectNet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-code" class="md-nav__link">
+    Sample Code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -468,6 +494,21 @@ side of the shutter button, the program did detect me.</p>
 <p>However, there were many frames where I was not detected.</p>
 <p>To proceed, you will likely need a database of fisheye or 
 equirectangular images to build your own model. </p>
+<h4 id="sample-code">Sample Code</h4>
+<pre><code class="python">import jetson.inference
+import jetson.utils
+
+net = jetson.inference.detectNet(&quot;ssd-mobilenet-v2&quot;, threshold=0.5)
+camera = jetson.utils.gstCamera(1280, 720, &quot;/dev/video0&quot;)
+display = jetson.utils.glDisplay()
+
+while display.IsOpen():
+    img, width, height = camera.CaptureRGBA()
+    detections = net.Detect(img, width, height)
+    display.RenderOnce(img, width, height)
+    display.SetTitle(&quot;RICOH THETA Detection | Network {:.0f} FPS&quot;.format(net.GetNetworkFPS()))
+</code></pre>
+
 <h3 id="opencv-python">OpenCV Python</h3>
 <p><img alt="canny demo" src="../images/demos/canny_only.png" /></p>
 <p>Works on live stream.  </p>
