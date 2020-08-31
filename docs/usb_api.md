@@ -33,6 +33,13 @@ libraries installed.
 
 ![libusb-dev install](images/usb_api/03_libusb-dev_install.png)
 
+Example on x86 Ubuntu 20.04. 
+
+```
+$ sudo apt-get install libusb-dev
+```
+
+
 ### install libptp
 
 ```bash
@@ -40,6 +47,29 @@ $ sudo make install
 ```
 
 ![confirm build](images/usb_api/04_build_succeeded.png)
+
+On x86 Ubuntu 20.04.
+
+```
+$ tar zxvf libptp2-1.2.0.tar.gz 
+libptp2-1.2.0/
+```
+
+`./configure` ran with no problems  
+`make` ran with no problems  
+`sudo make install` ran with no problems  
+
+```
+$ pwd
+/usr/local/lib
+$ ls -l libptp2.*
+-rw-r--r-- 1 root root 352640 Aug 31 11:54 libptp2.a
+-rwxr-xr-x 1 root root    941 Aug 31 11:54 libptp2.la
+lrwxrwxrwx 1 root root     16 Aug 31 11:54 libptp2.so -> libptp2.so.1.1.5
+lrwxrwxrwx 1 root root     16 Aug 31 11:54 libptp2.so.1 -> libptp2.so.1.1.5
+-rwxr-xr-x 1 root root 249352 Aug 31 11:54 libptp2.so.1.1.5
+```
+
 
 ### set /usr/local/lib in library path
 
@@ -65,6 +95,21 @@ $ sudo /sbin/ldconfig -v
 
 ![ldconfig](images/usb_api/06_ldconfig.png)
 
+On x86 Ubuntu 20.04.
+
+```
+$ cd /etc/ld.so.conf.d/
+$ l
+fakeroot-x86_64-linux-gnu.conf  x86_64-linux-gnu.conf
+i386-linux-gnu.conf             zz_i386-biarch-compat.conf
+libc.conf
+$ cat libc.conf 
+# libc default configuration
+/usr/local/lib
+$ sudo ldconfig
+$ 
+```
+
 ### Test ptpcam
 
 Connect RICOH THETA to Jetson with a USB cable.
@@ -75,6 +120,29 @@ you will
 see an error about capture status.
 
 ![capture status](images/usb_api/07_capture_status_error.png)
+
+On x86 Ubuntu.
+
+```
+$ ptpcam --info
+
+Camera information
+==================
+Model: RICOH THETA Z1
+  manufacturer: Ricoh Company, Ltd.
+  serial number: '10010104'
+  device version: 1.50.1
+  extension ID: 0x00000006
+  extension description: (null)
+  extension version: 0x006e
+
+$ cat /proc/cpuinfo 
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 60
+model name	: Intel(R) Pentium(R) CPU G3258 @ 3.20GHz
+```
 
 ### Fix problem with libptp response
 
