@@ -544,11 +544,33 @@ development libraries for libusb.</p>
 <p>You may not need this step if you already have the libusb development
 libraries installed.</p>
 <p><img alt="libusb-dev install" src="../images/usb_api/03_libusb-dev_install.png" /></p>
+<p>Example on x86 Ubuntu 20.04. </p>
+<pre><code>$ sudo apt-get install libusb-dev
+</code></pre>
+
 <h3 id="install-libptp">install libptp</h3>
 <pre><code class="bash">$ sudo make install
 </code></pre>
 
 <p><img alt="confirm build" src="../images/usb_api/04_build_succeeded.png" /></p>
+<p>On x86 Ubuntu 20.04.</p>
+<pre><code>$ tar zxvf libptp2-1.2.0.tar.gz 
+libptp2-1.2.0/
+</code></pre>
+
+<p><code>./configure</code> ran with no problems<br />
+<code>make</code> ran with no problems<br />
+<code>sudo make install</code> ran with no problems  </p>
+<pre><code>$ pwd
+/usr/local/lib
+$ ls -l libptp2.*
+-rw-r--r-- 1 root root 352640 Aug 31 11:54 libptp2.a
+-rwxr-xr-x 1 root root    941 Aug 31 11:54 libptp2.la
+lrwxrwxrwx 1 root root     16 Aug 31 11:54 libptp2.so -&gt; libptp2.so.1.1.5
+lrwxrwxrwx 1 root root     16 Aug 31 11:54 libptp2.so.1 -&gt; libptp2.so.1.1.5
+-rwxr-xr-x 1 root root 249352 Aug 31 11:54 libptp2.so.1.1.5
+</code></pre>
+
 <h3 id="set-usrlocallib-in-library-path">set /usr/local/lib in library path</h3>
 <p>The default location of the libptp install is <code>/usr/local/lib</code>.<br />
 Make sure that this is in your library path.  If it isn't,
@@ -565,6 +587,19 @@ $ cat libc.conf
 </code></pre>
 
 <p><img alt="ldconfig" src="../images/usb_api/06_ldconfig.png" /></p>
+<p>On x86 Ubuntu 20.04.</p>
+<pre><code>$ cd /etc/ld.so.conf.d/
+$ l
+fakeroot-x86_64-linux-gnu.conf  x86_64-linux-gnu.conf
+i386-linux-gnu.conf             zz_i386-biarch-compat.conf
+libc.conf
+$ cat libc.conf 
+# libc default configuration
+/usr/local/lib
+$ sudo ldconfig
+$ 
+</code></pre>
+
 <h3 id="test-ptpcam">Test ptpcam</h3>
 <p>Connect RICOH THETA to Jetson with a USB cable.</p>
 <p>Version of 2-1.2 of libptp has a bug in it.  Although
@@ -572,6 +607,27 @@ ptpcam does take pictures and function normally,
 you will
 see an error about capture status.</p>
 <p><img alt="capture status" src="../images/usb_api/07_capture_status_error.png" /></p>
+<p>On x86 Ubuntu.</p>
+<pre><code>$ ptpcam --info
+
+Camera information
+==================
+Model: RICOH THETA Z1
+  manufacturer: Ricoh Company, Ltd.
+  serial number: '10010104'
+  device version: 1.50.1
+  extension ID: 0x00000006
+  extension description: (null)
+  extension version: 0x006e
+
+$ cat /proc/cpuinfo 
+processor   : 0
+vendor_id   : GenuineIntel
+cpu family  : 6
+model       : 60
+model name  : Intel(R) Pentium(R) CPU G3258 @ 3.20GHz
+</code></pre>
+
 <h3 id="fix-problem-with-libptp-response">Fix problem with libptp response</h3>
 <p>Go to line 77 of <code>ptp.h</code> and change <code>PTP_USB_INT_PACKET_LEN</code> 
 to <code>28</code>.</p>
