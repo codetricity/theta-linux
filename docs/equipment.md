@@ -68,5 +68,23 @@ The Raspberry Pi's H.264 hardware decoder does not support 4K resolution even on
 
 ### NVIDIA Jetson Xavier
 
+The Xavier is better for testing.  However, it is more expensive.  If your 
+budget permits, it is better to get the Xavier.  You may have problems
+with 4K AI processing with the Nano.
+
 On Jetson Xavier, auto plugin selection of the gstreamer seems to be not working well, replacing "decodebin ! autovideosink sync=false" to "nvv4l2decoder ! nv3dsink sync=false" will solve the problem. Edit this 
 [line](https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L192) in the sample code and recompile.
+
+### Heat and Cooling of Linux Computer
+
+You need to cool the Nano.  Without a fan, you may get thermal 
+throttling when live streaming
+with AI processing. 
+
+![nano with fan](images/hardware/cooling_nano.png)
+
+![nano with fan mount](images/hardware/fan_mount.png)
+
+The fan is 5V pwm.  I've also used a 12V fan before I
+ordered the 4V fan from Amazon.
+
