@@ -23,6 +23,33 @@ walk you through it.
 * [Compile libuvc-theta on Jetson Nano - silent screencast](https://youtu.be/GoYi1tSIV80)
 * [Build and run v4l2loopback on Jetson Nano](https://youtu.be/KrKwUWSYp2U). Needed for `/dev/video0`
 
+### How to Load v4l2loopback automatically
+
+In the file `/etc/modules-load.d/modules.conf` add a new line `v4l2loopback`.
+
+```
+$ pwd
+/etc/modules-load.d
+craig@jetson:/etc/modules-load.d$ cat modules.conf 
+# /etc/modules: kernel modules to load at boot time.
+#
+# This file contains the names of kernel modules that should be loaded
+# at boot time, one per line. Lines beginning with "#" are ignored.
+
+# bluedroid_pm, supporting module for bluetooth
+bluedroid_pm
+# modules for camera HAL
+nvhost_vi
+# nvgpu module
+nvgpu
+
+# for RICOH THETA live streaming
+# v4l2loopback device on /dev/video0. specify in gst_viewer.c
+v4l2loopback
+
+craig@jetson:/etc/modules-load.d$ 
+```
+
 ### USB API
 
 * [libptp](https://sourceforge.net/projects/libptp/) - next section for detailed walkthrough
