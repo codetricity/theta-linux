@@ -50,6 +50,24 @@ v4l2loopback
 craig@jetson:/etc/modules-load.d$ 
 ```
 
+#### Check kernel module load
+
+```
+$ lsmod
+Module                  Size  Used by
+bnep                   16562  2
+zram                   26166  4
+overlay                48691  0
+spidev                 13282  0
+v4l2loopback           37383  0
+nvgpu                1579891  18
+bluedroid_pm           13912  0
+ip_tables              19441  0
+x_tables               28951  1 ip_tables
+craig@jetson:/etc/modules-load.d$ 
+```
+
+
 ### USB API
 
 * [libptp](https://sourceforge.net/projects/libptp/) - next section for detailed walkthrough
