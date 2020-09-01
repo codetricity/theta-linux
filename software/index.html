@@ -15,7 +15,7 @@
         <meta name="author" content="Oppkey">
       
       <link rel="shortcut icon" href="../images/logo-white.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.9">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.3">
     
     
       
@@ -23,9 +23,9 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.36ee6aaa.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.fe0cca5b.min.css">
       
-        <link rel="stylesheet" href="../assets/stylesheets/palette.83bccb1f.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a46bcfb3.min.css">
       
       
         
@@ -249,6 +249,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#how-to-load-v4l2loopback-automatically" class="md-nav__link">
+    How to Load v4l2loopback automatically
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#usb-api" class="md-nav__link">
     USB API
   </a>
@@ -355,6 +362,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#how-to-load-v4l2loopback-automatically" class="md-nav__link">
+    How to Load v4l2loopback automatically
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#usb-api" class="md-nav__link">
     USB API
   </a>
@@ -406,6 +420,30 @@ walk you through it.</p>
 <li><a href="https://youtu.be/GoYi1tSIV80">Compile libuvc-theta on Jetson Nano - silent screencast</a></li>
 <li><a href="https://youtu.be/KrKwUWSYp2U">Build and run v4l2loopback on Jetson Nano</a>. Needed for <code>/dev/video0</code></li>
 </ul>
+<h3 id="how-to-load-v4l2loopback-automatically">How to Load v4l2loopback automatically</h3>
+<p>In the file <code>/etc/modules-load.d/modules.conf</code> add a new line <code>v4l2loopback</code>.</p>
+<pre><code>$ pwd
+/etc/modules-load.d
+craig@jetson:/etc/modules-load.d$ cat modules.conf 
+# /etc/modules: kernel modules to load at boot time.
+#
+# This file contains the names of kernel modules that should be loaded
+# at boot time, one per line. Lines beginning with &quot;#&quot; are ignored.
+
+# bluedroid_pm, supporting module for bluetooth
+bluedroid_pm
+# modules for camera HAL
+nvhost_vi
+# nvgpu module
+nvgpu
+
+# for RICOH THETA live streaming
+# v4l2loopback device on /dev/video0. specify in gst_viewer.c
+v4l2loopback
+
+craig@jetson:/etc/modules-load.d$ 
+</code></pre>
+
 <h3 id="usb-api">USB API</h3>
 <ul>
 <li><a href="https://sourceforge.net/projects/libptp/">libptp</a> - next section for detailed walkthrough</li>
@@ -507,15 +545,15 @@ walk you through it.</p>
       
     </div>
     
-      <script src="../assets/javascripts/vendor.df0def68.min.js"></script>
-      <script src="../assets/javascripts/bundle.ba57d267.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../assets/javascripts/bundle.4a5ba8d6.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "..",
           features: [],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+            worker: "../assets/javascripts/worker/search.9b3611bd.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
