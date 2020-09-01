@@ -23,7 +23,7 @@ walk you through it.
 * [Compile libuvc-theta on Jetson Nano - silent screencast](https://youtu.be/GoYi1tSIV80)
 * [Build and run v4l2loopback on Jetson Nano](https://youtu.be/KrKwUWSYp2U). Needed for `/dev/video0`
 
-### How to Load v4l2loopback automatically
+#### How to Load v4l2loopback automatically
 
 In the file `/etc/modules-load.d/modules.conf` add a new line `v4l2loopback`.
 
