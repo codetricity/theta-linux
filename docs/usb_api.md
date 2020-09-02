@@ -321,4 +321,11 @@ Camera: RICOH THETA Z1
     0x8007 = Interval shooting - tripod stabilization is on
 ```
 
+### Start Video Capture
+
+This records video to file. 
+
+```
+ptpcam -R 0x101c,0,0,1
+```
 
