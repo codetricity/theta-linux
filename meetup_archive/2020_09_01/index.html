@@ -285,6 +285,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#how-do-i-load-v4l2loopback-automatically-when-i-reboot" class="md-nav__link">
+    How do I load v4l2loopback automatically when I reboot?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#how-do-i-save-video-to-file-with-the-usb-api" class="md-nav__link">
     How do I save video to file with the USB API?
   </a>
@@ -308,6 +315,55 @@
           <li class="md-nav__item">
   <a href="#do-you-have-plans-to-additional-deep-learning" class="md-nav__link">
     Do you have plans to additional deep learning?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#did-you-use-detectnet-on-4k-frames" class="md-nav__link">
+    Did you use DetectNet on 4K frames?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-motionjpeg-higher-per-frame-bitrate" class="md-nav__link">
+    Is motionJPEG higher per frame bitrate?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-we-use-other-thetas-or-only-v" class="md-nav__link">
+    Can we use other THETAs? or only V?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-the-theta-s-be-used-for-live-streaming" class="md-nav__link">
+    Can the THETA S be used for live streaming?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#there-is-latency-of-2-3-seconds-with-ubuntu-2004" class="md-nav__link">
+    There is latency of 2-3 seconds with Ubuntu 20.04
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#you-mention-it-doesnt-work-with-raspberry-pi-now-we-were-wondering-the-reason-is-it-because-the-os-or-the-cpu-architecture-ie-arm64" class="md-nav__link">
+    you mention it doesn’t work with Raspberry Pi now. We were wondering the reason.  Is it because the OS or the CPU architecture (i.e. arm64) ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-i-need-to-recompile-to-change-the-resolution" class="md-nav__link">
+    Do I need to recompile to change the resolution
   </a>
   
 </li>
@@ -345,6 +401,8 @@ Nano with real-time processing using Python OpenCV.</p>
 <h2 id="slides">Slides</h2>
 <p>A copy of the slides used in the meetup are <a href="https://docs.google.com/presentation/d/11bNQEhwfHwKTzSaw6HM30L6Okly3vuIvbNiyo6LPafU/edit?usp=sharing">here</a></p>
 <h2 id="q-and-a">Q and A</h2>
+<h3 id="how-do-i-load-v4l2loopback-automatically-when-i-reboot">How do I load v4l2loopback automatically when I reboot?</h3>
+<p>In the file <code>/etc/modules-load.d/modules.conf</code> add a new line <code>v4l2loopback</code>. </p>
 <h3 id="how-do-i-save-video-to-file-with-the-usb-api">How do I save video to file with the USB API?</h3>
 <p>If you are using the USB to save video to file (not streaming), this command works with the V and Z1.</p>
 <pre><code>ptpcam -R 0x101c,0,0,1
@@ -367,6 +425,62 @@ There is a related article
 <p>We may based on additional feedback.  A good next step is to assess the VOC-360 image dataset that can be used to train models for 360 images.  More information on the model and how to download the dataset is
 <a href="http://www.sfu.ca/~ibajic/#data">here</a>. TensorFlow demo running inside the camera is
 <a href="https://community.theta360.guide/t/theta-auto-trigger-plug-in-by-amine-amri/4665?u=craig">here</a>. FDDB-360 contains 17,052 fisheye-looking images and a total of 26,640 annotated faces.</p>
+<h3 id="did-you-use-detectnet-on-4k-frames">Did you use DetectNet on 4K frames?</h3>
+<p>(from Craig) For DetectNet, I was only able to test it at 2K on the Jetson Nano due to limited resources. I believe it works at 4k on Jetson Xavier.  But, I don't have a Jetson Xavier due to cost</p>
+<h3 id="is-motionjpeg-higher-per-frame-bitrate">Is motionJPEG higher per frame bitrate?</h3>
+<p>Craig: The MotionJPEG is lower fps and higher latency, but it is convenient.
+There's a demo video of MotionJPEG here: https://youtu.be/5eSdqEudu5s  The code is available for testing.  Though MotionJPEG is not recommended for AI processing.  However, feel free to give it a try.</p>
+<h3 id="can-we-use-other-thetas-or-only-v">Can we use other THETAs? or only V?</h3>
+<p>Craig: Z1 works</p>
+<h3 id="can-the-theta-s-be-used-for-live-streaming">Can the THETA S be used for live streaming?</h3>
+<p>From craig to Everyone:  10:39 AM
+The V and Z1 are the only models that support live streaming of equirectangular
+The THETA S streams motionJPEG. It should work with Linux in dual-fisheye
+the V and Z1 stream in UVC 1.5 in equirectangular
+From john to Everyone:  10:41 AM
+yes, it works</p>
+<h3 id="there-is-latency-of-2-3-seconds-with-ubuntu-2004">There is latency of 2-3 seconds with Ubuntu 20.04</h3>
+<p>John → Had latency of 2-3 seconds → Couldn’t text it on 16-18 → How to reduce the latency, what changes need to be made on Ubuntu 16/18? 
+Craig: I used Ubuntu 20. Discrete GPU, John might be using software rendering (if it cannot use GPU). Craig uses x86, did not use software rendering </p>
+<p>From john to Everyone:  10:55 AM
+I saw your description in the link and tested for Ubuntu 20.04, but with latency.
+From john to Everyone:  10:55 AM
+But couldn't make it work in Ubuntu 16 and 18. Do you know of what modification is required?
+From craig to Everyone:  10:55 AM
+I didn't have latency. did you install the gstreamer full plug-in pack?</p>
+<p>After meetup, ran <a href="https://youtu.be/WMKF5pWTb-w">this test</a> to show latency.</p>
+<h3 id="you-mention-it-doesnt-work-with-raspberry-pi-now-we-were-wondering-the-reason-is-it-because-the-os-or-the-cpu-architecture-ie-arm64">you mention it doesn’t work with Raspberry Pi now. We were wondering the reason.  Is it because the OS or the CPU architecture (i.e. arm64) ?</h3>
+<p>From Luke Lu to Everyone:  11:01 AM
+Thanks for your tutorial. In your forum, you mention it doesn’t work with Raspberry Pi now. We were wondering the reason.  Is it because the OS or the CPU architecture (i.e. arm64) ?
+Craig: Cut down resolution and try again. Craig couldn’t get it to work. Nano has DDR4, Pi3 has DDR3. Hardware acceleration. H.264 acceleration doesn’t do decoding. Cut stream down to 2k and try again. Try Pi4 (newest), 2k, assess to see if it works. Speed of decoding is the limiting factor.</p>
+<h3 id="do-i-need-to-recompile-to-change-the-resolution">Do I need to recompile to change the resolution</h3>
+<p>After the meetup, we ran <a href="https://github.com/codetricity/libuvc-theta-sample">this test</a> using command line arguments.  Using the test, you can specify the resolution with:</p>
+<pre><code>$ ./gst_loopback --format 4K
+start, hit any key to stop
+
+$ ./gst_loopback --format 2K
+start, hit any key to stop
+</code></pre>
+
+<p>If the THETA is on <code>/dev/video2</code>, you can confirm resolution with:</p>
+<pre><code>$ v4l2-ctl --device /dev/video2 --list-formats-ext
+ioctl: VIDIOC_ENUM_FMT
+    Type: Video Capture
+
+    [0]: 'YU12' (Planar YUV 4:2:0)
+        Size: Discrete 1920x960
+            Interval: Discrete 0.033s (30.000 fps)
+</code></pre>
+
+<p>Or if in 4K,</p>
+<pre><code>$ v4l2-ctl --device /dev/video2 --list-formats-ext
+ioctl: VIDIOC_ENUM_FMT
+    Type: Video Capture
+
+    [0]: 'YU12' (Planar YUV 4:2:0)
+        Size: Discrete 3840x1920
+            Interval: Discrete 0.033s (30.000 fps)
+</code></pre>
                 
               
               
