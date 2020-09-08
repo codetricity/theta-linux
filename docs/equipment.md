@@ -4,15 +4,26 @@
 
 ### Jetson Nano - Reference Platform
 
-Our reference platform is the NVIDIA Jetson Nano
+Our reference platform is the NVIDIA Jetson Nano,
+[ref](https://developer.nvidia.com/embedded/jetson-nano-developer-kit). 
+We are using B01, but A02 should also work. 
+
 running JetPack 4.4, which is Ubuntu 18.04.
 The Nano is an ARM A57 with a 128-core Maxwell GPU,
 4GB 64-bit LPDDR4.
+
 
 The nano is powered by a 5V 4A barrel connector,
 not the microUSB which is 5V 2A.  Our Nano has
 an external fan on the PWM header and a 64GB
 microSD card.
+
+#### Parts
+
+* [NVIDIA Jetson Nano Developer Kit B01](https://amzn.to/3396bbI)
+* [SMAKIN DC 5V/4A power supply with barrel connector](https://amzn.to/3290mvu)
+* [Waveshare 5V PWM fan - cheaper option](https://amzn.to/3h9A3cT) - we used this one as we are frugal.  It worked. 
+* [Noctua 5V PWM fan - better option, around $15](https://amzn.to/3m1IDxT) - most people use this one.
 
 ### x86 Linux
 
