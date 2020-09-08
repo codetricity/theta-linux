@@ -24,6 +24,9 @@ microSD card.
 * [SMAKIN DC 5V/4A power supply with barrel connector](https://amzn.to/3290mvu)
 * [Waveshare 5V PWM fan - cheaper option](https://amzn.to/3h9A3cT) - we used this one as we are frugal.  It worked. 
 * [Noctua 5V PWM fan - better option, around $15](https://amzn.to/3m1IDxT) - most people use this one.
+* For Z1 streaming [10' USB-C live streaming cable](https://amzn.to/328P6za) - it works for me,
+but it is over the recommended length.  I only have the long cable for convenience. You
+should use as short a cable as possible. 
 
 ### x86 Linux
 
