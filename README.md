@@ -34,6 +34,8 @@ $ mkdocs serve
 
 ## Document Creation References
 
+TODO: evaluate this https://github.com/timvink/mkdocs-print-site-plugin
+
 * https://github.com/facelessuser/mkdocs-material-extensions/
 * https://github.com/squidfunk/mkdocs-material/issues/1577
-* [PDF Export](https://github.com/zhaoterryy/mkdocs-pdf-export-plugin)
+* [PDF Export](https://github.com/zhaoterryy/mkdocs-pdf-export-plugin) - not working.  See alternative mkdocs-print-site-plugin
