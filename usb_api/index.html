@@ -378,8 +378,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#killing-gvfs-gphoto2-volume-monitor" class="md-nav__link">
-    killing gvfs-gphoto2-volume-monitor
+  <a href="#fixing-command-line-error-could-not-claim-the-usb-device" class="md-nav__link">
+    Fixing Command Line Error - Could not claim the USB device
   </a>
   
 </li>
@@ -387,6 +387,20 @@
           <li class="md-nav__item">
   <a href="#removing-gvfs-backend-permanently" class="md-nav__link">
     Removing gvfs-backend permanently
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-camera-mode-still-image-video-streaming" class="md-nav__link">
+    Check Camera Mode (still image, video, streaming)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-to-video-mode" class="md-nav__link">
+    set to video mode
   </a>
   
 </li>
@@ -596,8 +610,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#killing-gvfs-gphoto2-volume-monitor" class="md-nav__link">
-    killing gvfs-gphoto2-volume-monitor
+  <a href="#fixing-command-line-error-could-not-claim-the-usb-device" class="md-nav__link">
+    Fixing Command Line Error - Could not claim the USB device
   </a>
   
 </li>
@@ -605,6 +619,20 @@
           <li class="md-nav__item">
   <a href="#removing-gvfs-backend-permanently" class="md-nav__link">
     Removing gvfs-backend permanently
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-camera-mode-still-image-video-streaming" class="md-nav__link">
+    Check Camera Mode (still image, video, streaming)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-to-video-mode" class="md-nav__link">
+    set to video mode
   </a>
   
 </li>
@@ -896,7 +924,7 @@ Camera: RICOH THETA Z1
 
 <h2 id="gphoto2">gphoto2</h2>
 <h3 id="command-line">Command Line</h3>
-<h4 id="killing-gvfs-gphoto2-volume-monitor">killing gvfs-gphoto2-volume-monitor</h4>
+<h4 id="fixing-command-line-error-could-not-claim-the-usb-device">Fixing Command Line Error - Could not claim the USB device</h4>
 <p>You may get this error.</p>
 <pre><code class="bash">$ gphoto2 --capture-image
 
@@ -907,7 +935,7 @@ ERROR: Could not capture.
 *** Error (-53: 'Could not claim the USB device') ***       
 </code></pre>
 
-<p>kill gvfs-gphoto2-volume-monitor</p>
+<p>Fix for current session is to kill gvfs-gphoto2-volume-monitor and gvfsd-gphoto2 spawner</p>
 <pre><code class="bash">
 $ ps aux |grep gvfs
 ...
@@ -933,6 +961,46 @@ Building dependency tree
 </code></pre>
 
 <p>Reboot to test. </p>
+<p>After reboot. </p>
+<pre><code>$ gphoto2 -l
+There is 1 folder in folder '/'.                                               
+ - store_00020001
+There is 1 folder in folder '/store_00020001'.
+ - DCIM
+There are 2 folders in folder '/store_00020001/DCIM'.
+ - 100RICOH
+ - SingleLensShooting
+There is 1 folder in folder '/store_00020001/DCIM/100RICOH'.
+ - HDR07-22_18-13
+There are 0 folders in folder '/store_00020001/DCIM/100RICOH/HDR07-22_18-13'.
+There are 0 folders in folder '/store_00020001/DCIM/SingleLensShooting'.
+</code></pre>
+
+<p>It works!</p>
+<h4 id="check-camera-mode-still-image-video-streaming">Check Camera Mode (still image, video, streaming)</h4>
+<p><a href="https://api.ricoh/docs/theta-usb-api/property/still_capture_mode/">StillCaptureMode API reference</a></p>
+<pre><code>$ gphoto2 --get-config=5013
+Label: Still Capture Mode                                                      
+Readonly: 0
+Type: MENU
+Current: 1
+Choice: 0 1
+Choice: 1 3
+Choice: 2 32770
+Choice: 3 32771
+Choice: 4 32772
+Choice: 5 32773
+Choice: 6 32774
+Choice: 7 32775
+END
+craig@craig-desktop:~$ 
+</code></pre>
+
+<h4 id="set-to-video-mode">set to video mode</h4>
+<p>Using the <a href="https://api.ricoh/docs/theta-usb-api/property/still_capture_mode/">API reference</a>, we can see that video mode is hex <code>0x8002</code> or 32770 in base 10.</p>
+<pre><code>$ gphoto2 --set-config=5013=32770
+</code></pre>
+
 <h3 id="python-bindings">Python bindings</h3>
 <p>From community member <a href="https://community.theta360.guide/u/mhenrie">mhenrie</a></p>
 <p><a href="https://community.theta360.guide/t/using-usb-api-mtp-on-macos/4521/9">original post</a></p>
