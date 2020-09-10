@@ -338,9 +338,12 @@ ptpcam -R 0x101c,0,0,1
 
 ### Command Line
 
-#### killing gvfs-gphoto2-volume-monitor
+#### Fixing Command Line Error - Could not claim the USB device
 
 You may get this error.
+
+
+
 
 ```bash
 $ gphoto2 --capture-image
@@ -352,7 +355,8 @@ ERROR: Could not capture.
 *** Error (-53: 'Could not claim the USB device') ***       
 ```
 
-kill gvfs-gphoto2-volume-monitor
+Fix for current session is to kill gvfs-gphoto2-volume-monitor and gvfsd-gphoto2 spawner.
+
 
 ```bash
 
@@ -384,6 +388,56 @@ Building dependency tree
 ```
 
 Reboot to test. 
+
+After reboot. 
+
+```
+$ gphoto2 -l
+There is 1 folder in folder '/'.                                               
+ - store_00020001
+There is 1 folder in folder '/store_00020001'.
+ - DCIM
+There are 2 folders in folder '/store_00020001/DCIM'.
+ - 100RICOH
+ - SingleLensShooting
+There is 1 folder in folder '/store_00020001/DCIM/100RICOH'.
+ - HDR07-22_18-13
+There are 0 folders in folder '/store_00020001/DCIM/100RICOH/HDR07-22_18-13'.
+There are 0 folders in folder '/store_00020001/DCIM/SingleLensShooting'.
+```
+
+It works!
+
+#### Check Camera Mode (still image, video, streaming)
+
+[StillCaptureMode API reference](https://api.ricoh/docs/theta-usb-api/property/still_capture_mode/)
+
+```
+$ gphoto2 --get-config=5013
+Label: Still Capture Mode                                                      
+Readonly: 0
+Type: MENU
+Current: 1
+Choice: 0 1
+Choice: 1 3
+Choice: 2 32770
+Choice: 3 32771
+Choice: 4 32772
+Choice: 5 32773
+Choice: 6 32774
+Choice: 7 32775
+END
+craig@craig-desktop:~$ 
+```
+
+#### set to video mode
+
+Using the [API reference](https://api.ricoh/docs/theta-usb-api/property/still_capture_mode/), we can see that video mode is hex `0x8002` or 32770 in base 10.
+
+```
+$ gphoto2 --set-config=5013=32770
+```
+
 
 
 
