@@ -370,6 +370,21 @@ New file is in location /store_00020001/DCIM/100RICOH/R0010376.JPG on the camera
 $ 
 ```
 
+#### Removing gvfs-backend permanently
+
+If you don't mount the THETA as a storage device with gphoto, you can remove gvfs-backend.  This is a workaround for the 
+conflict when you use gphoto2 from the command line to talk to the THETA.
+
+
+```
+$ sudo apt remove gvfs-backends
+[sudo] password for craig: 
+Reading package lists... Done
+Building dependency tree       
+```
+
+Reboot to test. 
+
 
 
 ### Python bindings
