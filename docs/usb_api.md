@@ -310,6 +310,41 @@ Changing property value to 0x01 [(null)] succeeded.
 
 The camera is asleep.
 
+### Auto Power Off Delay
+
+Disable auto power off.
+
+$ ptpcam --set-property=0xd81b=0
+
+Camera: RICOH THETA Z1
+'UNKNOWN' is set to: 0
+
+Verify that auto power off is disabled.
+
+```
+$ ptpcam --show-property=0xd81b
+
+Camera: RICOH THETA Z1
+'UNKNOWN' is set to: 0
+```
+
+### Shutdown Camera
+
+This will completely power off the camera and put into lowest battery mode.
+
+```
+$ ptpcam -R 0x1013
+Camera: RICOH THETA Z1
+Sending generic request: reqCode=0x1013, params=[0x00000000,0x00000000,0x00000000,0x00000000,0x00000000]
+PTP: I/O error
+ERROR: Could not close session!
+```
+
+To turn the camera back on, you must disconnect and then reconnect
+the USB cable of the camera.  You can also replicate this process
+in software.
+ 
+
 
 ### Put Camera in Still Image Mode
 
@@ -374,6 +409,17 @@ This records video to file.
 
 ```
 ptpcam -R 0x101c,0,0,1
+```
+
+### Using Raw PTP Commands
+
+Get camera [info](https://api.ricoh/docs/theta-usb-api/operation/get_device_info/). 
+
+```
+$ ptpcam -R 0x1001
+Camera: RICOH THETA Z1
+Sending generic request: reqCode=0x1001, params=[0x00000000,0x00000000,0x00000000,0x00000000,0x00000000]
+64 00 06 00 00 00 6e 00 00 00 00 33 00 00 00 01 - d.....n....3....
 ```
 
 ## gphoto2
