@@ -227,7 +227,7 @@ Changing property value to 0x0001 [(null)] succeeded.
 
 In this test, I have the Z1 power off disabled.  I left the camera
 in sleep mode overnight.  When I woke up in the morning,
-I work the Z1 up using an ssh session into the Jetson Nano and 
+I woke the Z1 up using an ssh session into the Jetson Nano and 
 running this command.
 
 ```bash
@@ -268,6 +268,48 @@ ERROR: Could not open session!
 In the future, I'll run more tests using the
 camera [FunctionalMode](https://api.ricoh/docs/theta-usb-api/property/functional_mode/)
 to check status.
+
+This is another example with x86.  Initially, the camera is asleep.
+
+```
+craig@cube:~$ ptpcam --info
+
+Camera information
+==================
+ERROR: Could not open session!
+craig@cube:~$ ptpcam --info
+
+Camera information
+==================
+Model: RICOH THETA Z1
+  manufacturer: Ricoh Company, Ltd.
+  serial number: '10010104'
+  device version: 1.50.1
+  extension ID: 0x00000006
+  extension description: (null)
+  extension version: 0x006e
+
+craig@cube:~$ ptpcam --set-property=0xd80e --val=0
+
+Camera: RICOH THETA Z1
+'UNKNOWN' is set to: 1
+Changing property value to 0 [(null)] succeeded.
+```
+
+At this point, the camera is awake.
+
+### Put camera to sleep
+
+```
+$ ptpcam --set-property=0xd80e --val=0x01
+
+Camera: RICOH THETA Z1
+'UNKNOWN' is set to: 0
+Changing property value to 0x01 [(null)] succeeded.
+```
+
+The camera is asleep.
+
 
 ### Put Camera in Still Image Mode
 
