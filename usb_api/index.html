@@ -350,6 +350,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#auto-power-off-delay" class="md-nav__link">
+    Auto Power Off Delay
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shutdown-camera" class="md-nav__link">
+    Shutdown Camera
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#put-camera-in-still-image-mode" class="md-nav__link">
     Put Camera in Still Image Mode
   </a>
@@ -359,6 +373,13 @@
           <li class="md-nav__item">
   <a href="#start-video-capture" class="md-nav__link">
     Start Video Capture
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-raw-ptp-commands" class="md-nav__link">
+    Using Raw PTP Commands
   </a>
   
 </li>
@@ -589,6 +610,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#auto-power-off-delay" class="md-nav__link">
+    Auto Power Off Delay
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shutdown-camera" class="md-nav__link">
+    Shutdown Camera
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#put-camera-in-still-image-mode" class="md-nav__link">
     Put Camera in Still Image Mode
   </a>
@@ -598,6 +633,13 @@
           <li class="md-nav__item">
   <a href="#start-video-capture" class="md-nav__link">
     Start Video Capture
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-raw-ptp-commands" class="md-nav__link">
+    Using Raw PTP Commands
   </a>
   
 </li>
@@ -917,6 +959,27 @@ Changing property value to 0x01 [(null)] succeeded.
 </code></pre>
 
 <p>The camera is asleep.</p>
+<h3 id="auto-power-off-delay">Auto Power Off Delay</h3>
+<p>Disable auto power off.</p>
+<p>$ ptpcam --set-property=0xd81b=0</p>
+<p>Camera: RICOH THETA Z1
+'UNKNOWN' is set to: 0</p>
+<p>Verify that auto power off is disabled.</p>
+<pre><code>$ ptpcam --show-property=0xd81b
+
+Camera: RICOH THETA Z1
+'UNKNOWN' is set to: 0
+</code></pre>
+
+<h3 id="shutdown-camera">Shutdown Camera</h3>
+<p>This will completely power off the camera and put into lowest battery mode.</p>
+<pre><code>$ ptpcam -R 0x1013
+Camera: RICOH THETA Z1
+Sending generic request: reqCode=0x1013, params=[0x00000000,0x00000000,0x00000000,0x00000000,0x00000000]
+PTP: I/O error
+ERROR: Could not close session!
+</code></pre>
+
 <h3 id="put-camera-in-still-image-mode">Put Camera in Still Image Mode</h3>
 <p>You may want to take a detailed picture of the scene based on triggers
 from the live stream.</p>
@@ -969,6 +1032,14 @@ Camera: RICOH THETA Z1
 <h3 id="start-video-capture">Start Video Capture</h3>
 <p>This records video to file. </p>
 <pre><code>ptpcam -R 0x101c,0,0,1
+</code></pre>
+
+<h3 id="using-raw-ptp-commands">Using Raw PTP Commands</h3>
+<p>Get camera <a href="https://api.ricoh/docs/theta-usb-api/operation/get_device_info/">info</a>. </p>
+<pre><code>$ ptpcam -R 0x1001
+Camera: RICOH THETA Z1
+Sending generic request: reqCode=0x1001, params=[0x00000000,0x00000000,0x00000000,0x00000000,0x00000000]
+64 00 06 00 00 00 6e 00 00 00 00 33 00 00 00 01 - d.....n....3....
 </code></pre>
 
 <h2 id="gphoto2">gphoto2</h2>
