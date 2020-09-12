@@ -502,7 +502,7 @@ It works!
 
 ```
 $ gphoto2 --get-config=5013
-Label: Still Capture Mode                                                      
+Label: Still Capture Mode
 Readonly: 0
 Type: MENU
 Current: 1
@@ -515,7 +515,7 @@ Choice: 5 32773
 Choice: 6 32774
 Choice: 7 32775
 END
-craig@craig-desktop:~$ 
+craig@craig-desktop:~$
 ```
 
 #### set to video mode
