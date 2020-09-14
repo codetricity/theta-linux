@@ -295,6 +295,26 @@
     Jetson
   </a>
   
+    <nav class="md-nav" aria-label="Jetson">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tegrastats" class="md-nav__link">
+    tegrastats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jetson-stats" class="md-nav__link">
+    jetson-stats
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -486,6 +506,26 @@
     Jetson
   </a>
   
+    <nav class="md-nav" aria-label="Jetson">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tegrastats" class="md-nav__link">
+    tegrastats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jetson-stats" class="md-nav__link">
+    jetson-stats
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -594,6 +634,9 @@ ordered the 5V fan from Amazon.</p>
 <p>To verify that you are using GPU acceleration, you can use <code>tegrastats</code> on
 Jetson and <code>nvidia-smi</code> on x86. </p>
 <h3 id="jetson">Jetson</h3>
+<p>You can either use tegrastats or jetson-stats to see information on your CPU and GPU to
+identify performance bottlenecks.</p>
+<h4 id="tegrastats">tegrastats</h4>
 <p>On NVIDIA Jetson, <code>tegrastats</code> is useful for seeing information on the GPU.
 In the example below, I've inserted line breaks to make the output easier to read.
 The output is shown before streaming starts.</p>
@@ -626,7 +669,17 @@ POM_5V_CPU 2843/2791
 <p>The GR3D_FREQ and POM_5V_GPU provide information on the GPU.  GR3D is the
 Jetson GPU engine.  More information on tegrastatus is 
 <a href="https://docs.nvidia.com/jetson/archives/l4t-archived/l4t-3231/index.html#page/Tegra%20Linux%20Driver%20Package%20Development%20Guide/AppendixTegraStats.html">here</a>.</p>
-<p>Another nice package is <a href="https://github.com/rbonghi/jetson_stats">jetson-stats</a></p>
+<h4 id="jetson-stats">jetson-stats</h4>
+<p>Another nice package is <a href="https://github.com/rbonghi/jetson_stats">jetson-stats</a>.</p>
+<p>You can verify if your base libraries such as OpenCV have features such as CUDA enabled.</p>
+<p><img alt="jtop_info" src="../images/hardware/jetson_monitor/jtop_info.png" /></p>
+<p>Prior to streaming, your system should show very little load. </p>
+<p><img alt="jtop no load" src="../images/hardware/jetson_monitor/jtop-no-load.gif" /></p>
+<p>Once streaming starts, the load on your GPU should increase.  The example below
+shows OpenCV and a Python script for canny edge detection.</p>
+<p><img alt="jtop canny" src="../images/hardware/jetson_monitor/jtop-canny.gif" /></p>
+<p>The example below is using OpenCV to convert the color space.</p>
+<p><img alt="jtop opencv color" src="../images/hardware/jetson_monitor/opencv_color.gif" /></p>
 <h3 id="x86">x86</h3>
 <p>Prior to starting the stream.</p>
 <pre><code>$ nvidia-smi 
