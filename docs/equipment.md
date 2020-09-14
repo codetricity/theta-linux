@@ -111,6 +111,11 @@ Jetson and `nvidia-smi` on x86.
 
 ### Jetson
 
+You can either use tegrastats or jetson-stats to see information on your CPU and GPU to
+identify performance bottlenecks.
+
+#### tegrastats
+
 On NVIDIA Jetson, `tegrastats` is useful for seeing information on the GPU.
 In the example below, I've inserted line breaks to make the output easier to read.
 The output is shown before streaming starts.
@@ -148,7 +153,29 @@ The GR3D_FREQ and POM_5V_GPU provide information on the GPU.  GR3D is the
 Jetson GPU engine.  More information on tegrastatus is 
 [here](https://docs.nvidia.com/jetson/archives/l4t-archived/l4t-3231/index.html#page/Tegra%20Linux%20Driver%20Package%20Development%20Guide/AppendixTegraStats.html).
 
-Another nice package is [jetson-stats](https://github.com/rbonghi/jetson_stats)
+#### jetson-stats
+
+Another nice package is [jetson-stats](https://github.com/rbonghi/jetson_stats).
+
+You can verify if your base libraries such as OpenCV have features such as CUDA enabled.
+
+![jtop_info](images/hardware/jetson_monitor/jtop_info.png)
+
+Prior to streaming, your system should show very little load. 
+
+![jtop no load](images/hardware/jetson_monitor/jtop-no-load.gif)
+
+Once streaming starts, the load on your GPU should increase.  The example below
+shows OpenCV and a Python script for canny edge detection.
+
+![jtop canny](images/hardware/jetson_monitor/jtop-canny.gif)
+
+The example below is using OpenCV to convert the color space.
+
+![jtop opencv color](images/hardware/jetson_monitor/opencv_color.gif)
+
+
+
 
 ### x86
 
