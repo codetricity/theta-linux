@@ -19,7 +19,7 @@
     
     
       
-        <title>Software - RICOH THETA Development on Linux</title>
+        <title>Camera - RICOH THETA Development on Linux</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#software-requirements" class="md-skip">
+        <a href="#streaming-specifications" class="md-skip">
           Skip to content
         </a>
       
@@ -93,7 +93,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Software
+              Camera
             
           </span>
         </div>
@@ -188,96 +188,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Software
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Software" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../software/" title="Software" class="md-nav__link">
       Software
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#software-requirements" class="md-nav__link">
-    Software Requirements
-  </a>
-  
-    <nav class="md-nav" aria-label="Software Requirements">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#live-streaming" class="md-nav__link">
-    Live Streaming
-  </a>
-  
-    <nav class="md-nav" aria-label="Live Streaming">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#how-to-compile-and-install" class="md-nav__link">
-    How To Compile and Install
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-to-load-v4l2loopback-automatically" class="md-nav__link">
-    How to Load v4l2loopback automatically
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#check-kernel-module-load" class="md-nav__link">
-    Check kernel module load
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#usb-api" class="md-nav__link">
-    USB API
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -309,11 +224,96 @@
       
       
 
+  
 
-  <li class="md-nav__item">
-    <a href="../camera/" title="Camera" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Camera
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Camera" class="md-nav__link md-nav__link--active">
       Camera
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#streaming-specifications" class="md-nav__link">
+    Streaming Specifications
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sleep-and-power" class="md-nav__link">
+    Sleep and Power
+  </a>
+  
+    <nav class="md-nav" aria-label="Sleep and Power">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sleep" class="md-nav__link">
+    Sleep
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-off" class="md-nav__link">
+    Power Off
+  </a>
+  
+    <nav class="md-nav" aria-label="Power Off">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#turn-camera-off" class="md-nav__link">
+    Turn Camera Off
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#turn-camera-on" class="md-nav__link">
+    Turn Camera On
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
     
@@ -365,51 +365,51 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#software-requirements" class="md-nav__link">
-    Software Requirements
+  <a href="#streaming-specifications" class="md-nav__link">
+    Streaming Specifications
   </a>
   
-    <nav class="md-nav" aria-label="Software Requirements">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sleep-and-power" class="md-nav__link">
+    Sleep and Power
+  </a>
+  
+    <nav class="md-nav" aria-label="Sleep and Power">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#live-streaming" class="md-nav__link">
-    Live Streaming
-  </a>
-  
-    <nav class="md-nav" aria-label="Live Streaming">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#how-to-compile-and-install" class="md-nav__link">
-    How To Compile and Install
+  <a href="#sleep" class="md-nav__link">
+    Sleep
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#how-to-load-v4l2loopback-automatically" class="md-nav__link">
-    How to Load v4l2loopback automatically
+  <a href="#power-off" class="md-nav__link">
+    Power Off
+  </a>
+  
+    <nav class="md-nav" aria-label="Power Off">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#turn-camera-off" class="md-nav__link">
+    Turn Camera Off
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#check-kernel-module-load" class="md-nav__link">
-    Check kernel module load
+  <a href="#turn-camera-on" class="md-nav__link">
+    Turn Camera On
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#usb-api" class="md-nav__link">
-    USB API
-  </a>
   
 </li>
         
@@ -434,73 +434,152 @@
                   
                 
                 
-                  <h1>Software</h1>
+                  <h1>Camera</h1>
                 
-                <h2 id="software-requirements">Software Requirements</h2>
-<h3 id="live-streaming">Live Streaming</h3>
-<p>You need to download the two GitHub repos below and 
-compile the driver and sample code.</p>
+                <p>You need a THETA V or Z1.  These cameras live stream
+with UVC 1.5 in equirectangular.
+You can also use a THETA S to stream motionJPEG in dual-fisheye.</p>
+<h2 id="streaming-specifications">Streaming Specifications</h2>
+<p>V and Z1 USB streaming.</p>
 <ul>
-<li><a href="https://github.com/ricohapi/libuvc-theta">libuvc-theta</a></li>
-<li><a href="https://github.com/ricohapi/libuvc-theta-sample">libuvc-theta-sample</a></li>
+<li>4K，H264: 3840×1920/29.97fps/120Mbps</li>
+<li>2K，H264: 1920×960/29.97fps/42Mbps</li>
 </ul>
-<p>If you want to use <code>/dev/video0</code>, you will also need</p>
-<ul>
-<li><a href="https://github.com/umlaeute/v4l2loopback">v4l2loopback</a></li>
-</ul>
-<p>In addition, there are numerous dependencies to compile 
-the tools listed above.  However, have no fear, we will
-walk you through it.</p>
-<h4 id="how-to-compile-and-install">How To Compile and Install</h4>
-<ul>
-<li><a href="https://youtu.be/Ji4WDvPHzQk">Build and install on x86 Ubuntu 20.04</a></li>
-<li><a href="https://youtu.be/1xUMOvO_X5E">Jetson Nano with OpenCV and VLC on /dev/video0</a></li>
-<li><a href="https://youtu.be/GoYi1tSIV80">Compile libuvc-theta on Jetson Nano - silent screencast</a></li>
-<li><a href="https://youtu.be/KrKwUWSYp2U">Build and run v4l2loopback on Jetson Nano</a>. Needed for <code>/dev/video0</code></li>
-</ul>
-<h4 id="how-to-load-v4l2loopback-automatically">How to Load v4l2loopback automatically</h4>
-<p>In the file <code>/etc/modules-load.d/modules.conf</code> add a new line <code>v4l2loopback</code>.</p>
-<pre><code>$ pwd
-/etc/modules-load.d
-craig@jetson:/etc/modules-load.d$ cat modules.conf 
-# /etc/modules: kernel modules to load at boot time.
-#
-# This file contains the names of kernel modules that should be loaded
-# at boot time, one per line. Lines beginning with &quot;#&quot; are ignored.
-
-# bluedroid_pm, supporting module for bluetooth
-bluedroid_pm
-# modules for camera HAL
-nvhost_vi
-# nvgpu module
-nvgpu
-
-# for RICOH THETA live streaming
-# v4l2loopback device on /dev/video0. specify in gst_viewer.c
-v4l2loopback
-
-craig@jetson:/etc/modules-load.d$ 
+<p>The modes for the sample program 
+are specified in <a href="https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/thetauvc.c#L55">thetauvc.c</a>.</p>
+<p>You can specify the resolution in <a href="https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L248">gst_viewer.c</a>.  An example of changing the resolution is <a href="https://github.com/codetricity/libuvc-theta-sample">here</a>.</p>
+<h2 id="sleep-and-power">Sleep and Power</h2>
+<p>The camera has three power states:</p>
+<ol>
+<li>Power off</li>
+<li>Power on</li>
+<li>Sleep</li>
+</ol>
+<p>You can use the THETA API over a USB cable to control power off, sleep, and awake.
+To turn on the camera from power off, you can use a C library to power cycle the
+USB ports on a small board computer such as a Jetson Nano. This is an unofficial
+community workaround and is not supported by RICOH.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sleep</td>
+<td>USB API</td>
+</tr>
+<tr>
+<td>Awake</td>
+<td>USB API</td>
+</tr>
+<tr>
+<td>Power Off</td>
+<td>USB API</td>
+</tr>
+<tr>
+<td>Power On</td>
+<td>workaround with C library</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sleep">Sleep</h3>
+<p>If your application can provide power to the
+THETA or if the THETA does not have to be dormant for a long time, it is better to use
+sleep and awake. You can use the USB API to control sleep and awake. </p>
+<p>We used the following process to test sleep and awake:</p>
+<ol>
+<li><a href="/usb_api/#auto-power-off-delay">Disable auto power off delay</a> and disable auto sleep - you only need to do this once.
+The camera will save the setting.</li>
+<li><a href="/usb_api/#put-camera-to-sleep">Put camera to sleep</a></li>
+<li><a href="/usb_api/#wake-camera-from-sleep">Wake camera from sleep</a></li>
+<li>Check if camera status is ready. If the camera is still asleep, send the wake camera again.</li>
+</ol>
+<p>If you do not have any problems waking the camera up from sleep on the first attempt, you may not need step 4.</p>
+<h3 id="power-off">Power Off</h3>
+<p>If you require power off and power on for applications such as placing the THETA on 
+a robot, then shipping the robot to another site, you can use a Nano to power on the THETA.</p>
+<h4 id="turn-camera-off">Turn Camera Off</h4>
+<p>The camera can be turned off with the USB API.</p>
+<pre><code>$ ptpcam -R 0x1013
 </code></pre>
 
-<h4 id="check-kernel-module-load">Check kernel module load</h4>
-<pre><code>$ lsmod
-Module                  Size  Used by
-bnep                   16562  2
-zram                   26166  4
-overlay                48691  0
-spidev                 13282  0
-v4l2loopback           37383  0
-nvgpu                1579891  18
-bluedroid_pm           13912  0
-ip_tables              19441  0
-x_tables               28951  1 ip_tables
-craig@jetson:/etc/modules-load.d$ 
+<h4 id="turn-camera-on">Turn Camera On</h4>
+<p>There is no official way to turn on the camera once it is in a power off state.
+We recommend that you use sleep and awake.  If this is not an option,
+you can turn the camera on by power cycling the USB ports of the Jetson Nano.</p>
+<p>This example uses libusb.</p>
+<pre><code class="c">/**************** 
+* Tested on Jetson Nano running JetPack 4.4
+* The RICOH THETA V and Z1 will turn on from a power off state when 
+* the USB cable is plugged into a port. This example  will power cycle
+* the USB ports of the Nano.  You must have libusb-1.0-0-dev installed
+* on the Nano and link to it.
+* 
+* Additional information on using libusb_control_transfer is below. 
+* https://www.cs.unm.edu/~hjelmn/libusb_hotplug_api/group__syncio.html
+*****************/
+
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;libusb-1.0/libusb.h&gt;
+
+unsigned        vid = 0x0bda;
+unsigned        pid = 0x5411;
+
+
+int power_cycle(libusb_device_handle *hub_devh)
+{
+        int ret = -1;
+
+        /*ep0 vendor command enable*/
+        ret = libusb_control_transfer(hub_devh, 0x40, 0x02, 0x01, ((0x0B&lt;&lt;8)|(0xDA)), 0, 0, 100000);
+        if (ret &lt; 0) {
+                printf(&quot;[error]:ep0 vendor command enable fail.\n&quot;);
+                return ret;
+        }
+
+        /*ep0 vendor command disable*/
+        libusb_control_transfer(hub_devh, 0x40, 0x1, 0x08, 0, NULL, 0, 100);
+        libusb_control_transfer(hub_devh, 0x40, 0x3, 0x08, 0, NULL, 0, 100);
+        libusb_control_transfer(hub_devh, 0x40, 0x02, 0x00, ((0x0B&lt;&lt;8)|(0xDA)), 0, 0, 100000);
+
+        return ret;
+}
+
+int main(int argc, char *argv[])
+{
+    int ret=0;
+    libusb_device_handle    *hub_devh;
+    libusb_context      *context;
+
+    ret = libusb_init(&amp;context);
+    if (ret != 0){
+        printf(&quot;[error]:libusb init fail.\n&quot;);
+        return ret;
+    }
+
+    hub_devh = libusb_open_device_with_vid_pid(context, vid, pid);
+    if (!hub_devh) {
+        printf(&quot;[error]:open device %04x:%04x fail.\n&quot;, vid, pid);
+        return -1;
+    }
+    ret = power_cycle(hub_devh);
+    return ret;
+}
 </code></pre>
 
-<h3 id="usb-api">USB API</h3>
-<ul>
-<li><a href="https://sourceforge.net/projects/libptp/">libptp</a> - next section for detailed walkthrough</li>
-</ul>
+<p>You can test the code by first saving the code in a file called, 
+<code>reset_jetson_usb_power.c</code> then follow these steps:</p>
+<pre><code class="bash">$ sudo apt-get install libusb-1.0-0-dev
+$ gcc -o power_cycle reset_jetson_usb_power.c -lusb-1.0
+$ sudo ./power_cycle
+</code></pre>
                 
               
               
@@ -519,7 +598,7 @@ craig@jetson:/etc/modules-load.d$
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../equipment/" title="Equipment" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../usb_api/" title="USB API" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -528,19 +607,19 @@ craig@jetson:/etc/modules-load.d$
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Equipment
+                USB API
               </div>
             </div>
           </a>
         
         
-          <a href="../demos/" title="Demos" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../help/" title="Help" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Demos
+                Help
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
