@@ -100,5 +100,108 @@ with AI processing.
 ![nano with fan mount](images/hardware/fan_mount.png)
 
 The fan is 5V pwm.  I've also used a 12V fan before I
-ordered the 4V fan from Amazon.
+ordered the 5V fan from Amazon.
 
+## Hardware Acceleration
+
+You will need to use hardware acceleration to get reasonable performance.
+
+To verify that you are using GPU acceleration, you can use `tegrastats` on
+Jetson and `nvidia-smi` on x86. 
+
+### Jetson
+
+You can either use tegrastats or jetson-stats to see information on your CPU and GPU to
+identify performance bottlenecks.
+
+#### tegrastats
+
+On NVIDIA Jetson, `tegrastats` is useful for seeing information on the GPU.
+In the example below, I've inserted line breaks to make the output easier to read.
+The output is shown before streaming starts.
+
+```
+craig@jetson:~$ tegrastats 
+RAM 1122/3964MB (lfb 28x4MB)
+SWAP 211/1982MB (cached 20MB)
+CPU [5%@102,9%@102,0%@102,0%@102]
+EMC_FREQ 0% 
+GR3D_FREQ 0% 
+PLL@25.5C CPU@27C PMIC@100C 
+GPU@27.5C AO@35C thermal@27.5C 
+POM_5V_IN 1805/1805 
+POM_5V_GPU 0/0 
+POM_5V_CPU 123/123
+```
+
+Let's start the stream and review it again.
+
+```
+RAM 1288/3964MB (lfb 28x4MB) 
+SWAP 210/1982MB (cached 20MB) 
+CPU [100%@1479,89%@1479,85%@1479,86%@1479] 
+EMC_FREQ 0% 
+GR3D_FREQ 35% 
+PLL@32C CPU@35C PMIC@100C 
+GPU@30.5C AO@40.5C thermal@32.25C 
+POM_5V_IN 5607/5561 
+POM_5V_GPU 118/98 
+POM_5V_CPU 2843/2791
+```
+
+The GR3D_FREQ and POM_5V_GPU provide information on the GPU.  GR3D is the
+Jetson GPU engine.  More information on tegrastatus is 
+[here](https://docs.nvidia.com/jetson/archives/l4t-archived/l4t-3231/index.html#page/Tegra%20Linux%20Driver%20Package%20Development%20Guide/AppendixTegraStats.html).
+
+#### jetson-stats
+
+Another nice package is [jetson-stats](https://github.com/rbonghi/jetson_stats).
+
+You can verify if your base libraries such as OpenCV have features such as CUDA enabled.
+
+![jtop_info](images/hardware/jetson_monitor/jtop_info.png)
+
+Prior to streaming, your system should show very little load. 
+
+![jtop no load](images/hardware/jetson_monitor/jtop-no-load.gif)
+
+Once streaming starts, the load on your GPU should increase.  The example below
+shows OpenCV and a Python script for canny edge detection.
+
+![jtop canny](images/hardware/jetson_monitor/jtop-canny.gif)
+
+The example below is using OpenCV to convert the color space.
+
+![jtop opencv color](images/hardware/jetson_monitor/opencv_color.gif)
+
+
+
+
+### x86
+
+Prior to starting the stream.
+
+```
+$ nvidia-smi 
+Mon Sep 14 06:14:55 2020       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 440.100      Driver Version: 440.100      CUDA Version: 10.2     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  GeForce GTX 950     Off  | 00000000:02:00.0  On |                  N/A |
+|  1%   52C    P5    14W /  99W |    355MiB /  1999MiB |      0%      Default |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|    0      1051      G   /usr/lib/xorg/Xorg                            52MiB |
+|    0      1619      G   /usr/lib/xorg/Xorg                           113MiB |
+|    0      1820      G   /usr/bin/gnome-shell                         102MiB |
+|    0      2822      G   ...AAAAAAAAAAAACAAAAAAAAAA= --shared-files    73MiB |
++-----------------------------------------------------------------------------+
+
+```
