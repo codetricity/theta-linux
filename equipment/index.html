@@ -15,7 +15,7 @@
         <meta name="author" content="Oppkey">
       
       <link rel="shortcut icon" href="../images/logo-white.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.9">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.3">
     
     
       
@@ -23,9 +23,9 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.36ee6aaa.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.fe0cca5b.min.css">
       
-        <link rel="stylesheet" href="../assets/stylesheets/palette.83bccb1f.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a46bcfb3.min.css">
       
       
         
@@ -282,6 +282,53 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#hardware-acceleration" class="md-nav__link">
+    Hardware Acceleration
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware Acceleration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jetson" class="md-nav__link">
+    Jetson
+  </a>
+  
+    <nav class="md-nav" aria-label="Jetson">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tegrastats" class="md-nav__link">
+    tegrastats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jetson-stats" class="md-nav__link">
+    jetson-stats
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x86" class="md-nav__link">
+    x86
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -321,6 +368,18 @@
   <li class="md-nav__item">
     <a href="../usb_api/" title="USB API" class="md-nav__link">
       USB API
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../camera/" title="Camera" class="md-nav__link">
+      Camera
     </a>
   </li>
 
@@ -446,6 +505,53 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#hardware-acceleration" class="md-nav__link">
+    Hardware Acceleration
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware Acceleration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jetson" class="md-nav__link">
+    Jetson
+  </a>
+  
+    <nav class="md-nav" aria-label="Jetson">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tegrastats" class="md-nav__link">
+    tegrastats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jetson-stats" class="md-nav__link">
+    jetson-stats
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x86" class="md-nav__link">
+    x86
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -534,7 +640,83 @@ with AI processing. </p>
 <p><img alt="nano with fan" src="../images/hardware/cooling_nano.png" /></p>
 <p><img alt="nano with fan mount" src="../images/hardware/fan_mount.png" /></p>
 <p>The fan is 5V pwm.  I've also used a 12V fan before I
-ordered the 4V fan from Amazon.</p>
+ordered the 5V fan from Amazon.</p>
+<h2 id="hardware-acceleration">Hardware Acceleration</h2>
+<p>You will need to use hardware acceleration to get reasonable performance.</p>
+<p>To verify that you are using GPU acceleration, you can use <code>tegrastats</code> on
+Jetson and <code>nvidia-smi</code> on x86. </p>
+<h3 id="jetson">Jetson</h3>
+<p>You can either use tegrastats or jetson-stats to see information on your CPU and GPU to
+identify performance bottlenecks.</p>
+<h4 id="tegrastats">tegrastats</h4>
+<p>On NVIDIA Jetson, <code>tegrastats</code> is useful for seeing information on the GPU.
+In the example below, I've inserted line breaks to make the output easier to read.
+The output is shown before streaming starts.</p>
+<pre><code>craig@jetson:~$ tegrastats 
+RAM 1122/3964MB (lfb 28x4MB)
+SWAP 211/1982MB (cached 20MB)
+CPU [5%@102,9%@102,0%@102,0%@102]
+EMC_FREQ 0% 
+GR3D_FREQ 0% 
+PLL@25.5C CPU@27C PMIC@100C 
+GPU@27.5C AO@35C thermal@27.5C 
+POM_5V_IN 1805/1805 
+POM_5V_GPU 0/0 
+POM_5V_CPU 123/123
+</code></pre>
+
+<p>Let's start the stream and review it again.</p>
+<pre><code>RAM 1288/3964MB (lfb 28x4MB) 
+SWAP 210/1982MB (cached 20MB) 
+CPU [100%@1479,89%@1479,85%@1479,86%@1479] 
+EMC_FREQ 0% 
+GR3D_FREQ 35% 
+PLL@32C CPU@35C PMIC@100C 
+GPU@30.5C AO@40.5C thermal@32.25C 
+POM_5V_IN 5607/5561 
+POM_5V_GPU 118/98 
+POM_5V_CPU 2843/2791
+</code></pre>
+
+<p>The GR3D_FREQ and POM_5V_GPU provide information on the GPU.  GR3D is the
+Jetson GPU engine.  More information on tegrastatus is 
+<a href="https://docs.nvidia.com/jetson/archives/l4t-archived/l4t-3231/index.html#page/Tegra%20Linux%20Driver%20Package%20Development%20Guide/AppendixTegraStats.html">here</a>.</p>
+<h4 id="jetson-stats">jetson-stats</h4>
+<p>Another nice package is <a href="https://github.com/rbonghi/jetson_stats">jetson-stats</a>.</p>
+<p>You can verify if your base libraries such as OpenCV have features such as CUDA enabled.</p>
+<p><img alt="jtop_info" src="../images/hardware/jetson_monitor/jtop_info.png" /></p>
+<p>Prior to streaming, your system should show very little load. </p>
+<p><img alt="jtop no load" src="../images/hardware/jetson_monitor/jtop-no-load.gif" /></p>
+<p>Once streaming starts, the load on your GPU should increase.  The example below
+shows OpenCV and a Python script for canny edge detection.</p>
+<p><img alt="jtop canny" src="../images/hardware/jetson_monitor/jtop-canny.gif" /></p>
+<p>The example below is using OpenCV to convert the color space.</p>
+<p><img alt="jtop opencv color" src="../images/hardware/jetson_monitor/opencv_color.gif" /></p>
+<h3 id="x86">x86</h3>
+<p>Prior to starting the stream.</p>
+<pre><code>$ nvidia-smi 
+Mon Sep 14 06:14:55 2020       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 440.100      Driver Version: 440.100      CUDA Version: 10.2     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  GeForce GTX 950     Off  | 00000000:02:00.0  On |                  N/A |
+|  1%   52C    P5    14W /  99W |    355MiB /  1999MiB |      0%      Default |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|    0      1051      G   /usr/lib/xorg/Xorg                            52MiB |
+|    0      1619      G   /usr/lib/xorg/Xorg                           113MiB |
+|    0      1820      G   /usr/bin/gnome-shell                         102MiB |
+|    0      2822      G   ...AAAAAAAAAAAACAAAAAAAAAA= --shared-files    73MiB |
++-----------------------------------------------------------------------------+
+
+</code></pre>
                 
               
               
@@ -632,15 +814,15 @@ ordered the 4V fan from Amazon.</p>
       
     </div>
     
-      <script src="../assets/javascripts/vendor.df0def68.min.js"></script>
-      <script src="../assets/javascripts/bundle.ba57d267.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../assets/javascripts/bundle.4a5ba8d6.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "..",
           features: [],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+            worker: "../assets/javascripts/worker/search.9b3611bd.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
