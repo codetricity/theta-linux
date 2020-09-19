@@ -15,7 +15,7 @@
         <meta name="author" content="Oppkey">
       
       <link rel="shortcut icon" href="../images/logo-white.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.9">
     
     
       
@@ -23,9 +23,9 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.fe0cca5b.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.36ee6aaa.min.css">
       
-        <link rel="stylesheet" href="../assets/stylesheets/palette.a46bcfb3.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.83bccb1f.min.css">
       
       
         
@@ -424,6 +424,26 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#troubleshooting-libptp-and-gphoto2" class="md-nav__link">
+    Troubleshooting libptp and gphoto2
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting libptp and gphoto2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-could-not-open-session" class="md-nav__link">
+    ERROR: Could not open session!
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gphoto2" class="md-nav__link">
     gphoto2
   </a>
@@ -720,6 +740,26 @@
           <li class="md-nav__item">
   <a href="#other-ways-to-grab-device-id" class="md-nav__link">
     Other Ways to Grab Device ID
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-libptp-and-gphoto2" class="md-nav__link">
+    Troubleshooting libptp and gphoto2
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting libptp and gphoto2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-could-not-open-session" class="md-nav__link">
+    ERROR: Could not open session!
   </a>
   
 </li>
@@ -1222,6 +1262,51 @@ Changing property value to 0x8005 [(null)] succeeded.
 <p><img alt="lsusb" src="../images/usb_api/lsusb.png" /></p>
 <p>Compare the device IDs to <code>ptpcam --list-devices</code>.  The IDs should be the same.</p>
 <p><img alt="list devices" src="../images/usb_api/list_devices.png" /></p>
+<h2 id="troubleshooting-libptp-and-gphoto2">Troubleshooting libptp and gphoto2</h2>
+<h3 id="error-could-not-open-session">ERROR: Could not open session!</h3>
+<pre><code>$ ptpcam --info
+
+Camera information
+==================
+ERROR: Could not open session!
+craig@sunfish:~$ ptpcam --info
+</code></pre>
+
+<p><strong>Solution</strong>: Unmount THETA manually.  A permanent solution is to uninstall the service that is
+auto-mounting your camera, likely gphoto2.</p>
+<p>If you want your camera to automount so you can grab the pictures, you can use a script to selectively
+unmount the THETA.</p>
+<p>Here's how to manually unmount the THETA from the command line.</p>
+<pre><code>craig@sunfish:~$ gio mount -l
+Drive(0): WDC WD10S21X-24R1BT0-SSHD-8GB
+  Type: GProxyDrive (GProxyVolumeMonitorUDisks2)
+  Volume(0): LENOVO
+    Type: GProxyVolume (GProxyVolumeMonitorUDisks2)
+  Volume(1): Windows10_OS
+    Type: GProxyVolume (GProxyVolumeMonitorUDisks2)
+  Volume(2): LRS_ESP
+    Type: GProxyVolume (GProxyVolumeMonitorUDisks2)
+Drive(1): Micron Crucial X8 SSD
+  Type: GProxyDrive (GProxyVolumeMonitorUDisks2)
+Volume(0): RICOH THETA V
+  Type: GProxyVolume (GProxyVolumeMonitorGPhoto2)
+  Mount(0): RICOH THETA V -&gt; gphoto2://Ricoh_Company__Ltd._RICOH_THETA_V_00105377/
+    Type: GProxyShadowMount (GProxyVolumeMonitorGPhoto2)
+Mount(1): RICOH THETA V -&gt; gphoto2://Ricoh_Company__Ltd._RICOH_THETA_V_00105377/
+  Type: GDaemonMount
+craig@sunfish:~$ gio mount -u gphoto2://Ricoh_Company__Ltd._RICOH_THETA_V_00105377/
+</code></pre>
+
+<pre><code>Once it is unmounted, the USB commands start to work.
+
+$ gio mount -u gphoto2://Ricoh_Company__Ltd._RICOH_THETA_V_00105377/
+craig@sunfish:~$ ptpcam --list-devices
+
+Listing devices...
+bus/dev vendorID/prodID device model
+002/009 0x05CA/0x2714   RICOH THETA V
+</code></pre>
+
 <h2 id="gphoto2">gphoto2</h2>
 <h3 id="command-line">Command Line</h3>
 <h4 id="fixing-command-line-error-could-not-claim-the-usb-device">Fixing Command Line Error - Could not claim the USB device</h4>
@@ -1638,15 +1723,15 @@ if __name__ == &quot;__main__&quot;:
       
     </div>
     
-      <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../assets/javascripts/bundle.4a5ba8d6.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../assets/javascripts/vendor.df0def68.min.js"></script>
+      <script src="../assets/javascripts/bundle.ba57d267.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "..",
           features: [],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.9b3611bd.min.js"
+            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
