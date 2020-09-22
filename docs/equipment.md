@@ -36,6 +36,7 @@ on x86 64bit Linux using Ubuntu 20.04 LTS, Focal Fossa.
 
 Watch this [build video walkthrough](https://www.youtube.com/watch?v=Ji4WDvPHzQk).
 
+A video showing latency on x86 is [here](https://youtu.be/WMKF5pWTb-w).
 
 ![x86 screenshot](images/usb_api/x86.jpeg)
 
