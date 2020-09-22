@@ -422,6 +422,121 @@ Sending generic request: reqCode=0x1001, params=[0x00000000,0x00000000,0x0000000
 64 00 06 00 00 00 6e 00 00 00 00 33 00 00 00 01 - d.....n....3....
 ```
 
+## Using Multiple Cameras with ptpcam
+
+
+### Test Environment
+
+* Ubuntu 20.04 on x86
+* libptp and ptpcam.  compiled from source with patches.  v 2-1.2.0  (assuming you have this working.  If not please post again)
+* Camera with dev id 42 is Z1 with firmware 1.50.1
+* camera with dev id 41 is V with fimrware 3.40.1
+
+
+```
+craig@cube:~$ ptpcam --list-devices
+
+Listing devices...
+bus/dev	vendorID/prodID	device model
+003/042	0x05CA/0x036D	RICOH THETA Z1
+003/041	0x05CA/0x2714	RICOH THETA V
+
+$ ptpcam --dev=042 --info
+
+Camera information
+==================
+Model: RICOH THETA Z1
+  manufacturer: Ricoh Company, Ltd.
+  serial number: '10010104'
+  device version: 1.50.1
+  extension ID: 0x00000006
+  extension description: (null)
+  extension version: 0x006e
+
+craig@cube:~$ ptpcam --dev=041 --info
+
+Camera information
+==================
+Model: RICOH THETA V
+  manufacturer: Ricoh Company, Ltd.
+  serial number: '00105377'
+  device version: 3.40.1
+  extension ID: 0x00000006
+  extension description: (null)
+  extension version: 0x006e
+
+craig@cube:~$ ptpcam --dev=041 --capture
+
+Initiating captue...
+Object added 0x00000226
+Capture completed successfully!
+craig@cube:~$ ptpcam --dev=042 --capture
+
+Initiating captue...
+Object added 0x00000011
+Capture completed successfully!
+```
+
+Slightly more complex, list files:
+
+```
+~$ ptpcam --dev=042 --list-files
+
+Listing files...
+Camera: RICOH THETA Z1
+Handler:           Size: 	Captured:      	name:
+0x0000000e:      9086912	2019-01-01 08:03	R0010001.JPG
+0x0000000f:      7968843	2019-01-01 08:00	R0010002.JPG
+0x00000010:      7990763	2019-01-01 08:01	R0010003.JPG
+0x00000011:      8008310	2019-01-01 08:03	R0010004.JPG
+```
+
+I have several hundred pictures on the V, but it showed it.
+
+```
+$ ptpcam --dev=041 --list-files
+
+Listing files...
+Camera: RICOH THETA V
+Handler:           Size: 	Captured:      	name:
+0x00000142:      4152882	2020-06-17 20:59	R0010273.JPG
+0x00000143:      3979605	2020-06-17 21:03	R0010274.JPG
+0x00000147:      4413502	2020-06-17 21:43	R0010277.JPG
+...
+```
+### Test with Two Cameras in Streaming 
+
+```
+$ ptpcam --dev=041 --set-property=0x5013 --val=0x8005
+
+Camera: RICOH THETA V (bus 0, dev 41)
+'Still Capture Mode' is set to: [Normal]
+Changing property value to 0x8005 [(null)] succeeded.
+craig@cube:~$ 
+
+$ ptpcam --dev=042 --set-property=0x5013 --val=0x8005
+
+Camera: RICOH THETA Z1 (bus 0, dev 42)
+'Still Capture Mode' is set to: [Normal]
+Changing property value to 0x8005 [(null)] succeeded.
+```
+
+At this stage, I now have two cameras streaming into the same devices.  I need to do more tests to manipulate both streams. 
+
+however, if your application is handing the stream and image processing already, then you should be good to go.
+
+
+### Other Ways to Grab Device ID
+
+You can also grab the device ID with `lsusb` or libusb.
+
+![lsusb](images/usb_api/lsusb.png)
+
+Compare the device IDs to `ptpcam --list-devices`.  The IDs should be the same.
+
+![list devices](images/usb_api/list_devices.png)
+
+
 ## gphoto2
 
 ### Command Line
