@@ -34,6 +34,9 @@ We've also tested the libuvc-theta (streaming) and
 libuvc-theta-sample (streaming sample application)
 on x86 64bit Linux using Ubuntu 20.04 LTS, Focal Fossa.
 
+Watch this [build video walkthrough](https://www.youtube.com/watch?v=Ji4WDvPHzQk).
+
+
 ![x86 screenshot](images/usb_api/x86.jpeg)
 
 ![x86 system info](images/usb_api/x86_system.png)
