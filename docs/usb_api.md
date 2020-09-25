@@ -48,7 +48,49 @@ This document covers two different strategies:
 1. libptp - either as library or with command line ptpcam
 2. gphoto2 - command line and Python bindings to library
 
-## Setup libptp
+The most common technique is to use the command line program
+of libptp called ptpcam.  You can put ptpcam in a bash
+shell script or run a system process from the language
+you are using. For example, in Python, you can use the 
+[subprocess](https://docs.python.org/3/library/subprocess.html) module.
+
+In Dart, you can use the [Process class](https://api.dart.dev/stable/2.9.3/dart-io/Process-class.html). I am using the [process_run](https://pub.dev/packages/process_run) package.
+
+As a demonstration of the USB API, I put a GUI wrapper around ptpcam
+using Flutter and Dart.
+
+![usb api flutter](images/usb_api/usb_api_flutter_1.gif)
+
+The next demo shows a common use of putting the camera to sleep
+and waking it up.
+
+![usb](images/usb_api/sleep.gif)
+
+There are several workarounds and fixes that we're using.
+Feel free to ask questions.
+
+
+## libptp and ptpcam
+
+[libptp2](http://libptp.sourceforge.net/) builds on [libusb](https://github.com/libusb/libusb). The latest version is 2-1.2.0, which was last updated on 2016-01-12.
+
+The package builds against an older version of libusb, not the current
+version that ships with Ubuntu and Raspian.  To get around this, you can
+either install an older version of libusb from source or install
+[libusb-compat-0.1](https://github.com/libusb/libusb-compat-0.1) in addition
+to libusb-1xx-dev. 
+
+Do not install libusb-compat-0.1 and libusb-0.1x on the same system.  Certain Linux distributions such
+as ArchLinux/Manjaro have [packages for libusb-compat](https://www.archlinux.org/packages/extra/x86_64/libusb-compat/).
+
+For Ubuntu 20.04 and 18.04 (JetPack 4.4), I was able to build the package
+with libusb-dev.
+
+For Raspian 10 buster, I used the source code for libusb-compat.
+
+As there are many steps and possible places where you may get stuck
+feel free to post a question in our 
+[forum](https://community.theta360.guide/t/live-streaming-over-usb-on-ubuntu-and-linux-nvidia-jetson/4359?u=craig).
 
 
 
