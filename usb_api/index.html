@@ -279,11 +279,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#setup-libptp" class="md-nav__link">
-    Setup libptp
+  <a href="#libptp-and-ptpcam" class="md-nav__link">
+    libptp and ptpcam
   </a>
   
-    <nav class="md-nav" aria-label="Setup libptp">
+    <nav class="md-nav" aria-label="libptp and ptpcam">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -632,11 +632,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#setup-libptp" class="md-nav__link">
-    Setup libptp
+  <a href="#libptp-and-ptpcam" class="md-nav__link">
+    libptp and ptpcam
   </a>
   
-    <nav class="md-nav" aria-label="Setup libptp">
+    <nav class="md-nav" aria-label="libptp and ptpcam">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -945,7 +945,35 @@ a USB cable.</li>
 <li>libptp - either as library or with command line ptpcam</li>
 <li>gphoto2 - command line and Python bindings to library</li>
 </ol>
-<h2 id="setup-libptp">Setup libptp</h2>
+<p>The most common technique is to use the command line program
+of libptp called ptpcam.  You can put ptpcam in a bash
+shell script or run a system process from the language
+you are using. For example, in Python, you can use the 
+<a href="https://docs.python.org/3/library/subprocess.html">subprocess</a> module.</p>
+<p>In Dart, you can use the <a href="https://api.dart.dev/stable/2.9.3/dart-io/Process-class.html">Process class</a>. I am using the <a href="https://pub.dev/packages/process_run">process_run</a> package.</p>
+<p>As a demonstration of the USB API, I put a GUI wrapper around ptpcam
+using Flutter and Dart.</p>
+<p><img alt="usb api flutter" src="../images/usb_api/usb_api_flutter_1.gif" /></p>
+<p>The next demo shows a common use of putting the camera to sleep
+and waking it up.</p>
+<p><img alt="usb" src="../images/usb_api/sleep.gif" /></p>
+<p>There are several workarounds and fixes that we're using.
+Feel free to ask questions.</p>
+<h2 id="libptp-and-ptpcam">libptp and ptpcam</h2>
+<p><a href="http://libptp.sourceforge.net/">libptp2</a> builds on <a href="https://github.com/libusb/libusb">libusb</a>. The latest version is 2-1.2.0, which was last updated on 2016-01-12.</p>
+<p>The package builds against an older version of libusb, not the current
+version that ships with Ubuntu and Raspian.  To get around this, you can
+either install an older version of libusb from source or install
+<a href="https://github.com/libusb/libusb-compat-0.1">libusb-compat-0.1</a> in addition
+to libusb-1xx-dev. </p>
+<p>Do not install libusb-compat-0.1 and libusb-0.1x on the same system.  Certain Linux distributions such
+as ArchLinux/Manjaro have <a href="https://www.archlinux.org/packages/extra/x86_64/libusb-compat/">packages for libusb-compat</a>.</p>
+<p>For Ubuntu 20.04 and 18.04 (JetPack 4.4), I was able to build the package
+with libusb-dev.</p>
+<p>For Raspian 10 buster, I used the source code for libusb-compat.</p>
+<p>As there are many steps and possible places where you may get stuck
+feel free to post a question in our 
+<a href="https://community.theta360.guide/t/live-streaming-over-usb-on-ubuntu-and-linux-nvidia-jetson/4359?u=craig">forum</a>.</p>
 <h3 id="download-libptp-source">Download libptp source</h3>
 <p><a href="https://sourceforge.net/projects/libptp/">libptp - Picture Transfer Protocol lib</a></p>
 <p>Get the newest version, which is 2-1.2 right now.</p>
