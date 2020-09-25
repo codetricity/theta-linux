@@ -27,7 +27,9 @@ development libraries for libusb.
 
 ![libptp configuration error](images/usb_api/02_libptp_configure_error.png)
 
-### install libusb-dev
+### install libusb-dev 
+
+For Ubuntu 18.04, 20.04 on x86 and JetPack 4.4 on Nano.
 
 ```bash
 $ sudo apt install libusb-dev
@@ -44,6 +46,22 @@ Example on x86 Ubuntu 20.04.
 $ sudo apt-get install libusb-dev
 ```
 
+#### For Raspberry Pi
+
+Version.
+
+```
+Distributor ID:	Raspbian
+Description:	Raspbian GNU/Linux 10 (buster)
+Release:	10
+Codename:	buster
+```
+
+Get the libusb compatibility layer.
+
+![libusb-compat](images/usb_api/libusb_compat.png)
+
+![libusb-compat 0.15](images/usb_api/libusb_compat_0.15.png)
 
 ### install libptp
 
