@@ -1,3 +1,48 @@
+## Overview 
+
+RICOH THETA cameras can be controlled and powered
+indefinitely over a USB cable using the
+[THETA USB API](https://api.ricoh/docs/theta-usb-api/).
+This is an extension of Media Transfer Protocol (MTP).
+Any library or application that uses MTP can access
+the camera.
+
+This document explains the most common applications,
+libraries and techniques to use the 
+RICOH THETA USB API from Linux.
+
+### Advantages
+
+The USB API has the following advantages over the 
+Wi-Fi API:
+
+* wake camera from sleep
+* put camera to sleep
+* power camer off
+* switch to live streaming mode
+* switch from live streaming mode to still image or video mode
+* theoretical faster transfer speed with USB 3.0 (for the Z1) or USB 2.0
+for the V and other models. In actual use, it appears that the USB
+does transfer faster than Wi-Fi in most cases as there is usually Wi-Fi
+signal interference or degradation.
+* it is possible to use an unsupported workaround to turn the 
+camera on over the USB cable. This technique doesn't use the
+USB API and is not supported by RICOH. The technique is
+explained in the [camera section](/camera/).
+
+### Hardware and OS
+
+We tested the USB API on the following platforms:
+
+* x86 on Ubuntu 20.04.  In the past, we used 18.04, 16.04, and 14.04.
+* NVIDIA Jetson Nano with JetPack 4.4 (Ubuntu 18.04).  Othere versions of hardware and software should work.
+* Raspberry Pi 3 with Raspian 10, buster.  Any version and any model should work.
+Note that the Rasbperry Pi 3 and earlier models cannot stream the THETA over
+a USB cable.
+
+
+### MTP software
+
 This document covers two different strategies:
 
 1. libptp - either as library or with command line ptpcam
