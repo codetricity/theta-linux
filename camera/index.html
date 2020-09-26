@@ -294,8 +294,49 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#turn-camera-on" class="md-nav__link">
-    Turn Camera On
+  <a href="#turn-camera-on-using-jetson-nano" class="md-nav__link">
+    Turn Camera On Using Jetson Nano
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#turn-camera-on-using-raspberry-pi" class="md-nav__link">
+    Turn Camera On Using Raspberry Pi
+  </a>
+  
+    <nav class="md-nav" aria-label="Turn Camera On Using Raspberry Pi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-libusb-dev" class="md-nav__link">
+    install libusb-dev
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-hub-ctrlc" class="md-nav__link">
+    install hub-ctrl.c
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-shell-script-to-cycle-power" class="md-nav__link">
+    create shell script to cycle power
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-enable-script-to-run-without-sudo-password" class="md-nav__link">
+    Optional - Enable script to run without sudo password
   </a>
   
 </li>
@@ -402,8 +443,49 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#turn-camera-on" class="md-nav__link">
-    Turn Camera On
+  <a href="#turn-camera-on-using-jetson-nano" class="md-nav__link">
+    Turn Camera On Using Jetson Nano
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#turn-camera-on-using-raspberry-pi" class="md-nav__link">
+    Turn Camera On Using Raspberry Pi
+  </a>
+  
+    <nav class="md-nav" aria-label="Turn Camera On Using Raspberry Pi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-libusb-dev" class="md-nav__link">
+    install libusb-dev
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-hub-ctrlc" class="md-nav__link">
+    install hub-ctrl.c
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-shell-script-to-cycle-power" class="md-nav__link">
+    create shell script to cycle power
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-enable-script-to-run-without-sudo-password" class="md-nav__link">
+    Optional - Enable script to run without sudo password
   </a>
   
 </li>
@@ -506,7 +588,7 @@ a robot, then shipping the robot to another site, you can use a Nano to power on
 <pre><code>$ ptpcam -R 0x1013
 </code></pre>
 
-<h4 id="turn-camera-on">Turn Camera On</h4>
+<h4 id="turn-camera-on-using-jetson-nano">Turn Camera On Using Jetson Nano</h4>
 <p>There is no official way to turn on the camera once it is in a power off state.
 We recommend that you use sleep and awake.  If this is not an option,
 you can turn the camera on by power cycling the USB ports of the Jetson Nano.</p>
@@ -580,6 +662,27 @@ int main(int argc, char *argv[])
 $ gcc -o power_cycle reset_jetson_usb_power.c -lusb-1.0
 $ sudo ./power_cycle
 </code></pre>
+
+<h4 id="turn-camera-on-using-raspberry-pi">Turn Camera On Using Raspberry Pi</h4>
+<h5 id="install-libusb-dev">install libusb-dev</h5>
+<p><code>sudo apt-get install libusb-dev</code></p>
+<h4 id="install-hub-ctrlc">install hub-ctrl.c</h4>
+<p><code>git clone https://github.com/codazoda/hub-ctrl.c</code></p>
+<ul>
+<li>make and then install in <code>/usr/local/bin</code></li>
+</ul>
+<h4 id="create-shell-script-to-cycle-power">create shell script to cycle power</h4>
+<p>Save the following into <code>/usr/local/sbin/cycle-power.sh</code>.</p>
+<pre><code class="bash">#!/bin/bash
+/usr/local/bin/hub-ctrl -h 0 -P 2 -p 0 
+sleep 2
+/usr/local/bin/hub-ctrl -h 0 -P 2 -p 1
+</code></pre>
+
+<h4 id="optional-enable-script-to-run-without-sudo-password">Optional - Enable script to run without sudo password</h4>
+<p>This is a potential security risk.  If you want to avoid having to enter
+a password and are comfortable with the risk, then follow the steps
+in <a href="https://askubuntu.com/questions/155791/how-do-i-sudo-a-command-in-a-script-without-being-asked-for-a-password">this article</a>.</p>
                 
               
               
