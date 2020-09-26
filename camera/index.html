@@ -264,26 +264,25 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sleep-and-power" class="md-nav__link">
-    Sleep and Power
-  </a>
-  
-    <nav class="md-nav" aria-label="Sleep and Power">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#sleep" class="md-nav__link">
-    Sleep
+  <a href="#sleep-and-power-overview" class="md-nav__link">
+    Sleep and Power Overview
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#power-off" class="md-nav__link">
-    Power Off
+      
+        <li class="md-nav__item">
+  <a href="#sleep-and-wake" class="md-nav__link">
+    Sleep and Wake
   </a>
   
-    <nav class="md-nav" aria-label="Power Off">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-off-and-power-on" class="md-nav__link">
+    Power Off and Power On
+  </a>
+  
+    <nav class="md-nav" aria-label="Power Off and Power On">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -297,6 +296,19 @@
   <a href="#turn-camera-on-using-jetson-nano" class="md-nav__link">
     Turn Camera On Using Jetson Nano
   </a>
+  
+    <nav class="md-nav" aria-label="Turn Camera On Using Jetson Nano">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-code-for-jetson-nano" class="md-nav__link">
+    Sample Code for Jetson Nano
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -312,11 +324,6 @@
   <a href="#install-libusb-dev" class="md-nav__link">
     install libusb-dev
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -413,26 +420,25 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sleep-and-power" class="md-nav__link">
-    Sleep and Power
-  </a>
-  
-    <nav class="md-nav" aria-label="Sleep and Power">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#sleep" class="md-nav__link">
-    Sleep
+  <a href="#sleep-and-power-overview" class="md-nav__link">
+    Sleep and Power Overview
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#power-off" class="md-nav__link">
-    Power Off
+      
+        <li class="md-nav__item">
+  <a href="#sleep-and-wake" class="md-nav__link">
+    Sleep and Wake
   </a>
   
-    <nav class="md-nav" aria-label="Power Off">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-off-and-power-on" class="md-nav__link">
+    Power Off and Power On
+  </a>
+  
+    <nav class="md-nav" aria-label="Power Off and Power On">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -446,6 +452,19 @@
   <a href="#turn-camera-on-using-jetson-nano" class="md-nav__link">
     Turn Camera On Using Jetson Nano
   </a>
+  
+    <nav class="md-nav" aria-label="Turn Camera On Using Jetson Nano">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-code-for-jetson-nano" class="md-nav__link">
+    Sample Code for Jetson Nano
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -461,11 +480,6 @@
   <a href="#install-libusb-dev" class="md-nav__link">
     install libusb-dev
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -530,7 +544,7 @@ You can also use a THETA S to stream motionJPEG in dual-fisheye.</p>
 <p>The modes for the sample program 
 are specified in <a href="https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/thetauvc.c#L55">thetauvc.c</a>.</p>
 <p>You can specify the resolution in <a href="https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L248">gst_viewer.c</a>.  An example of changing the resolution is <a href="https://github.com/codetricity/libuvc-theta-sample">here</a>.</p>
-<h2 id="sleep-and-power">Sleep and Power</h2>
+<h2 id="sleep-and-power-overview">Sleep and Power Overview</h2>
 <p>The camera has three power states:</p>
 <ol>
 <li>Power off</li>
@@ -567,7 +581,7 @@ community workaround and is not supported by RICOH.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="sleep">Sleep</h3>
+<h2 id="sleep-and-wake">Sleep and Wake</h2>
 <p>If your application can provide power to the
 THETA or if the THETA does not have to be dormant for a long time, it is better to use
 sleep and awake. You can use the USB API to control sleep and awake. </p>
@@ -580,19 +594,21 @@ The camera will save the setting.</li>
 <li>Check if camera status is ready. If the camera is still asleep, send the wake camera again.</li>
 </ol>
 <p>If you do not have any problems waking the camera up from sleep on the first attempt, you may not need step 4.</p>
-<h3 id="power-off">Power Off</h3>
+<h2 id="power-off-and-power-on">Power Off and Power On</h2>
 <p>If you require power off and power on for applications such as placing the THETA on 
-a robot, then shipping the robot to another site, you can use a Nano to power on the THETA.</p>
-<h4 id="turn-camera-off">Turn Camera Off</h4>
+a robot, then shipping the robot to another site, you can use a Nano 
+or Raspberry Pi to power on the THETA.</p>
+<h3 id="turn-camera-off">Turn Camera Off</h3>
 <p>The camera can be turned off with the USB API.</p>
 <pre><code>$ ptpcam -R 0x1013
 </code></pre>
 
-<h4 id="turn-camera-on-using-jetson-nano">Turn Camera On Using Jetson Nano</h4>
+<h3 id="turn-camera-on-using-jetson-nano">Turn Camera On Using Jetson Nano</h3>
 <p>There is no official way to turn on the camera once it is in a power off state.
 We recommend that you use sleep and awake.  If this is not an option,
 you can turn the camera on by power cycling the USB ports of the Jetson Nano.</p>
 <p>This example uses libusb.</p>
+<h4 id="sample-code-for-jetson-nano">Sample Code for Jetson Nano</h4>
 <pre><code class="c">/**************** 
 * Tested on Jetson Nano running JetPack 4.4
 * The RICOH THETA V and Z1 will turn on from a power off state when 
@@ -663,11 +679,11 @@ $ gcc -o power_cycle reset_jetson_usb_power.c -lusb-1.0
 $ sudo ./power_cycle
 </code></pre>
 
-<h4 id="turn-camera-on-using-raspberry-pi">Turn Camera On Using Raspberry Pi</h4>
-<h5 id="install-libusb-dev">install libusb-dev</h5>
+<h3 id="turn-camera-on-using-raspberry-pi">Turn Camera On Using Raspberry Pi</h3>
+<h4 id="install-libusb-dev">install libusb-dev</h4>
 <p><code>sudo apt-get install libusb-dev</code></p>
 <h4 id="install-hub-ctrlc">install hub-ctrl.c</h4>
-<p><code>git clone https://github.com/codazoda/hub-ctrl.c</code></p>
+<p><code>git clone https://github.com/codetricity/hub-ctrl.c</code></p>
 <ul>
 <li>make and then install in <code>/usr/local/bin</code></li>
 </ul>
