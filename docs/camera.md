@@ -18,7 +18,7 @@ You can specify the resolution in [gst_viewer.c](https://github.com/ricohapi/lib
 
 
 
-## Sleep and Power
+## Sleep and Power Overview
 
 The camera has three power states:
 
@@ -39,7 +39,7 @@ community workaround and is not supported by RICOH.
 | Power Off | USB API |
 | Power On | workaround with C library |
 
-### Sleep
+## Sleep and Wake
 
 If your application can provide power to the
 THETA or if the THETA does not have to be dormant for a long time, it is better to use
@@ -55,13 +55,14 @@ The camera will save the setting.
 
 If you do not have any problems waking the camera up from sleep on the first attempt, you may not need step 4.
 
-### Power Off
+## Power Off and Power On
 
 If you require power off and power on for applications such as placing the THETA on 
-a robot, then shipping the robot to another site, you can use a Nano to power on the THETA.
+a robot, then shipping the robot to another site, you can use a Nano 
+or Raspberry Pi to power on the THETA.
 
 
-#### Turn Camera Off
+### Turn Camera Off
 
 The camera can be turned off with the USB API.
 
@@ -69,13 +70,15 @@ The camera can be turned off with the USB API.
 $ ptpcam -R 0x1013
 ```
 
-#### Turn Camera On
+### Turn Camera On Using Jetson Nano
 
 There is no official way to turn on the camera once it is in a power off state.
 We recommend that you use sleep and awake.  If this is not an option,
 you can turn the camera on by power cycling the USB ports of the Jetson Nano.
 
 This example uses libusb.
+
+#### Sample Code for Jetson Nano
 
 ```c
 /**************** 
@@ -150,4 +153,33 @@ $ sudo apt-get install libusb-1.0-0-dev
 $ gcc -o power_cycle reset_jetson_usb_power.c -lusb-1.0
 $ sudo ./power_cycle
 ```
+
+### Turn Camera On Using Raspberry Pi
+
+#### install libusb-dev
+
+`sudo apt-get install libusb-dev`
+
+#### install hub-ctrl.c
+
+`git clone https://github.com/codetricity/hub-ctrl.c`
+
+* make and then install in `/usr/local/bin`
+
+#### create shell script to cycle power
+
+Save the following into `/usr/local/sbin/cycle-power.sh`.
+
+```bash
+#!/bin/bash
+/usr/local/bin/hub-ctrl -h 0 -P 2 -p 0 
+sleep 2
+/usr/local/bin/hub-ctrl -h 0 -P 2 -p 1
+```
+
+#### Optional - Enable script to run without sudo password
+
+This is a potential security risk.  If you want to avoid having to enter
+a password and are comfortable with the risk, then follow the steps
+in [this article](https://askubuntu.com/questions/155791/how-do-i-sudo-a-command-in-a-script-without-being-asked-for-a-password).
 
