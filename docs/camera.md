@@ -47,10 +47,10 @@ sleep and awake. You can use the USB API to control sleep and awake.
 
 We used the following process to test sleep and awake:
 
-1. [Disable auto power off delay](/usb_api/#auto-power-off-delay) and disable auto sleep - you only need to do this once.
+1. [Disable auto power off delay](usb_api.md#auto-power-off-delay) and disable auto sleep - you only need to do this once.
 The camera will save the setting.
-2. [Put camera to sleep](/usb_api/#put-camera-to-sleep)
-3. [Wake camera from sleep](/usb_api/#wake-camera-from-sleep)
+2. [Put camera to sleep](usb_api.md#put-camera-to-sleep)
+3. [Wake camera from sleep](usb_api.md#wake-camera-from-sleep)
 4. Check if camera status is ready. If the camera is still asleep, send the wake camera again.
 
 If you do not have any problems waking the camera up from sleep on the first attempt, you may not need step 4.
