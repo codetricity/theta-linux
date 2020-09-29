@@ -7,7 +7,7 @@
 Stream 360 video, control the RICOH THETA API, and supply power to
 the camera using the USB cable.  It's awesome!
 
-Video to your Linux computer is 4K at 30fps with under 30ms latency. 
+Video to your Linux computer is 4K at 30fps with under 300ms latency. 
 Works with the RICOH THETA V or RICOH THETA Z1.  It's perfect for
 OpenCV object detection, autonomous drones, building analysis,
 AI, and TensorFlow projects.
