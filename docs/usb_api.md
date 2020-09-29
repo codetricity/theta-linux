@@ -28,7 +28,7 @@ signal interference or degradation.
 * it is possible to use an unsupported workaround to turn the 
 camera on over the USB cable. This technique doesn't use the
 USB API and is not supported by RICOH. The technique is
-explained in the [camera section](/camera/).
+explained in the [camera section](camera.md).
 
 ### Hardware and OS
 
