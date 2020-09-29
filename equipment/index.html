@@ -719,6 +719,36 @@ Mon Sep 14 06:14:55 2020
 +-----------------------------------------------------------------------------+
 
 </code></pre>
+
+<p>With gst-viewer running.</p>
+<pre><code>$ nvidia-smi 
+Tue Sep 29 16:29:33 2020       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 450.66       Driver Version: 450.66       CUDA Version: 11.0     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  GeForce GTX 950     Off  | 00000000:02:00.0  On |                  N/A |
+|  9%   56C    P0    28W /  99W |    543MiB /  1999MiB |      9%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|    0   N/A  N/A      1100      G   /usr/lib/xorg/Xorg                 51MiB |
+|    0   N/A  N/A      1588      G   /usr/lib/xorg/Xorg                188MiB |
+|    0   N/A  N/A      1719      G   /usr/bin/gnome-shell              144MiB |
+|    0   N/A  N/A      2132      G   ...AAAAAAAAA= --shared-files       71MiB |
+|    0   N/A  N/A      6606      G   ...AAAAAAAAA= --shared-files       73MiB |
++-----------------------------------------------------------------------------+
+</code></pre>
+
+<p><img alt="GPU on" src="../images/hardware/gpu_on.png" /></p>
                 
               
               
