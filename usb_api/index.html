@@ -514,6 +514,27 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#start-video" class="md-nav__link">
+    start video
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop-video" class="md-nav__link">
+    stop video
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-video-and-stop-after-specified-time" class="md-nav__link">
+    start video and stop after specified time
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -863,6 +884,27 @@
           <li class="md-nav__item">
   <a href="#set-to-video-mode" class="md-nav__link">
     set to video mode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-video" class="md-nav__link">
+    start video
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop-video" class="md-nav__link">
+    stop video
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-video-and-stop-after-specified-time" class="md-nav__link">
+    start video and stop after specified time
   </a>
   
 </li>
@@ -1471,6 +1513,19 @@ craig@craig-desktop:~$
 <h4 id="set-to-video-mode">set to video mode</h4>
 <p>Using the <a href="https://api.ricoh/docs/theta-usb-api/property/still_capture_mode/">API reference</a>, we can see that video mode is hex <code>0x8002</code> or 32770 in base 10.</p>
 <pre><code>$ gphoto2 --set-config=5013=32770
+</code></pre>
+
+<h4 id="start-video">start video</h4>
+<pre><code>$ gphoto2 --set-config movie=1
+</code></pre>
+
+<h4 id="stop-video">stop video</h4>
+<p>this tip contributed by <a href="https://community.theta360.guide/u/Hugues">hugues</a></p>
+<pre><code>$ gphoto2 --set-config=/main/actions/opcode=0x1018,0xFFFFFFFF
+</code></pre>
+
+<h4 id="start-video-and-stop-after-specified-time">start video and stop after specified time</h4>
+<pre><code>$ gphoto2 --set-config movie=1 --wait-event=2s --set-config movie=0 
 </code></pre>
 
 <h3 id="python-bindings">Python bindings</h3>
