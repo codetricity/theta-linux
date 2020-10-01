@@ -738,6 +738,12 @@ END
 craig@craig-desktop:~$
 ```
 
+#### unmount camera
+
+If the camera is mounted, the commands may not work.
+
+![unmount camera](images/usb_api/unmount.png)
+
 #### set to video mode
 
 Using the [API reference](https://api.ricoh/docs/theta-usb-api/property/still_capture_mode/), we can see that video mode is hex `0x8002` or 32770 in base 10.
