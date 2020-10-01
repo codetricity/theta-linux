@@ -508,6 +508,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#unmount-camera" class="md-nav__link">
+    unmount camera
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#set-to-video-mode" class="md-nav__link">
     set to video mode
   </a>
@@ -877,6 +884,13 @@
           <li class="md-nav__item">
   <a href="#check-camera-mode-still-image-video-streaming" class="md-nav__link">
     Check Camera Mode (still image, video, streaming)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unmount-camera" class="md-nav__link">
+    unmount camera
   </a>
   
 </li>
@@ -1510,6 +1524,9 @@ END
 craig@craig-desktop:~$
 </code></pre>
 
+<h4 id="unmount-camera">unmount camera</h4>
+<p>If the camera is mounted, the commands may not work.</p>
+<p><img alt="unmount camera" src="../images/usb_api/unmount.png" /></p>
 <h4 id="set-to-video-mode">set to video mode</h4>
 <p>Using the <a href="https://api.ricoh/docs/theta-usb-api/property/still_capture_mode/">API reference</a>, we can see that video mode is hex <code>0x8002</code> or 32770 in base 10.</p>
 <pre><code>$ gphoto2 --set-config=5013=32770
