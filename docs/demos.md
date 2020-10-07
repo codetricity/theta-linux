@@ -251,3 +251,37 @@ Works on live stream with Jetpack 4.3, not 4.4.
 
 ![open pose](images/demos/stickman.jpg)
 
+### Device to Device Transmission
+
+On computer sending THETA video.
+
+Modify the pipeline in `gst_viewer.c`
+
+This example has the IP address hardcoded in.  Switch to a variable in
+your code.
+
+```c
+pipe_proc = " decodebin ! jpegenc ! rtpjpegpay ! udpsink host=192.168.2.100 port=5000 qos=false sync=false";
+```
+
+![modify pipeline](images/demos/pipeline_mod.png)
+
+If you are looking for the IP address of the receiver, you can use arp-scan on 
+the command line.
+
+Example:
+
+```
+sudo arp-scan --interface=eth0 --localnet
+```
+
+On the receiving device, if the receiver is a NVIDIA Jetson Nano.
+
+```bash
+$ cat receive_udp.sh 
+gst-launch-1.0 udpsrc port=5000 !  application/x-rtp,encoding-name=JPEG,payload=26 ! rtpjpegdepay ! jpegdec ! videoscale ! video/x-raw,width=640,height=320 ! nveglglessink
+```
+If you're on x86, change nveglglessink to autovideosink.  You may want to make
+the width and height bigger as well. 
+
+
