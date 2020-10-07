@@ -308,6 +308,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#device-to-device-transmission" class="md-nav__link">
+    Device to Device Transmission
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -463,6 +470,13 @@
           <li class="md-nav__item">
   <a href="#openpose" class="md-nav__link">
     OpenPose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device-to-device-transmission" class="md-nav__link">
+    Device to Device Transmission
   </a>
   
 </li>
@@ -701,6 +715,28 @@ if __name__ == '__main__':
 <h3 id="openpose">OpenPose</h3>
 <p>Works on live stream with Jetpack 4.3, not 4.4.</p>
 <p><img alt="open pose" src="../images/demos/stickman.jpg" /></p>
+<h3 id="device-to-device-transmission">Device to Device Transmission</h3>
+<p>On computer sending THETA video.</p>
+<p>Modify the pipeline in <code>gst_viewer.c</code></p>
+<p>This example has the IP address hardcoded in.  Switch to a variable in
+your code.</p>
+<pre><code class="c">pipe_proc = &quot; decodebin ! jpegenc ! rtpjpegpay ! udpsink host=192.168.2.100 port=5000 qos=false sync=false&quot;;
+</code></pre>
+
+<p><img alt="modify pipeline" src="../images/demos/pipeline_mod.png" /></p>
+<p>If you are looking for the IP address of the receiver, you can use arp-scan on 
+the command line.</p>
+<p>Example:</p>
+<pre><code>sudo arp-scan --interface=eth0 --localnet
+</code></pre>
+
+<p>On the receiving device, if the receiver is a NVIDIA Jetson Nano.</p>
+<pre><code class="bash">$ cat receive_udp.sh 
+gst-launch-1.0 udpsrc port=5000 !  application/x-rtp,encoding-name=JPEG,payload=26 ! rtpjpegdepay ! jpegdec ! videoscale ! video/x-raw,width=640,height=320 ! nveglglessink
+</code></pre>
+
+<p>If you're on x86, change nveglglessink to autovideosink.  You may want to make
+the width and height bigger as well. </p>
                 
               
               
