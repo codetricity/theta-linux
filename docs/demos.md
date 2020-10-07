@@ -253,7 +253,11 @@ Works on live stream with Jetpack 4.3, not 4.4.
 
 ## Device to Device Transmission
 
-On computer sending THETA video.
+This was tested going from an x86 machine to a Jetson Nano.
+The THETA Z1 is connected to the x86 Linux machine.  It is not 
+working with the Jetson as the sender.
+
+On x86 computer sending THETA video.
 
 Modify the pipeline in `gst_viewer.c`
 
@@ -283,5 +287,7 @@ gst-launch-1.0 udpsrc port=5000 !  application/x-rtp,encoding-name=JPEG,payload=
 ```
 If you're on x86, change nveglglessink to autovideosink.  You may want to make
 the width and height bigger as well. 
+
+![streaming screenshot](images/demos/streaming_screenshot.png)
 
 
