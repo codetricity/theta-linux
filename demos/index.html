@@ -716,7 +716,10 @@ if __name__ == '__main__':
 <p>Works on live stream with Jetpack 4.3, not 4.4.</p>
 <p><img alt="open pose" src="../images/demos/stickman.jpg" /></p>
 <h2 id="device-to-device-transmission">Device to Device Transmission</h2>
-<p>On computer sending THETA video.</p>
+<p>This was tested going from an x86 machine to a Jetson Nano.
+The THETA Z1 is connected to the x86 Linux machine.  It is not 
+working with the Jetson as the sender.</p>
+<p>On x86 computer sending THETA video.</p>
 <p>Modify the pipeline in <code>gst_viewer.c</code></p>
 <p>This example has the IP address hardcoded in.  Switch to a variable in
 your code.</p>
@@ -737,6 +740,7 @@ gst-launch-1.0 udpsrc port=5000 !  application/x-rtp,encoding-name=JPEG,payload=
 
 <p>If you're on x86, change nveglglessink to autovideosink.  You may want to make
 the width and height bigger as well. </p>
+<p><img alt="streaming screenshot" src="../images/demos/streaming_screenshot.png" /></p>
                 
               
               
