@@ -360,11 +360,10 @@ into live streaming mode, still image, video, or bracket shooting
 using API commands. We explain the tools, the repos, and the 
 API.</p>
 <p>Up to date guides, events, and a general pile of great stuff is at the
- <a href="https://theta360.guide/special/linuxstreaming/">theta360.guide Linux Streaming Site</a>.</p>
+<a href="https://theta360.guide/special/linuxstreaming/">theta360.guide Linux Streaming Site</a>.</p>
 <p>It's an exciting world.  Let's getting started. </p>
 <p>If you're eager and using Ubuntu 20.04</p>
-<p>```
-$ git clone https://github.com/ricohapi/libuvc-theta.git
+<pre><code class="bash">$ git clone https://github.com/ricohapi/libuvc-theta.git
 $ sudo apt install libjpeg-dev
 $ cd libuvc-theta
 $ mkdir build
@@ -374,17 +373,22 @@ $ make
 $ sudo make install
 $ cd ../..
 $ git clone https://github.com/ricohapi/libuvc-theta-sample.git
-$ cd libuvc-theta-sample/gst</p>
-<h1 id="installs-everything-you-may-not-need-to-want-everything">installs everything.  You may not need to want everything</h1>
-<p>$ sudo apt-get install libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-doc gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio libgstreamer-plugins-base1.0-dev</p>
-<h1 id="this-assumes-you-have-a-webcam-on-devvideo0-your">this assumes you have a webcam on /dev/video0 (your</h1>
-<h1 id="laptop-or-desktop-cam-you-may-need-to-edit-the-source">laptop or desktop cam).  You may need to edit the source</h1>
-<h1 id="if-your-theta-is-the-only-camera-on-your-computer">if your THETA is the only camera on your computer.</h1>
-<p>$ make</p>
-<h1 id="theta-must-be-plugged-into-your-computer-and-in">THETA must be plugged into your computer and in</h1>
-<h1 id="live-streaming-mode">live streaming mode</h1>
-<p>$ ./gst_viewer
-```</p>
+$ cd libuvc-theta-sample/gst
+</code></pre>
+
+<p>Installs everything.  You may not need everything</p>
+<pre><code class="bash">$ sudo apt-get install libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-doc gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio libgstreamer-plugins-base1.0-dev
+</code></pre>
+
+<p>This assumes you have a webcam on <code>/dev/video0</code> (your laptop or desktop cam).<br />
+You may need to edit the source if your THETA is the only camera on your computer.</p>
+<pre><code class="bash">$ make
+
+# THETA must be plugged into your computer and in 
+# live streaming mode
+
+$ ./gst_viewer
+</code></pre>
                 
               
               

@@ -738,12 +738,39 @@ END
 craig@craig-desktop:~$
 ```
 
+#### unmount camera
+
+If the camera is mounted, the commands may not work.
+
+![unmount camera](images/usb_api/unmount.png)
+
 #### set to video mode
 
 Using the [API reference](https://api.ricoh/docs/theta-usb-api/property/still_capture_mode/), we can see that video mode is hex `0x8002` or 32770 in base 10.
 
 ```
 $ gphoto2 --set-config=5013=32770
+```
+
+#### start video
+
+```
+$ gphoto2 --set-config movie=1
+```
+
+#### stop video
+
+this tip contributed by [hugues](https://community.theta360.guide/u/Hugues)
+
+```
+$ gphoto2 --set-config=/main/actions/opcode=0x1018,0xFFFFFFFF
+```
+
+
+#### start video and stop after specified time
+
+```
+$ gphoto2 --set-config movie=1 --wait-event=2s --set-config movie=0 
 ```
 
 

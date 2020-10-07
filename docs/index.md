@@ -18,13 +18,13 @@ using API commands. We explain the tools, the repos, and the
 API.
 
 Up to date guides, events, and a general pile of great stuff is at the
- [theta360.guide Linux Streaming Site](https://theta360.guide/special/linuxstreaming/).
+[theta360.guide Linux Streaming Site](https://theta360.guide/special/linuxstreaming/).
 
  It's an exciting world.  Let's getting started. 
 
  If you're eager and using Ubuntu 20.04
 
- ```
+```bash
 $ git clone https://github.com/ricohapi/libuvc-theta.git
 $ sudo apt install libjpeg-dev
 $ cd libuvc-theta
@@ -36,15 +36,18 @@ $ sudo make install
 $ cd ../..
 $ git clone https://github.com/ricohapi/libuvc-theta-sample.git
 $ cd libuvc-theta-sample/gst
+```
 
-# installs everything.  You may not need to want everything
+Installs everything.  You may not need everything
 
+```bash
 $ sudo apt-get install libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-doc gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio libgstreamer-plugins-base1.0-dev
+```
 
-# this assumes you have a webcam on /dev/video0 (your 
-# laptop or desktop cam).  You may need to edit the source
-# if your THETA is the only camera on your computer.
+This assumes you have a webcam on `/dev/video0` (your laptop or desktop cam).  
+You may need to edit the source if your THETA is the only camera on your computer.
 
+```bash
 $ make
 
 # THETA must be plugged into your computer and in 
