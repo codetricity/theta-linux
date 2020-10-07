@@ -251,7 +251,7 @@ Works on live stream with Jetpack 4.3, not 4.4.
 
 ![open pose](images/demos/stickman.jpg)
 
-### Device to Device Transmission
+## Device to Device Transmission
 
 On computer sending THETA video.
 
