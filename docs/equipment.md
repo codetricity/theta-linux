@@ -74,6 +74,7 @@ There are two possible workarounds:
 1. Use the nvdec plugin Although the nvdec plugin is a part of the gstreamer-plugins-bad, it is not included in binary distribution due to license problem. Thus, you have to build the plugin by yourself. You also need to modify the pipeline of the gst_loopback accordingly.
 2. Use hardware decoder on the iGPU You may need additional setup to run X server on the iGPU,
 
+![X.org Driver](images/hardware/graphics_driver.png)
 
 
 ### Raspberry Pi
