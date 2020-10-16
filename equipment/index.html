@@ -237,6 +237,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#nvidia-jetson-xavier" class="md-nav__link">
+    NVIDIA Jetson Xavier
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#x86-linux" class="md-nav__link">
     x86 Linux
   </a>
@@ -259,13 +266,6 @@
           <li class="md-nav__item">
   <a href="#raspberry-pi" class="md-nav__link">
     Raspberry Pi
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nvidia-jetson-xavier" class="md-nav__link">
-    NVIDIA Jetson Xavier
   </a>
   
 </li>
@@ -460,6 +460,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#nvidia-jetson-xavier" class="md-nav__link">
+    NVIDIA Jetson Xavier
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#x86-linux" class="md-nav__link">
     x86 Linux
   </a>
@@ -482,13 +489,6 @@
           <li class="md-nav__item">
   <a href="#raspberry-pi" class="md-nav__link">
     Raspberry Pi
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nvidia-jetson-xavier" class="md-nav__link">
-    NVIDIA Jetson Xavier
   </a>
   
 </li>
@@ -593,6 +593,12 @@ microSD card.</p>
 but it is over the recommended length.  I only have the long cable for convenience. You
 should use as short a cable as possible. </li>
 </ul>
+<h3 id="nvidia-jetson-xavier">NVIDIA Jetson Xavier</h3>
+<p>The Xavier is better for testing.  However, it is more expensive.  If your 
+budget permits, it is better to get the Xavier.  You may have problems
+with 4K AI processing with the Nano.</p>
+<p>On Jetson Xavier, auto plugin selection of the gstreamer seems to be not working well, replacing "decodebin ! autovideosink sync=false" to "nvv4l2decoder ! nv3dsink sync=false" will solve the problem. Edit this 
+<a href="https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L192">line</a> in the sample code and recompile.</p>
 <h3 id="x86-linux">x86 Linux</h3>
 <p>We've also tested the libuvc-theta (streaming) and
 libuvc-theta-sample (streaming sample application)
@@ -624,18 +630,23 @@ dedicated graphics card on x86. In our tests on Ubuntu 20, Focal Fossa, the gstr
 <li>Use the nvdec plugin Although the nvdec plugin is a part of the gstreamer-plugins-bad, it is not included in binary distribution due to license problem. Thus, you have to build the plugin by yourself. You also need to modify the pipeline of the gst_loopback accordingly.</li>
 <li>Use hardware decoder on the iGPU You may need additional setup to run X server on the iGPU,</li>
 </ol>
+<p>You can try the X.Org driver. </p>
 <p><img alt="X.org Driver" src="../images/hardware/graphics_driver.png" /></p>
+<p>This is a <a href="https://youtu.be/9_lG5m806uE">video test clip of a THETA Z1 running with the X.Org
+driver</a> on Intel i7-6800K CPU and NVIDIA GeForce GTX 950 GPU.</p>
+<p>You can check the graphics driver with one of these commands.</p>
+<pre><code>$ glxinfo -B
+</code></pre>
+
+<p>or </p>
+<pre><code>$ sudo lshw -c video
+</code></pre>
+
 <h3 id="raspberry-pi">Raspberry Pi</h3>
 <p>The Raspberry Pi will work great with the USB API.  However, you 
 will not have a good experience streaming 4K, even with the 
 Raspberry Pi 4.</p>
 <p>The Raspberry Pi's H.264 hardware decoder does not support 4K resolution even on the Raspberry Pi4. In addition, older Pis' (Pi to Pi3) memory bandwidth(32bit DDR2) is too poor to handle even FHD stream from THETA V/Z1.</p>
-<h3 id="nvidia-jetson-xavier">NVIDIA Jetson Xavier</h3>
-<p>The Xavier is better for testing.  However, it is more expensive.  If your 
-budget permits, it is better to get the Xavier.  You may have problems
-with 4K AI processing with the Nano.</p>
-<p>On Jetson Xavier, auto plugin selection of the gstreamer seems to be not working well, replacing "decodebin ! autovideosink sync=false" to "nvv4l2decoder ! nv3dsink sync=false" will solve the problem. Edit this 
-<a href="https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L192">line</a> in the sample code and recompile.</p>
 <h3 id="heat-and-cooling-of-linux-computer">Heat and Cooling of Linux Computer</h3>
 <p>You need to cool the Nano.  Without a fan, you may get thermal 
 throttling when live streaming
