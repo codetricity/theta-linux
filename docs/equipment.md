@@ -28,6 +28,16 @@ microSD card.
 but it is over the recommended length.  I only have the long cable for convenience. You
 should use as short a cable as possible. 
 
+
+### NVIDIA Jetson Xavier
+
+The Xavier is better for testing.  However, it is more expensive.  If your 
+budget permits, it is better to get the Xavier.  You may have problems
+with 4K AI processing with the Nano.
+
+On Jetson Xavier, auto plugin selection of the gstreamer seems to be not working well, replacing "decodebin ! autovideosink sync=false" to "nvv4l2decoder ! nv3dsink sync=false" will solve the problem. Edit this 
+[line](https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L192) in the sample code and recompile.
+
 ### x86 Linux
 
 We've also tested the libuvc-theta (streaming) and
@@ -74,7 +84,24 @@ There are two possible workarounds:
 1. Use the nvdec plugin Although the nvdec plugin is a part of the gstreamer-plugins-bad, it is not included in binary distribution due to license problem. Thus, you have to build the plugin by yourself. You also need to modify the pipeline of the gst_loopback accordingly.
 2. Use hardware decoder on the iGPU You may need additional setup to run X server on the iGPU,
 
+You can try the X.Org driver. 
+
 ![X.org Driver](images/hardware/graphics_driver.png)
+
+This is a [video test clip of a THETA Z1 running with the X.Org
+driver](https://youtu.be/9_lG5m806uE) on Intel i7-6800K CPU and NVIDIA GeForce GTX 950 GPU.
+
+You can check the graphics driver with one of these commands.
+
+```
+$ glxinfo -B
+```
+
+or 
+
+```
+$ sudo lshw -c video
+```
 
 
 ### Raspberry Pi
@@ -85,14 +112,6 @@ Raspberry Pi 4.
 
 The Raspberry Pi's H.264 hardware decoder does not support 4K resolution even on the Raspberry Pi4. In addition, older Pis' (Pi to Pi3) memory bandwidth(32bit DDR2) is too poor to handle even FHD stream from THETA V/Z1.
 
-### NVIDIA Jetson Xavier
-
-The Xavier is better for testing.  However, it is more expensive.  If your 
-budget permits, it is better to get the Xavier.  You may have problems
-with 4K AI processing with the Nano.
-
-On Jetson Xavier, auto plugin selection of the gstreamer seems to be not working well, replacing "decodebin ! autovideosink sync=false" to "nvv4l2decoder ! nv3dsink sync=false" will solve the problem. Edit this 
-[line](https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L192) in the sample code and recompile.
 
 ### Heat and Cooling of Linux Computer
 
