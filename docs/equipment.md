@@ -203,6 +203,38 @@ The example below is using OpenCV to convert the color space.
 
 ### x86
 
+#### gstreamer plug-in
+
+You can check to see if the nvdec plug-in is installed with:
+
+```
+$ gst-inspect-1.0 nvdec
+```
+
+If you see this, the plug-in is not installed.
+
+```
+No such element or plugin 'nvdec'
+```
+
+If nvdec and nvenc are installed, you should see this:
+
+```
+$ gst-inspect-1.0 | grep nvenc
+nvenc:  nvh264enc: NVENC H.264 Video Encoder
+$ gst-inspect-1.0 | grep nvdec
+nvdec:  nvdec: NVDEC video decoder
+```
+
+There are several online tutorials for installing nvdec and nvenc.
+
+* [LifeStyle transfer: How to install Nvidia Gstreamer plugins (nvenc, nvdec) on Ubuntu?](http://lifestyletransfer.com/how-to-install-nvidia-gstreamer-plugins-nvenc-nvdec-on-ubuntu/) by Taras Lishchenko
+* [README from gst-plugins-bad/sys/nvenc](https://github.com/GStreamer/gst-plugins-bad/blob/1.16/sys/nvenc/README)
+* [gist from corenel](https://gist.github.com/corenel/a615b6f7eb5b5425aa49343a7b409200)
+
+
+#### Monitoring Tools
+
 Prior to starting the stream.
 
 ```
