@@ -195,6 +195,8 @@
     
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
+    
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         Software
@@ -211,6 +213,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon">
@@ -221,27 +225,47 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#software-requirements" class="md-nav__link">
-    Software Requirements
+  <a href="#all-software-for-live-streaming" class="md-nav__link">
+    All Software for Live Streaming
   </a>
   
-    <nav class="md-nav" aria-label="Software Requirements">
+    <nav class="md-nav" aria-label="All Software for Live Streaming">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#live-streaming" class="md-nav__link">
-    Live Streaming
-  </a>
-  
-    <nav class="md-nav" aria-label="Live Streaming">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#how-to-compile-and-install" class="md-nav__link">
-    How To Compile and Install
+  <a href="#how-to-compile-and-install-all-required-software" class="md-nav__link">
+    How To Compile and Install all Required Software
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-stream-on-devvideo0" class="md-nav__link">
+    Getting Stream on /dev/video0
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Stream on /dev/video0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compile-and-install-v4l2loopback" class="md-nav__link">
+    Compile and Install v4l2loopback
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-and-use" class="md-nav__link">
+    Load and use
+  </a>
+  
+    <nav class="md-nav" aria-label="Load and use">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#how-to-load-v4l2loopback-automatically" class="md-nav__link">
@@ -262,15 +286,15 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#usb-api" class="md-nav__link">
     USB API
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -355,6 +379,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon">
@@ -365,27 +391,47 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#software-requirements" class="md-nav__link">
-    Software Requirements
+  <a href="#all-software-for-live-streaming" class="md-nav__link">
+    All Software for Live Streaming
   </a>
   
-    <nav class="md-nav" aria-label="Software Requirements">
+    <nav class="md-nav" aria-label="All Software for Live Streaming">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#live-streaming" class="md-nav__link">
-    Live Streaming
-  </a>
-  
-    <nav class="md-nav" aria-label="Live Streaming">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#how-to-compile-and-install" class="md-nav__link">
-    How To Compile and Install
+  <a href="#how-to-compile-and-install-all-required-software" class="md-nav__link">
+    How To Compile and Install all Required Software
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-stream-on-devvideo0" class="md-nav__link">
+    Getting Stream on /dev/video0
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Stream on /dev/video0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compile-and-install-v4l2loopback" class="md-nav__link">
+    Compile and Install v4l2loopback
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-and-use" class="md-nav__link">
+    Load and use
+  </a>
+  
+    <nav class="md-nav" aria-label="Load and use">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#how-to-load-v4l2loopback-automatically" class="md-nav__link">
@@ -406,15 +452,15 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#usb-api" class="md-nav__link">
     USB API
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -434,10 +480,8 @@
                   
                 
                 
-                  <h1>Software</h1>
-                
-                <h2 id="software-requirements">Software Requirements</h2>
-<h3 id="live-streaming">Live Streaming</h3>
+                <h1 id="software-requirements">Software Requirements</h1>
+<h2 id="all-software-for-live-streaming">All Software for Live Streaming</h2>
 <p>You need to download the two GitHub repos below and 
 compile the driver and sample code.</p>
 <ul>
@@ -451,13 +495,43 @@ compile the driver and sample code.</p>
 <p>In addition, there are numerous dependencies to compile 
 the tools listed above.  However, have no fear, we will
 walk you through it.</p>
-<h4 id="how-to-compile-and-install">How To Compile and Install</h4>
+<h3 id="how-to-compile-and-install-all-required-software">How To Compile and Install all Required Software</h3>
 <ul>
 <li><a href="https://youtu.be/Ji4WDvPHzQk">Build and install on x86 Ubuntu 20.04</a></li>
 <li><a href="https://youtu.be/1xUMOvO_X5E">Jetson Nano with OpenCV and VLC on /dev/video0</a></li>
 <li><a href="https://youtu.be/GoYi1tSIV80">Compile libuvc-theta on Jetson Nano - silent screencast</a></li>
 <li><a href="https://youtu.be/KrKwUWSYp2U">Build and run v4l2loopback on Jetson Nano</a>. Needed for <code>/dev/video0</code></li>
 </ul>
+<h2 id="getting-stream-on-devvideo0">Getting Stream on /dev/video0</h2>
+<p>Steps:</p>
+<ol>
+<li>compile and install <a href="https://github.com/ricohapi/libuvc-theta">libuvc-theta</a></li>
+<li>compile and install <a href="https://github.com/ricohapi/libuvc-theta-sample">libuvc-theta-sample</a></li>
+<li>compile and install <a href="https://github.com/umlaeute/v4l2loopback">v4l2loopack</a></li>
+<li>run <code>gst_loopback</code> from <code>libuvc-theta-sample</code></li>
+<li>access the correct video device with OpenCV or any video 4 Linux 2 application such as VLC.  The video device is 
+<a href="https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L190">specified in the source code</a>.</li>
+</ol>
+<h3 id="compile-and-install-v4l2loopback">Compile and Install v4l2loopback</h3>
+<pre><code>$ git clone https://github.com/umlaeute/v4l2loopback.git
+$ cd v4l2loopback
+$ make 
+$ sudo make install
+$ sudo depmod -a
+</code></pre>
+
+<h3 id="load-and-use">Load and use</h3>
+<p>This assumes that you have adjusted the video device in 
+<code>gst_viewer.c</code>.</p>
+<pre><code>$ sudo modprobe v4l2loopback
+$ cd path_to_gst_loopback_directory
+$ ./gst_loopback
+$ cvlc v4l2:///dev/video2
+VLC media player 3.0.9.2 Vetinari (revision 3.0.9.2-0-gd4c1aefe4d)
+[0000556fc2bd6db0] dummy interface: using the dummy interface module...
+
+</code></pre>
+
 <h4 id="how-to-load-v4l2loopback-automatically">How to Load v4l2loopback automatically</h4>
 <p>In the file <code>/etc/modules-load.d/modules.conf</code> add a new line <code>v4l2loopback</code>.</p>
 <pre><code>$ pwd
@@ -497,7 +571,7 @@ x_tables               28951  1 ip_tables
 craig@jetson:/etc/modules-load.d$ 
 </code></pre>
 
-<h3 id="usb-api">USB API</h3>
+<h2 id="usb-api">USB API</h2>
 <ul>
 <li><a href="https://sourceforge.net/projects/libptp/">libptp</a> - next section for detailed walkthrough</li>
 </ul>
