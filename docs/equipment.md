@@ -232,6 +232,15 @@ There are several online tutorials for installing nvdec and nvenc.
 * [README from gst-plugins-bad/sys/nvenc](https://github.com/GStreamer/gst-plugins-bad/blob/1.16/sys/nvenc/README)
 * [gist from corenel](https://gist.github.com/corenel/a615b6f7eb5b5425aa49343a7b409200)
 
+__plugin build example__
+
+```
+$ NVENCODE_CFLAGS="-I/home/craig/Development/gstreamer/gst-plugins-bad/sys/nvenc" ./autogen.sh --disable-gtk-doc --with-cuda-prefix="/usr/local/cuda"
+```
+
+![plug-in build](images/hardware/gstreamer_plugin/autogen_confirm.png)
+
+![gst-inspect confirmation](images/hardware/gstreamer_plugin/gst_inspect_confirm.png)
 
 #### Monitoring Tools
 
