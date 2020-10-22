@@ -322,6 +322,26 @@
     x86
   </a>
   
+    <nav class="md-nav" aria-label="x86">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gstreamer-plug-in" class="md-nav__link">
+    gstreamer plug-in
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-tools" class="md-nav__link">
+    Monitoring Tools
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -545,6 +565,26 @@
     x86
   </a>
   
+    <nav class="md-nav" aria-label="x86">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gstreamer-plug-in" class="md-nav__link">
+    gstreamer plug-in
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-tools" class="md-nav__link">
+    Monitoring Tools
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -707,6 +747,29 @@ shows OpenCV and a Python script for canny edge detection.</p>
 <p>The example below is using OpenCV to convert the color space.</p>
 <p><img alt="jtop opencv color" src="../images/hardware/jetson_monitor/opencv_color.gif" /></p>
 <h3 id="x86">x86</h3>
+<h4 id="gstreamer-plug-in">gstreamer plug-in</h4>
+<p>You can check to see if the nvdec plug-in is installed with:</p>
+<pre><code>$ gst-inspect-1.0 nvdec
+</code></pre>
+
+<p>If you see this, the plug-in is not installed.</p>
+<pre><code>No such element or plugin 'nvdec'
+</code></pre>
+
+<p>If nvdec and nvenc are installed, you should see this:</p>
+<pre><code>$ gst-inspect-1.0 | grep nvenc
+nvenc:  nvh264enc: NVENC H.264 Video Encoder
+$ gst-inspect-1.0 | grep nvdec
+nvdec:  nvdec: NVDEC video decoder
+</code></pre>
+
+<p>There are several online tutorials for installing nvdec and nvenc.</p>
+<ul>
+<li><a href="http://lifestyletransfer.com/how-to-install-nvidia-gstreamer-plugins-nvenc-nvdec-on-ubuntu/">LifeStyle transfer: How to install Nvidia Gstreamer plugins (nvenc, nvdec) on Ubuntu?</a> by Taras Lishchenko</li>
+<li><a href="https://github.com/GStreamer/gst-plugins-bad/blob/1.16/sys/nvenc/README">README from gst-plugins-bad/sys/nvenc</a></li>
+<li><a href="https://gist.github.com/corenel/a615b6f7eb5b5425aa49343a7b409200">gist from corenel</a></li>
+</ul>
+<h4 id="monitoring-tools">Monitoring Tools</h4>
 <p>Prior to starting the stream.</p>
 <pre><code>$ nvidia-smi 
 Mon Sep 14 06:14:55 2020       
