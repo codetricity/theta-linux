@@ -769,6 +769,12 @@ nvdec:  nvdec: NVDEC video decoder
 <li><a href="https://github.com/GStreamer/gst-plugins-bad/blob/1.16/sys/nvenc/README">README from gst-plugins-bad/sys/nvenc</a></li>
 <li><a href="https://gist.github.com/corenel/a615b6f7eb5b5425aa49343a7b409200">gist from corenel</a></li>
 </ul>
+<p><strong>plugin build example</strong></p>
+<pre><code>$ NVENCODE_CFLAGS=&quot;-I/home/craig/Development/gstreamer/gst-plugins-bad/sys/nvenc&quot; ./autogen.sh --disable-gtk-doc --with-cuda-prefix=&quot;/usr/local/cuda&quot;
+</code></pre>
+
+<p><img alt="plug-in build" src="../images/hardware/gstreamer_plugin/autogen_confirm.png" /></p>
+<p><img alt="gst-inspect confirmation" src="../images/hardware/gstreamer_plugin/gst_inspect_confirm.png" /></p>
 <h4 id="monitoring-tools">Monitoring Tools</h4>
 <p>Prior to starting the stream.</p>
 <pre><code>$ nvidia-smi 
