@@ -1,6 +1,6 @@
-## Software Requirements
+# Software Requirements
 
-### Live Streaming
+## All Software for Live Streaming
 
 You need to download the two GitHub repos below and 
 compile the driver and sample code.
@@ -16,12 +16,48 @@ In addition, there are numerous dependencies to compile
 the tools listed above.  However, have no fear, we will
 walk you through it.
 
-#### How To Compile and Install
+### How To Compile and Install all Required Software
 
 * [Build and install on x86 Ubuntu 20.04](https://youtu.be/Ji4WDvPHzQk)
 * [Jetson Nano with OpenCV and VLC on /dev/video0](https://youtu.be/1xUMOvO_X5E)
 * [Compile libuvc-theta on Jetson Nano - silent screencast](https://youtu.be/GoYi1tSIV80)
 * [Build and run v4l2loopback on Jetson Nano](https://youtu.be/KrKwUWSYp2U). Needed for `/dev/video0`
+
+## Getting Stream on /dev/video0
+
+Steps:
+
+1. compile and install [libuvc-theta](https://github.com/ricohapi/libuvc-theta)
+2. compile and install [libuvc-theta-sample](https://github.com/ricohapi/libuvc-theta-sample)
+3. compile and install [v4l2loopack](https://github.com/umlaeute/v4l2loopback)
+4. run `gst_loopback` from `libuvc-theta-sample`
+5. access the correct video device with OpenCV or any video 4 Linux 2 application such as VLC.  The video device is 
+[specified in the source code](https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L190).
+
+### Compile and Install v4l2loopback
+
+```
+$ git clone https://github.com/umlaeute/v4l2loopback.git
+$ cd v4l2loopback
+$ make 
+$ sudo make install
+$ sudo depmod -a
+```
+
+### Load and use
+
+This assumes that you have adjusted the video device in 
+`gst_viewer.c`.
+
+```
+$ sudo modprobe v4l2loopback
+$ cd path_to_gst_loopback_directory
+$ ./gst_loopback
+$ cvlc v4l2:///dev/video2
+VLC media player 3.0.9.2 Vetinari (revision 3.0.9.2-0-gd4c1aefe4d)
+[0000556fc2bd6db0] dummy interface: using the dummy interface module...
+```
+
 
 #### How to Load v4l2loopback automatically
 
@@ -68,7 +104,7 @@ craig@jetson:/etc/modules-load.d$
 ```
 
 
-### USB API
+## USB API
 
 * [libptp](https://sourceforge.net/projects/libptp/) - next section for detailed walkthrough
 
