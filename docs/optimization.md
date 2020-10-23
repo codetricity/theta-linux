@@ -159,3 +159,19 @@ Pipeline is roughly around line
 		// use gstreamer plug-in for hardware acceleration
 		pipe_proc = "nvdec ! glimagesink qos=false sync=false";
 ```
+
+## Results
+
+### Original Pipeline
+
+The left video is a Logitech C920 USB webcam. The right video is the THETA. 
+
+Original pipeline.  There is a lag on the THETA video when I move my hand.   
+
+![Original Pipeline](images/optimization/gst_viewer_original.gif)
+
+### nvdec pipeline
+
+The THETA video stream is now much closer to the latency of the NVIDIA C920. 
+
+![nvdec Pipeline](images/optimization/improved_codec.gif)
