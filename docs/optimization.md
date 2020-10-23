@@ -89,7 +89,13 @@ to checkout the branch that is the same
 as the version of gstreamer you have
 installed.
 
+
+Clone repo.
+
 ```
+git clone git://anongit.freedesktop.org/gstreamer/gst-plugins-bad
+cd gst-plugins-bad/
+
 # verify gstreamer version
 $ gst-inspect-1.0 --version
 gst-inspect-1.0 version 1.16.2
@@ -115,10 +121,21 @@ cp Interface/cuviddec.h /path/to/gst-plugins-bad/sys/nvdec
 cp Interface/nvcuvid.h /path/to/gst-plugins-bad/sys/nvdec
 ```
 
-### Build Plug-in
+### Build and Install Plug-in
+
+
+
+Configure and build.
 
 ```
 $ NVENCODE_CFLAGS="-I/home/craig/Development/gstreamer/gst-plugins-bad/sys/nvenc" ./autogen.sh --disable-gtk-doc --with-cuda-prefix="/usr/local/cuda"
+
+cd sys/nvenc
+make
+sudo cp .libs/libgstnvenc.so /usr/lib/x86_64-linux-gnu/gstreamer-1.0/
+cd ../nvdec
+make
+sudo cp .libs/libgstnvdec.so /usr/lib/x86_64-linux-gnu/gstreamer-1.0/
 ```
 
 Confirm that autogen configured project to
