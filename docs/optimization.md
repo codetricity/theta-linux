@@ -1,6 +1,7 @@
 # gstreamer optimization on x86
 
-We reduced latency to 220ms from the camera to the screen
+We reduced latency from the default 550ms to 220ms. The latency is measured from the camera to the screen and may not be as relevant
+to machine vision.  We achieved this improvement
 by using two gstreamer plug-ins:
 
 * nvdec hardware decoding plug-in for NVIDIA GPUs
@@ -25,6 +26,21 @@ foreground: 59.182
 
 THETA video: 58.932
 
-250ms
+Latency: 250ms
+
+### Default decodebin and autovideosink
+
+```
+pipe_proc = " decodebin ! autovideosink sync=false";
+```
+
+![gstreamer nvdec](images/optimization/gstreamer_default.png)
 
 
+foreground: 691
+
+THETA video: 141
+
+Latency: 550ms
+
+## Reduce Latency by 50%
