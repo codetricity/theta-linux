@@ -1,7 +1,8 @@
 # gstreamer optimization on x86
 
-We reduced latency from the default 550ms to 220ms. The latency is measured from the camera to the screen and may not be as relevant
-to machine vision.  We achieved this improvement
+We reduced latency from the default 550ms to 220ms. The latency is measured from the camera to the screen and may be higher with
+machine vision that may need to move the frame from
+the GPU to system memory.  We achieved this improvement
 by using two gstreamer plug-ins:
 
 * nvdec hardware decoding plug-in for NVIDIA GPUs
@@ -9,8 +10,56 @@ by using two gstreamer plug-ins:
 
 ## Overview
 
-nvdec applies hardware decoding to the THETA H.264 stream and
-outputs buffers in raw format on the GPU.
+nvdec uses dedicated NVIDIA GPU hardware decoding
+features and fast copy to move frames between system and GPU memory.  
+The THETA H.264 stream is decoded on the GPU and
+outputs buffers in raw format on the GPU.  
+
+Instead of downloading the frame from the GPU to system
+memory, we use glimagesink to display the OpenGL textures 
+to the computer monitor without having to transfer the frame to
+system memory.
+
+To use v4l2loopback, we show how to use gldownload to
+transfer the frame into system memory. Although this technique
+increases latency, it appears to be faster than streaming without
+hardware decoding on our test system.
+
+## Audience
+
+If you already have streaming working with the THETA
+on your x86 Linux machine 
+and want to experiment with reducing latency, this article
+will guide you through installing and configuring
+hardware decoding on the GPU.
+
+If you are using NVIDIA Jetson boards, you do
+not need this article. On Nano hardware, you are likely
+already using hardware acceleration.
+If you are using NVIDIA Jetson Xavier hardware, 
+the hardware decoder is nvv4l2decoder and is included
+in JetPack, the Jetson OS you download from NVIDIA.
+On Jetson, the sink is nv3dsink.
+
+If you are using x86 and do not have streaming working
+at all, you should first try this pipeline.
+
+```
+pipe_proc = " decodebin ! autovideosink sync=false qos=false";
+```
+
+Note that both sync and qos are false.
+
+If you have enabled the pipeline above and your framerate is
+still extremely slow, you can try installing all the gstreamer
+plug-ins using apt from binaries.  
+
+If you're still stuck with unusable framerates, this article on
+using the dedicated video decoder on the GPU may help.  However,
+due to the number of steps involved in installing the gstreamer plug-in,
+the primary target audience is someone that already has 
+live streaming working and is interested in trying to reduce
+latency.
 
 ## Tests
 
