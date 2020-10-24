@@ -179,3 +179,30 @@ Original pipeline.  There is a lag on the THETA video when I move my hand.
 The THETA video stream is now much closer to the latency of the NVIDIA C920. 
 
 ![nvdec Pipeline](images/optimization/improved_codec.gif)
+
+## Configuration with v4l2loopack on /dev/video*
+
+To use nvdec with v4l2loopback, I needed to download the OpenGL textures from the GPU to video frames.  This introduced some latency.
+However, testing with vlc still showed 
+improvement over the standard pipeline.
+
+```
+	if (strcmp(cmd_name, "gst_loopback") == 0)
+	// original pipeline
+		// pipe_proc = "decodebin ! autovideoconvert ! "
+		// 	"video/x-raw,format=I420 ! identity drop-allocation=true !"
+		// 	"v4l2sink device=/dev/video2 qos=false sync=false";
+		//
+		//modified pipeline below
+		pipe_proc = "nvdec ! gldownload ! videoconvert n-thread=0 ! "
+			"video/x-raw,format=I420 ! identity drop-allocation=true !"
+			"v4l2sink device=/dev/video2 qos=false sync=false";		
+```
+
+More information on using gldownload is available [here](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-gl-plugins/html/gst-plugins-gl-plugins-gldownload.html).
+
+### v4l2loopback and vlc example
+
+vlc is accessing the camera on `/dev/video2`.  I'm doing the test at night in a darkened room.
+
+![v4l2loopback and vlc](images/optimization/vlc.gif)
