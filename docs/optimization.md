@@ -113,6 +113,10 @@ $ git branch
 
 ### Install NVIDIA CODEC SDK
 
+1. Download [NVIDIA CODEC SDK](https://developer.nvidia.com/nvidia-video-codec-sdk/download).
+2. Unzip to `/path/to/video/codec/sdk`
+
+
 ```
 cd /path/to/video/codec/sdk
 cp /usr/local/cuda/include/cuda.h /path/to/gst-plugins-bad/sys/nvenc
