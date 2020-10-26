@@ -255,3 +255,16 @@ More information on using gldownload is available [here](https://gstreamer.freed
 vlc is accessing the camera on `/dev/video2`.  I'm doing the test at night in a darkened room.
 
 ![v4l2loopback and vlc](images/optimization/vlc.gif)
+
+## NVIDIA Jetson
+
+The Jetson is likely already using hardware accleration.
+You can get more examples on using gstreamer with `nvv4l2decoder`,
+`nvvidconv`, and `nv3dsink` in the NVIDIA Accelerated GStreamer
+guide.  Hopefuly, [this link works](https://docs.nvidia.com/jetson/l4t/index.html#page/Tegra%2520Linux%2520Driver%2520Package%2520Development%2520Guide%2Faccelerated_gstreamer.html%23wwpID0E0HN0HA). 
+
+If the link is broken, use Google search or go to the [NVIDIA Jetson
+Linux Developer Guide](https://docs.nvidia.com/jetson/l4t/) and 
+go to the Multimedia section.
+
+![NVIDIA gstreamer optimization](images/optimization/nvidia_linux_multimedia.png)
