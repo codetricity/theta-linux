@@ -250,6 +250,8 @@ improvement over the standard pipeline.
 
 More information on using gldownload is available [here](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-gl-plugins/html/gst-plugins-gl-plugins-gldownload.html).
 
+
+
 ### v4l2loopback and vlc example
 
 vlc is accessing the camera on `/dev/video2`.  I'm doing the test at night in a darkened room.
@@ -268,3 +270,9 @@ Linux Developer Guide](https://docs.nvidia.com/jetson/l4t/) and
 go to the Multimedia section.
 
 ![NVIDIA gstreamer optimization](images/optimization/nvidia_linux_multimedia.png)
+
+## References
+* [README for gst-plugins-bad nvenc](https://github.com/GStreamer/gst-plugins-bad/blob/1.14.5/sys/nvenc/README)
+* [How to install NVIDIA Gstreamer plugins (nvenc, nvdec) on Ubuntu](http://lifestyletransfer.com/how-to-install-nvidia-gstreamer-plugins-nvenc-nvdec-on-ubuntu/) by Taras Lishchenko on LifeStyleTransfer
+* [Install NVDEC and NVENC on Gstreamer plugins](https://gist.github.com/corenel/a615b6f7eb5b5425aa49343a7b409200) by Corenel on Gist
+* [NVIDIA Hardware accelerated video Encoding/Decoding (nvcodec) - Gstreamer](https://medium.com/@nareshkumarganesan/nvidia-hardware-accelerated-video-encoding-decoding-nvcodec-gstreamer-4b8eab662bf1) by Naresh Ganesan on Medium
