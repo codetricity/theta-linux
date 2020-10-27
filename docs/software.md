@@ -103,6 +103,21 @@ x_tables               28951  1 ip_tables
 craig@jetson:/etc/modules-load.d$ 
 ```
 
+## v4l2loopback tests and examples
+
+### gst-launch-1.0 pipeline
+
+```
+$ gst-launch-1.0 v4l2src device=/dev/video2 ! video/x-raw,framerate=30/1 ! xvimagesink
+Setting pipeline to PAUSED ...
+Pipeline is live and does not need PREROLL ...
+Setting pipeline to PLAYING ...
+New clock: GstSystemClock
+```
+
+![gst-launch-1.0 example](images/software/gst_launch_example.jpg)
+
+
 
 ## USB API
 
