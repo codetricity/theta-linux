@@ -117,7 +117,29 @@ New clock: GstSystemClock
 
 ![gst-launch-1.0 example](images/software/gst_launch_example.jpg)
 
+### VLC command line example
 
+```
+$ cvlc v4l2:///dev/video2
+VLC media player 3.0.9.2 Vetinari (revision 3.0.9.2-0-gd4c1aefe4d)
+[000055573aea4db0] dummy interface: using the dummy interface module...
+```
+
+![vlc command line example](images/software/vlc_example.jpg)
+
+### Use v4l2-ctl to get video device output
+
+I’ve modified the source to stream 2K video.
+
+```
+$ v4l2-ctl --list-formats-ext --device  /dev/video2
+ioctl: VIDIOC_ENUM_FMT
+	Type: Video Capture
+
+	[0]: 'YU12' (Planar YUV 4:2:0)
+		Size: Discrete 1920x960
+			Interval: Discrete 0.033s (30.000 fps)
+```
 
 ## USB API
 
