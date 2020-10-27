@@ -1,0 +1,772 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Configure Linux computers like the Jetson Nano to stream and use RICOH THETA USB API">
+      
+      
+      
+        <meta name="author" content="Oppkey">
+      
+      <link rel="shortcut icon" href="../images/logo-white.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.9">
+    
+    
+      
+        <title>gstreamer optimization on x86 - RICOH THETA Development on Linux</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.36ee6aaa.min.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/palette.83bccb1f.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#8bc34a">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-73311422-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview")})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="light-green" data-md-color-accent="lime">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gstreamer-optimization-on-x86" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="RICOH THETA Development on Linux" class="md-header-nav__button md-logo" aria-label="RICOH THETA Development on Linux">
+      
+  <img src="../images/logo-white.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            RICOH THETA Development on Linux
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              gstreamer optimization on x86
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="RICOH THETA Development on Linux" class="md-nav__button md-logo" aria-label="RICOH THETA Development on Linux">
+      
+  <img src="../images/logo-white.png" alt="logo">
+
+    </a>
+    RICOH THETA Development on Linux
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../equipment/" title="Equipment" class="md-nav__link">
+      Equipment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../software/" title="Software" class="md-nav__link">
+      Software
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../demos/" title="Demos" class="md-nav__link">
+      Demos
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../usb_api/" title="USB API" class="md-nav__link">
+      USB API
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../camera/" title="Camera" class="md-nav__link">
+      Camera
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../help/" title="Help" class="md-nav__link">
+      Help
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../meetup/" title="Meetup Archive" class="md-nav__link">
+      Meetup Archive
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audience" class="md-nav__link">
+    Audience
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests" class="md-nav__link">
+    Tests
+  </a>
+  
+    <nav class="md-nav" aria-label="Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nvdec-and-glimagesink" class="md-nav__link">
+    nvdec and glimagesink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-decodebin-and-autovideosink" class="md-nav__link">
+    Default decodebin and autovideosink
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#result-latency-reduced-by-50" class="md-nav__link">
+    Result: Latency Reduced by 50%
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equipment" class="md-nav__link">
+    Equipment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#software" class="md-nav__link">
+    Software
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-steps" class="md-nav__link">
+    Overview of Steps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    Tips
+  </a>
+  
+    <nav class="md-nav" aria-label="Tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-if-you-have-nvdec-installed" class="md-nav__link">
+    Verify if you have nvdec installed.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-the-gst-plugins-bad" class="md-nav__link">
+    Download the gst-plugins-bad
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-nvidia-codec-sdk" class="md-nav__link">
+    Install NVIDIA CODEC SDK
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-and-install-plug-in" class="md-nav__link">
+    Build and Install Plug-in
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-install" class="md-nav__link">
+    Verify Install
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-gst_viewerc" class="md-nav__link">
+    Configure gst_viewer.c
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    Results
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#original-pipeline" class="md-nav__link">
+    Original Pipeline
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nvdec-pipeline" class="md-nav__link">
+    nvdec pipeline
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-with-v4l2loopack-on-devvideo" class="md-nav__link">
+    Configuration with v4l2loopack on /dev/video*
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration with v4l2loopack on /dev/video*">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#v4l2loopback-and-vlc-example" class="md-nav__link">
+    v4l2loopback and vlc example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nvidia-jetson" class="md-nav__link">
+    NVIDIA Jetson
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="gstreamer-optimization-on-x86">gstreamer optimization on x86</h1>
+<p>We reduced latency from the default 550ms to 220ms. The latency is measured from the camera to the screen and may be higher with
+machine vision that may need to move the frame from
+the GPU to system memory.  We achieved this improvement
+by using two gstreamer plug-ins:</p>
+<ul>
+<li>nvdec hardware decoding plug-in for NVIDIA GPUs</li>
+<li>glimagesink OpenGL plug-in</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p>nvdec uses dedicated NVIDIA GPU hardware decoding
+features and fast copy to move frames between system and GPU memory.<br />
+The THETA H.264 stream is decoded on the GPU and
+outputs buffers in raw format on the GPU.  </p>
+<p>Instead of downloading the frame from the GPU to system
+memory, we use glimagesink to display the OpenGL textures 
+to the computer monitor without having to transfer the frame to
+system memory.</p>
+<p>To use v4l2loopback, we show how to use gldownload to
+transfer the frame into system memory. Although this technique
+increases latency, it appears to be faster than streaming without
+hardware decoding on our test system.</p>
+<h2 id="audience">Audience</h2>
+<p>If you already have streaming working with the THETA
+on your x86 Linux machine 
+and want to experiment with reducing latency, this article
+will guide you through installing and configuring
+hardware decoding on the GPU.</p>
+<p>If you are using NVIDIA Jetson boards, you do
+not need this article. On Nano hardware, you are likely
+already using hardware acceleration.
+If you are using NVIDIA Jetson Xavier hardware, 
+the hardware decoder is nvv4l2decoder and is included
+in JetPack, the Jetson OS you download from NVIDIA.
+On Jetson, the sink is nv3dsink.</p>
+<p>If you are using x86 and do not have streaming working
+at all, you should first try this pipeline.</p>
+<pre><code>pipe_proc = &quot; decodebin ! autovideosink sync=false qos=false&quot;;
+</code></pre>
+
+<p>Note that both sync and qos are false.</p>
+<p>If you have enabled the pipeline above and your framerate is
+still extremely slow, you can try installing all the gstreamer
+plug-ins using apt from binaries.  </p>
+<p>If you're still stuck with unusable framerates, this article on
+using the dedicated video decoder on the GPU may help.  However,
+due to the number of steps involved in installing the gstreamer plug-in,
+the primary target audience is someone that already has 
+live streaming working and is interested in trying to reduce
+latency.</p>
+<h2 id="tests">Tests</h2>
+<h3 id="nvdec-and-glimagesink">nvdec and glimagesink</h3>
+<pre><code>pipe_proc = &quot;nvdec ! glimagesink qos=false sync=false&quot;;
+</code></pre>
+
+<p><img alt="gstreamer nvdec" src="../images/optimization/gstreamer_nvdec.png" /></p>
+<p>foreground: 59.182</p>
+<p>THETA video: 58.932</p>
+<p>Latency: 250ms</p>
+<h3 id="default-decodebin-and-autovideosink">Default decodebin and autovideosink</h3>
+<pre><code>pipe_proc = &quot; decodebin ! autovideosink sync=false&quot;;
+</code></pre>
+
+<p><img alt="gstreamer nvdec" src="../images/optimization/gstreamer_default.png" /></p>
+<p>foreground: 691</p>
+<p>THETA video: 141</p>
+<p>Latency: 550ms</p>
+<h2 id="result-latency-reduced-by-50">Result: Latency Reduced by 50%</h2>
+<h2 id="equipment">Equipment</h2>
+<ul>
+<li>Intel i7-6800K</li>
+<li>NVIDIA GTX 950 GPU</li>
+<li>RICOH THETA Z1 with firmware 1.60.1</li>
+</ul>
+<h2 id="software">Software</h2>
+<ul>
+<li>Ubuntu 20.04</li>
+<li>NVIDIA Linux graphics driver 455.23</li>
+<li>CUDA Version: 11.1</li>
+<li>gstreamer 1.16.2</li>
+<li>NVIDIA Video Codec 11.0.10</li>
+</ul>
+<h2 id="overview-of-steps">Overview of Steps</h2>
+<ol>
+<li>verify that you don't have nvdec installed.  If you have it installed, you can skip most of this document and go to the section on the gstreamer pipline configuration of gst_viewer.c</li>
+<li>Download and install <a href="https://github.com/GStreamer/gst-plugins-bad">gst-plugins-bad</a></li>
+<li>
+<p>Install <a href="https://developer.nvidia.com/nvidia-video-codec-sdk/download">NVIDIA CODEC SDK</a></p>
+</li>
+<li>
+<p>Modify gst_viewer pipeline to use the nvdec plug-in for hardware decoding and glimagesink for display to the screen</p>
+</li>
+</ol>
+<h2 id="tips">Tips</h2>
+<h3 id="verify-if-you-have-nvdec-installed">Verify if you have nvdec installed.</h3>
+<pre><code>$ gst-inspect-1.0 nvdec
+No such element or plugin 'nvdec'
+</code></pre>
+
+<p>If nvdec is installed, you will see this:</p>
+<pre><code>$ gst-inspect-1.0 | grep nvdec
+nvdec:  nvdec: NVDEC video decoder
+</code></pre>
+
+<h3 id="download-the-gst-plugins-bad">Download the gst-plugins-bad</h3>
+<p>After you clone the repo, you need
+to checkout the branch that is the same
+as the version of gstreamer you have
+installed.</p>
+<p>Clone repo.</p>
+<pre><code>git clone git://anongit.freedesktop.org/gstreamer/gst-plugins-bad
+cd gst-plugins-bad/
+
+# verify gstreamer version
+$ gst-inspect-1.0 --version
+gst-inspect-1.0 version 1.16.2
+GStreamer 1.16.2
+
+$ git checkout 1.16.2
+HEAD is now at a6f26408f Release 1.16.2
+
+# verify that you're on the correct branch
+$ git branch
+* (HEAD detached at 1.16.2)
+  master
+</code></pre>
+
+<h3 id="install-nvidia-codec-sdk">Install NVIDIA CODEC SDK</h3>
+<ol>
+<li>Download <a href="https://developer.nvidia.com/nvidia-video-codec-sdk/download">NVIDIA CODEC SDK</a>.</li>
+<li>Unzip to <code>/path/to/video/codec/sdk</code></li>
+</ol>
+<pre><code>cd /path/to/video/codec/sdk
+cp /usr/local/cuda/include/cuda.h /path/to/gst-plugins-bad/sys/nvenc
+cp Interface/nvEncodeAPI.h /path/to/gst-plugins-bad/sys/nvenc
+cp Interface/cuviddec.h /path/to/gst-plugins-bad/sys/nvdec
+cp Interface/nvcuvid.h /path/to/gst-plugins-bad/sys/nvdec
+</code></pre>
+
+<h3 id="build-and-install-plug-in">Build and Install Plug-in</h3>
+<p>Configure and build.</p>
+<pre><code>$ NVENCODE_CFLAGS=&quot;-I/home/craig/Development/gstreamer/gst-plugins-bad/sys/nvenc&quot; ./autogen.sh --disable-gtk-doc --with-cuda-prefix=&quot;/usr/local/cuda&quot;
+
+cd sys/nvenc
+make
+sudo cp .libs/libgstnvenc.so /usr/lib/x86_64-linux-gnu/gstreamer-1.0/
+cd ../nvdec
+make
+sudo cp .libs/libgstnvdec.so /usr/lib/x86_64-linux-gnu/gstreamer-1.0/
+</code></pre>
+
+<p>Confirm that autogen configured project to
+build nvdec.</p>
+<p><img alt="autogen confirm" src="../images/optimization/autogen_confirm.png" /></p>
+<h3 id="verify-install">Verify Install</h3>
+<p><img alt="gst inspect confirm" src="../images/optimization/gst_inspect_confirm.png" /></p>
+<h3 id="configure-gst_viewerc">Configure gst_viewer.c</h3>
+<p>Pipeline is roughly around line
+192.  GitHub permalink is <a href="https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L192">here</a>.</p>
+<pre><code>    else
+        // original pipeline
+        // pipe_proc = &quot; decodebin ! autovideosink sync=false&quot;;
+        // use gstreamer plug-in for hardware acceleration
+        pipe_proc = &quot;nvdec ! glimagesink qos=false sync=false&quot;;
+</code></pre>
+
+<h2 id="results">Results</h2>
+<h3 id="original-pipeline">Original Pipeline</h3>
+<p>The left video is a Logitech C920 USB webcam. The right video is the THETA. </p>
+<p>Original pipeline.  There is a lag on the THETA video when I move my hand.   </p>
+<p><img alt="Original Pipeline" src="../images/optimization/gst_viewer_original.gif" /></p>
+<h3 id="nvdec-pipeline">nvdec pipeline</h3>
+<p>The THETA video stream is now much closer to the latency of the NVIDIA C920. </p>
+<p><img alt="nvdec Pipeline" src="../images/optimization/improved_codec.gif" /></p>
+<h2 id="configuration-with-v4l2loopack-on-devvideo">Configuration with v4l2loopack on /dev/video*</h2>
+<p>To use nvdec with v4l2loopback, I needed to download the OpenGL textures from the GPU to video frames.  This introduced some latency.
+However, testing with vlc still showed 
+improvement over the standard pipeline.</p>
+<pre><code>    if (strcmp(cmd_name, &quot;gst_loopback&quot;) == 0)
+    // original pipeline
+        // pipe_proc = &quot;decodebin ! autovideoconvert ! &quot;
+        //  &quot;video/x-raw,format=I420 ! identity drop-allocation=true !&quot;
+        //  &quot;v4l2sink device=/dev/video2 qos=false sync=false&quot;;
+        //
+        //modified pipeline below
+        pipe_proc = &quot;nvdec ! gldownload ! videoconvert n-thread=0 ! &quot;
+            &quot;video/x-raw,format=I420 ! identity drop-allocation=true !&quot;
+            &quot;v4l2sink device=/dev/video2 qos=false sync=false&quot;;     
+</code></pre>
+
+<p>More information on using gldownload is available <a href="https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-gl-plugins/html/gst-plugins-gl-plugins-gldownload.html">here</a>.</p>
+<h3 id="v4l2loopback-and-vlc-example">v4l2loopback and vlc example</h3>
+<p>vlc is accessing the camera on <code>/dev/video2</code>.  I'm doing the test at night in a darkened room.</p>
+<p><img alt="v4l2loopback and vlc" src="../images/optimization/vlc.gif" /></p>
+<h2 id="nvidia-jetson">NVIDIA Jetson</h2>
+<p>The Jetson is likely already using hardware accleration.
+You can get more examples on using gstreamer with <code>nvv4l2decoder</code>,
+<code>nvvidconv</code>, and <code>nv3dsink</code> in the NVIDIA Accelerated GStreamer
+guide.  Hopefuly, <a href="https://docs.nvidia.com/jetson/l4t/index.html#page/Tegra%2520Linux%2520Driver%2520Package%2520Development%2520Guide%2Faccelerated_gstreamer.html%23wwpID0E0HN0HA">this link works</a>. </p>
+<p>If the link is broken, use Google search or go to the <a href="https://docs.nvidia.com/jetson/l4t/">NVIDIA Jetson
+Linux Developer Guide</a> and 
+go to the Multimedia section.</p>
+<p><img alt="NVIDIA gstreamer optimization" src="../images/optimization/nvidia_linux_multimedia.png" /></p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/GStreamer/gst-plugins-bad/blob/1.14.5/sys/nvenc/README">README for gst-plugins-bad nvenc</a></li>
+<li><a href="http://lifestyletransfer.com/how-to-install-nvidia-gstreamer-plugins-nvenc-nvdec-on-ubuntu/">How to install NVIDIA Gstreamer plugins (nvenc, nvdec) on Ubuntu</a> by Taras Lishchenko on LifeStyleTransfer</li>
+<li><a href="https://gist.github.com/corenel/a615b6f7eb5b5425aa49343a7b409200">Install NVDEC and NVENC on Gstreamer plugins</a> by Corenel on Gist</li>
+<li><a href="https://medium.com/@nareshkumarganesan/nvidia-hardware-accelerated-video-encoding-decoding-nvcodec-gstreamer-4b8eab662bf1">NVIDIA Hardware accelerated video Encoding/Decoding (nvcodec) - Gstreamer</a> by Naresh Ganesan on Medium</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made by
+        <a href="https://oppkey.com" target="_blank" rel="noopener">
+          Oppkey
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/theta360developers" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/theta360dev" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.facebook.com/theta360guide/" target="_blank" rel="noopener" title="www.facebook.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.df0def68.min.js"></script>
+      <script src="../assets/javascripts/bundle.ba57d267.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
