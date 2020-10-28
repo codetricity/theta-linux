@@ -88,3 +88,32 @@ the width and height bigger as well.
 
 ![streaming screenshot](images/demos/streaming_screenshot.png)
 
+## Save to File
+
+by [Les Wu aka snafu666](https://community.theta360.guide/u/snafu666). 
+[post](https://community.theta360.guide/t/live-streaming-over-usb-on-ubuntu-and-linux-nvidia-jetson/4359/122?u=craig)
+
+> Using the v4l2loopback capability and thetaV loopback example, here are 2 example gstreamer pipelines to grab the video:
+
+As a lossless huffman encoded raw file:
+
+```
+gst-launch-1.0 v4l2src device=/dev/video99 ! video/x-raw,framerate=30/1 \
+! videoconvert \
+! videoscale \
+! avenc_huffyuv \
+! avimux \
+! filesink location=raw.hfyu
+```
+
+And with default h.264 encoding on a Jetson:
+
+```
+gst-launch-1.0 v4l2src device=/dev/video99 ! video/x-raw,framerate=30/1 \
+! nvvidconv \
+! omxh264enc \
+! h264parse ! matroskamux \
+! filesink location=vid99.mkv
+```
+
+Pro tip, when you install v4l2loopback, use the video_nr option to create the video device somewhere high so it does not get displaced by PnP of other cameras.
