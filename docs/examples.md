@@ -116,4 +116,11 @@ gst-launch-1.0 v4l2src device=/dev/video99 ! video/x-raw,framerate=30/1 \
 ! filesink location=vid99.mkv
 ```
 
-Pro tip, when you install v4l2loopback, use the video_nr option to create the video device somewhere high so it does not get displaced by PnP of other cameras.
+> Pro tip, when you install v4l2loopback, use the video_nr option to create the video device somewhere high so it does not get displaced by PnP of other cameras.
+
+The Huffyuv format is a large file format.  [VLC can play it](https://wiki.videolan.org/Huffyuv/).
+
+Here's a shot of me playing a file that I generated with Les's pipeline.
+
+![huffyuv](images/examples/huffyuv.jpg)
+
