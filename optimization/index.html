@@ -19,7 +19,7 @@
     
     
       
-        <title>gstreamer optimization on x86 - RICOH THETA Development on Linux</title>
+        <title>Optimization - RICOH THETA Development on Linux</title>
       
     
     
@@ -93,7 +93,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              gstreamer optimization on x86
+              Optimization
             
           </span>
         </div>
@@ -214,6 +214,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../examples/" title="Examples" class="md-nav__link">
+      Examples
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../usb_api/" title="USB API" class="md-nav__link">
       USB API
     </a>
@@ -229,6 +241,238 @@
     <a href="../camera/" title="Camera" class="md-nav__link">
       Camera
     </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Optimization
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Optimization" class="md-nav__link md-nav__link--active">
+      Optimization
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audience" class="md-nav__link">
+    Audience
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests" class="md-nav__link">
+    Tests
+  </a>
+  
+    <nav class="md-nav" aria-label="Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nvdec-and-glimagesink" class="md-nav__link">
+    nvdec and glimagesink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-decodebin-and-autovideosink" class="md-nav__link">
+    Default decodebin and autovideosink
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#result-latency-reduced-by-50" class="md-nav__link">
+    Result: Latency Reduced by 50%
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equipment" class="md-nav__link">
+    Equipment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#software" class="md-nav__link">
+    Software
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-steps" class="md-nav__link">
+    Overview of Steps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    Tips
+  </a>
+  
+    <nav class="md-nav" aria-label="Tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-if-you-have-nvdec-installed" class="md-nav__link">
+    Verify if you have nvdec installed.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-the-gst-plugins-bad" class="md-nav__link">
+    Download the gst-plugins-bad
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-nvidia-codec-sdk" class="md-nav__link">
+    Install NVIDIA CODEC SDK
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-and-install-plug-in" class="md-nav__link">
+    Build and Install Plug-in
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-install" class="md-nav__link">
+    Verify Install
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-gst_viewerc" class="md-nav__link">
+    Configure gst_viewer.c
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    Results
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#original-pipeline" class="md-nav__link">
+    Original Pipeline
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nvdec-pipeline" class="md-nav__link">
+    nvdec pipeline
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-with-v4l2loopack-on-devvideo" class="md-nav__link">
+    Configuration with v4l2loopack on /dev/video*
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration with v4l2loopack on /dev/video*">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#v4l2loopback-and-vlc-example" class="md-nav__link">
+    v4l2loopback and vlc example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nvidia-jetson" class="md-nav__link">
+    NVIDIA Jetson
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
     
@@ -706,6 +950,41 @@ go to the Multimedia section.</p>
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../camera/" title="Camera" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Camera
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../help/" title="Help" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Help
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
