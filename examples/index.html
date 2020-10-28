@@ -269,6 +269,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#save-to-file" class="md-nav__link">
+    Save to File
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -382,6 +389,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#save-to-file" class="md-nav__link">
+    Save to File
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -461,6 +475,30 @@ gst-launch-1.0 udpsrc port=5000 !  application/x-rtp,encoding-name=JPEG,payload=
 <p>If you're on x86, change nveglglessink to autovideosink.  You may want to make
 the width and height bigger as well. </p>
 <p><img alt="streaming screenshot" src="../images/demos/streaming_screenshot.png" /></p>
+<h2 id="save-to-file">Save to File</h2>
+<p>by <a href="https://community.theta360.guide/u/snafu666">Les Wu aka snafu666</a>. 
+<a href="https://community.theta360.guide/t/live-streaming-over-usb-on-ubuntu-and-linux-nvidia-jetson/4359/122?u=craig">post</a></p>
+<blockquote>
+<p>Using the v4l2loopback capability and thetaV loopback example, here are 2 example gstreamer pipelines to grab the video:</p>
+</blockquote>
+<p>As a lossless huffman encoded raw file:</p>
+<pre><code>gst-launch-1.0 v4l2src device=/dev/video99 ! video/x-raw,framerate=30/1 \
+! videoconvert \
+! videoscale \
+! avenc_huffyuv \
+! avimux \
+! filesink location=raw.hfyu
+</code></pre>
+
+<p>And with default h.264 encoding on a Jetson:</p>
+<pre><code>gst-launch-1.0 v4l2src device=/dev/video99 ! video/x-raw,framerate=30/1 \
+! nvvidconv \
+! omxh264enc \
+! h264parse ! matroskamux \
+! filesink location=vid99.mkv
+</code></pre>
+
+<p>Pro tip, when you install v4l2loopback, use the video_nr option to create the video device somewhere high so it does not get displaced by PnP of other cameras.</p>
                 
               
               
