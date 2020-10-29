@@ -504,6 +504,15 @@ the width and height bigger as well. </p>
 <p>The Huffyuv format is a large file format.  <a href="https://wiki.videolan.org/Huffyuv/">VLC can play it</a>.</p>
 <p>Here's a shot of me playing a file that I generated with Les's pipeline.</p>
 <p><img alt="huffyuv" src="../images/examples/huffyuv.jpg" /></p>
+<p>On x86, this is the pipeline I used to save to a H.264 file.</p>
+<pre><code>$ gst-launch-1.0 v4l2src device=/dev/video2 ! video/x-raw,framerate=30/1 ! autovideoconvert ! nvh264enc ! h264parse ! matroskamux ! filesink location=vid_test.mkv
+</code></pre>
+
+<p>Example of playing file with gst-launch.</p>
+<pre><code>gst-launch-1.0 playbin uri=file:///path-to-file/vid_test.mkv
+</code></pre>
+
+<p><img alt="h264" src="../images/examples/gst_play_h264.jpg" /></p>
                 
               
               
