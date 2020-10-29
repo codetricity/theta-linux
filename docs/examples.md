@@ -124,3 +124,19 @@ Here's a shot of me playing a file that I generated with Les's pipeline.
 
 ![huffyuv](images/examples/huffyuv.jpg)
 
+On x86, this is the pipeline I used to save to a H.264 file.
+
+```
+$ gst-launch-1.0 v4l2src device=/dev/video2 ! video/x-raw,framerate=30/1 ! autovideoconvert ! nvh264enc ! h264parse ! matroskamux ! filesink location=vid_test.mkv
+```
+
+Example of playing file with gst-launch.
+
+```
+gst-launch-1.0 playbin uri=file:///path-to-file/vid_test.mkv
+```
+
+![h264](images/examples/gst_play_h264.jpg)
+
+
+
