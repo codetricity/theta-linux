@@ -1,6 +1,6 @@
-# gstreamer optimization on x86
+# gstreamer and ffmpeg hardware acceleration and optimization
 
-We reduced latency from the default 550ms to 220ms. The latency is measured from the camera to the screen and may be higher with
+Using gstreamer, we reduced latency from the default 550ms to 220ms. The latency is measured from the camera to the screen and may be higher with
 machine vision that may need to move the frame from
 the GPU to system memory.  We achieved this improvement
 by using two gstreamer plug-ins:
@@ -8,7 +8,13 @@ by using two gstreamer plug-ins:
 * nvdec hardware decoding plug-in for NVIDIA GPUs
 * glimagesink OpenGL plug-in
 
-## Overview
+Using ffmpeg, community member Paul Gullet 
+[reported](https://community.theta360.guide/t/live-streaming-over-usb-on-ubuntu-and-linux-nvidia-jetson/4359/125?u=craig) that he doubled the framerate in his tests. For ffmpeg, you need to
+compile in support for:
+
+* h264_nvmpi for hardware encoding and decoding
+
+## gstreamer overview
 
 nvdec uses dedicated NVIDIA GPU hardware decoding
 features and fast copy to move frames between system and GPU memory.  
@@ -25,7 +31,7 @@ transfer the frame into system memory. Although this technique
 increases latency, it appears to be faster than streaming without
 hardware decoding on our test system.
 
-## Audience
+### Audience
 
 If you already have streaming working with the THETA
 on your x86 Linux machine 
@@ -61,9 +67,9 @@ the primary target audience is someone that already has
 live streaming working and is interested in trying to reduce
 latency.
 
-## Tests
+### Tests
 
-### nvdec and glimagesink
+#### nvdec and glimagesink
 
 ```
 pipe_proc = "nvdec ! glimagesink qos=false sync=false";
@@ -77,7 +83,7 @@ THETA video: 58.932
 
 Latency: 250ms
 
-### Default decodebin and autovideosink
+#### Default decodebin and autovideosink
 
 ```
 pipe_proc = " decodebin ! autovideosink sync=false";
@@ -92,22 +98,22 @@ THETA video: 141
 
 Latency: 550ms
 
-## Result: Latency Reduced by 50%
+### Result: Latency Reduced by 50%
 
-## Equipment
+### Equipment
 
 * Intel i7-6800K
 * NVIDIA GTX 950 GPU
 * RICOH THETA Z1 with firmware 1.60.1
 
-## Software
+### Software
 * Ubuntu 20.04
 * NVIDIA Linux graphics driver 455.23
 * CUDA Version: 11.1
 * gstreamer 1.16.2
 * NVIDIA Video Codec 11.0.10
 
-## Overview of Steps
+### Overview of Steps
 
 1. verify that you don't have nvdec installed.  If you have it installed, you can skip most of this document and go to the section on the gstreamer pipline configuration of gst_viewer.c
 2. Download and install [gst-plugins-bad](https://github.com/GStreamer/gst-plugins-bad)
@@ -115,9 +121,9 @@ Latency: 550ms
 
 4. Modify gst_viewer pipeline to use the nvdec plug-in for hardware decoding and glimagesink for display to the screen
 
-## Tips
+### Tips
 
-### Verify if you have nvdec installed.
+#### Verify if you have nvdec installed.
 
 ```
 $ gst-inspect-1.0 nvdec
@@ -131,7 +137,7 @@ $ gst-inspect-1.0 | grep nvdec
 nvdec:  nvdec: NVDEC video decoder
 ```
 
-### Download the gst-plugins-bad
+#### Download the gst-plugins-bad
 
 After you clone the repo, you need
 to checkout the branch that is the same
@@ -160,7 +166,7 @@ $ git branch
 ```
 
 
-### Install NVIDIA CODEC SDK
+#### Install NVIDIA CODEC SDK
 
 1. Download [NVIDIA CODEC SDK](https://developer.nvidia.com/nvidia-video-codec-sdk/download).
 2. Unzip to `/path/to/video/codec/sdk`
@@ -174,7 +180,7 @@ cp Interface/cuviddec.h /path/to/gst-plugins-bad/sys/nvdec
 cp Interface/nvcuvid.h /path/to/gst-plugins-bad/sys/nvdec
 ```
 
-### Build and Install Plug-in
+#### Build and Install Plug-in
 
 
 
@@ -196,11 +202,11 @@ build nvdec.
 
 ![autogen confirm](images/optimization/autogen_confirm.png)
 
-### Verify Install
+#### Verify Install
 
 ![gst inspect confirm](images/optimization/gst_inspect_confirm.png)
 
-### Configure gst_viewer.c
+#### Configure gst_viewer.c
 
 Pipeline is roughly around line
 192.  GitHub permalink is [here](https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L192).
@@ -213,9 +219,9 @@ Pipeline is roughly around line
 		pipe_proc = "nvdec ! glimagesink qos=false sync=false";
 ```
 
-## Results
+### Results
 
-### Original Pipeline
+#### Original Pipeline
 
 The left video is a Logitech C920 USB webcam. The right video is the THETA. 
 
@@ -223,13 +229,13 @@ Original pipeline.  There is a lag on the THETA video when I move my hand.
 
 ![Original Pipeline](images/optimization/gst_viewer_original.gif)
 
-### nvdec pipeline
+#### nvdec pipeline
 
 The THETA video stream is now much closer to the latency of the NVIDIA C920. 
 
 ![nvdec Pipeline](images/optimization/improved_codec.gif)
 
-## Configuration with v4l2loopack on /dev/video*
+### Configuration with v4l2loopack on /dev/video*
 
 To use nvdec with v4l2loopback, I needed to download the OpenGL textures from the GPU to video frames.  This introduced some latency.
 However, testing with vlc still showed 
@@ -252,13 +258,13 @@ More information on using gldownload is available [here](https://gstreamer.freed
 
 
 
-### v4l2loopback and vlc example
+#### v4l2loopback and vlc example
 
 vlc is accessing the camera on `/dev/video2`.  I'm doing the test at night in a darkened room.
 
 ![v4l2loopback and vlc](images/optimization/vlc.gif)
 
-## NVIDIA Jetson
+### NVIDIA Jetson
 
 The Jetson is likely already using hardware accleration.
 You can get more examples on using gstreamer with `nvv4l2decoder`,
@@ -271,8 +277,23 @@ go to the Multimedia section.
 
 ![NVIDIA gstreamer optimization](images/optimization/nvidia_linux_multimedia.png)
 
-## References
+### gstreamer references
 * [README for gst-plugins-bad nvenc](https://github.com/GStreamer/gst-plugins-bad/blob/1.14.5/sys/nvenc/README)
 * [How to install NVIDIA Gstreamer plugins (nvenc, nvdec) on Ubuntu](http://lifestyletransfer.com/how-to-install-nvidia-gstreamer-plugins-nvenc-nvdec-on-ubuntu/) by Taras Lishchenko on LifeStyleTransfer
 * [Install NVDEC and NVENC on Gstreamer plugins](https://gist.github.com/corenel/a615b6f7eb5b5425aa49343a7b409200) by Corenel on Gist
 * [NVIDIA Hardware accelerated video Encoding/Decoding (nvcodec) - Gstreamer](https://medium.com/@nareshkumarganesan/nvidia-hardware-accelerated-video-encoding-decoding-nvcodec-gstreamer-4b8eab662bf1) by Naresh Ganesan on Medium
+
+## ffmpeg
+
+Contributed by [Paul Gullett](https://community.theta360.guide/u/Paul_Gullett).
+
+> I haven’t done much other than compiled it all and run it
+
+> [jocover/jetson-ffmpeg](https://github.com/jocover/jetson-ffmpeg)
+
+
+> It gives me a doubling of the frame rate on the jetson. Use this as the guide for ffmpeg compilation on the jetson
+
+> [https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu](https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu) 
+
+> but use the ffmpeg git repo mentioned in the jetson-ffmpeg github as part of the ffmpeg compilation.
