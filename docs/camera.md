@@ -183,3 +183,40 @@ This is a potential security risk.  If you want to avoid having to enter
 a password and are comfortable with the risk, then follow the steps
 in [this article](https://askubuntu.com/questions/155791/how-do-i-sudo-a-command-in-a-script-without-being-asked-for-a-password).
 
+
+#### Additional Tips for Raspberry Pi 4
+
+Thanks to Shun Yamashita of [fulldepth](https://fulldepth.co.jp/) for this solution
+to cycle the power on the Raspberry Pi 4 USB ports, which has the effect of turning
+the THETA Z1 on when it is plugged in with a USB cable. 
+
+Shun reported that with the Raspberry Pi 4, the script above did not work.  He wrote
+the script below for the RPi 4 which does work.
+
+```bash
+#!/bin/bash
+
+ptpcam -R 0x1013
+
+/usr/local/bin/hub-ctrl -h 0 -P 1 -p 0
+/usr/local/bin/hub-ctrl -h 0 -P 2 -p 0
+/usr/local/bin/hub-ctrl -h 0 -P 3 -p 0
+/usr/local/bin/hub-ctrl -h 0 -P 4 -p 0
+/usr/local/bin/hub-ctrl -h 1 -P 1 -p 0
+/usr/local/bin/hub-ctrl -h 1 -P 2 -p 0
+/usr/local/bin/hub-ctrl -h 1 -P 3 -p 0
+/usr/local/bin/hub-ctrl -h 1 -P 4 -p 0
+/usr/local/bin/hub-ctrl -v
+
+sleep 5
+
+/usr/local/bin/hub-ctrl -h 0 -P 1 -p 1
+/usr/local/bin/hub-ctrl -h 0 -P 2 -p 1
+/usr/local/bin/hub-ctrl -h 0 -P 3 -p 1
+/usr/local/bin/hub-ctrl -h 0 -P 4 -p 1
+/usr/local/bin/hub-ctrl -h 1 -P 1 -p 1
+/usr/local/bin/hub-ctrl -h 1 -P 2 -p 1
+/usr/local/bin/hub-ctrl -h 1 -P 3 -p 1
+/usr/local/bin/hub-ctrl -h 1 -P 4 -p 1
+/usr/local/bin/hub-ctrl -v
+```

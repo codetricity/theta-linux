@@ -527,6 +527,8 @@ Sending generic request: reqCode=0x1001, params=[0x00000000,0x00000000,0x0000000
 64 00 06 00 00 00 6e 00 00 00 00 33 00 00 00 01 - d.....n....3....
 ```
 
+
+
 ## Using Multiple Cameras with ptpcam
 
 
