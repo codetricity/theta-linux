@@ -97,7 +97,7 @@ by [Les Wu aka snafu666](https://community.theta360.guide/u/snafu666).
 
 As a lossless huffman encoded raw file:
 
-```
+```bash
 gst-launch-1.0 v4l2src device=/dev/video99 ! video/x-raw,framerate=30/1 \
 ! videoconvert \
 ! videoscale \
@@ -139,4 +139,23 @@ gst-launch-1.0 playbin uri=file:///path-to-file/vid_test.mkv
 ![h264](images/examples/gst_play_h264.jpg)
 
 
+## Stream From Raspberry Pi 4 to a Windows PC
 
+Thanks to Shun Yamashita of [fulldepth](https://fulldepth.co.jp/) for this solution
+to stream the Z1 video to a Raspberry Pi 4 with USB then restream it to a Windows PC.
+
+This is the process:
+
+* Use GStreamer to stream UDP(RTP) to the Windows PC
+* Do not use H264 decoding on the Raspberry Pi as the Windows machine is handling it and it's likely
+that the RPi4 can't use hardware decoding for 4K H.264.
+* Tested with Raspberry Pi4 modelB with 4GB of RAM running Raspberry Pi OS
+
+On the Raspberry Pi, the following was changed in the GStreamer pipeline in `gst/gst_viewer.c`.
+
+```c
+src.pipeline = gst_parse_launch(
+        " appsrc name=ap ! queue ! h264parse ! queue"
+        " ! rtph264pay ! udpsink host=192.168.0.15 port=9000",
+        NULL);
+```
