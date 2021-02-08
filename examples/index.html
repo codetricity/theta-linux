@@ -276,6 +276,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#stream-from-raspberry-pi-4-to-a-windows-pc" class="md-nav__link">
+    Stream From Raspberry Pi 4 to a Windows PC
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -396,6 +403,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#stream-from-raspberry-pi-4-to-a-windows-pc" class="md-nav__link">
+    Stream From Raspberry Pi 4 to a Windows PC
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -482,7 +496,7 @@ the width and height bigger as well. </p>
 <p>Using the v4l2loopback capability and thetaV loopback example, here are 2 example gstreamer pipelines to grab the video:</p>
 </blockquote>
 <p>As a lossless huffman encoded raw file:</p>
-<pre><code>gst-launch-1.0 v4l2src device=/dev/video99 ! video/x-raw,framerate=30/1 \
+<pre><code class="bash">gst-launch-1.0 v4l2src device=/dev/video99 ! video/x-raw,framerate=30/1 \
 ! videoconvert \
 ! videoscale \
 ! avenc_huffyuv \
@@ -513,6 +527,15 @@ the width and height bigger as well. </p>
 </code></pre>
 
 <p><img alt="h264" src="../images/examples/gst_play_h264.jpg" /></p>
+<h2 id="stream-from-raspberry-pi-4-to-a-windows-pc">Stream From Raspberry Pi 4 to a Windows PC</h2>
+<p>Thanks to Shun Yamashita of <a href="https://fulldepth.co.jp/">fulldepth</a> for this solution
+to stream the Z1 video to a Raspberry Pi 4 with USB then restream it to a Windows PC.</p>
+<p>On the Raspberry Pi, the following was changed in the GStreamer pipeline in <code>gst/gst_viewer.c</code>.</p>
+<pre><code class="c">src.pipeline = gst_parse_launch(
+        &quot; appsrc name=ap ! queue ! h264parse ! queue&quot;
+        &quot; ! rtph264pay ! udpsink host=192.168.0.15 port=9000&quot;,
+        NULL);
+</code></pre>
                 
               
               
