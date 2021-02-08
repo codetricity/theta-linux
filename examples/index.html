@@ -530,6 +530,13 @@ the width and height bigger as well. </p>
 <h2 id="stream-from-raspberry-pi-4-to-a-windows-pc">Stream From Raspberry Pi 4 to a Windows PC</h2>
 <p>Thanks to Shun Yamashita of <a href="https://fulldepth.co.jp/">fulldepth</a> for this solution
 to stream the Z1 video to a Raspberry Pi 4 with USB then restream it to a Windows PC.</p>
+<p>This is the process:</p>
+<ul>
+<li>Use GStreamer to stream UDP(RTP) to the Windows PC</li>
+<li>Do not use H264 decoding on the Raspberry Pi as the Windows machine is handling it and it's likely
+that the RPi4 can't use hardware decoding for 4K H.264.</li>
+<li>Tested with Raspberry Pi4 modelB with 4GB of RAM running Raspberry Pi OS</li>
+</ul>
 <p>On the Raspberry Pi, the following was changed in the GStreamer pipeline in <code>gst/gst_viewer.c</code>.</p>
 <pre><code class="c">src.pipeline = gst_parse_launch(
         &quot; appsrc name=ap ! queue ! h264parse ! queue&quot;
