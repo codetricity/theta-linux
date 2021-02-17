@@ -16,6 +16,48 @@ are specified in [thetauvc.c](https://github.com/ricohapi/libuvc-theta-sample/bl
 You can specify the resolution in [gst_viewer.c](https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L248).  An example of changing the resolution is [here](https://github.com/codetricity/libuvc-theta-sample).
 
 
+## Long-Term Streaming
+
+With firmware 1.60.1 or newer, the Z1 can stream indefinitely.
+The battery will charge when streaming at 4K.  To stream indefinitely,
+you need the proper equipment.  After testing streaming on 5 different
+computers, I could only achieve continuous non-stop streaming on one computer.
+
+From our community tests, it appears that the USB 3.0 (or 3.1, 3.2) port needs
+to support Battery Charging 1.2 or equivalent.  The Z1 consumes 0.6Amp to 0.9Amps while
+streaming 4K.  Without a powered hub, the Raspberry Pi and Jetson Nano cannot
+stream indefinitely.
+
+I tested an old [Anker 7-Port USB 3.0 hub](https://www.anker.com/products/variant/7-port-usb-30-hub-/A7505112)
+that I had on my desk with a Jetson Nano.
+The Z1 battery charged increased while it was streaming at 4K.  The Z1 camera body
+remained comfortably warm when I touched it, not hot.
+
+In the test setup below, the Anker USB hub is plugged into a power strip. The hub is above
+my keyboard.
+
+![Z1 test setup with hub](images/camera/z1_test_setup.png)
+
+The hub that I am using only has one port that is BC 1.2 compliant.  I needed to use
+the BC 1.2 port. 
+
+![Anker hub](images/camera/anker_hub.png)
+
+If I plugged the Z1 into the other 6 ports, the camera would only consume 0.440 Amps.
+This is the same electrical current consumption that I saw on the USB 3.1 and 3.2 ports
+of the computers I tested.  With the Z1 drawing 0.440 Amps, the battery will drain during streaming.
+
+Using the BC 1.2 port, the camera draws up to 0.8 Amps to 0.9 Amps while charging and streaming.
+
+![Current Draw](images/camera/current_draw.png)
+
+After the camera passes 90 percent charge, the charging rate appears to slow down. After a long
+4K streaming session on the Nano, the Z1 is staying happy at 95 percent charge.
+
+![Z1 charge](images/camera/z1_charge.png)
+
+
+
 
 
 ## Sleep and Power Overview
