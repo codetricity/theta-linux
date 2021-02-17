@@ -30,7 +30,7 @@ stream indefinitely.
 
 I tested an old [Anker 7-Port USB 3.0 hub](https://www.anker.com/products/variant/7-port-usb-30-hub-/A7505112)
 that I had on my desk with a Jetson Nano.
-The Z1 battery charged increased while it was streaming at 4K.  The Z1 camera body
+The Z1 battery charge increased while it was streaming at 4K.  The Z1 camera body
 remained comfortably warm when I touched it, not hot.
 
 In the test setup below, the Anker USB hub is plugged into a power strip. The hub is above
