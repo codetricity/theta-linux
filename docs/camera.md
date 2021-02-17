@@ -57,6 +57,17 @@ After the camera passes 90 percent charge, the charging rate appears to slow dow
 ![Z1 charge](images/camera/z1_charge.png)
 
 
+### Long-term Streaming Platform Tests
+
+
+| Platform | Result |
+| --------- | ----------- |
+| Acer Predator 300 laptop with onboard USB 3.1 ports | success. battery charged while streaming |
+| Jetson Nano with external powered USB hub with BC 1.2 | success. battery charged. |
+| Jetson Nano using onboard USB 3 ports | fail. battery drained. |
+| Desktop computer with Intel X99 Wellsburg motherboard and USB 3.1 ports | fail. battery drained |
+| Asus Zephyrus laptop with USB 3.2 ports | fail. battery drained |
+| desktop computer with Intel B85 motherboard and USB 3.0 ports | fail. battery drained |
 
 
 
