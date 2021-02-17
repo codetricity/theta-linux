@@ -280,6 +280,19 @@
     Long-Term Streaming
   </a>
   
+    <nav class="md-nav" aria-label="Long-Term Streaming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#long-term-streaming-platform-tests" class="md-nav__link">
+    Long-term Streaming Platform Tests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -462,6 +475,19 @@
     Long-Term Streaming
   </a>
   
+    <nav class="md-nav" aria-label="Long-Term Streaming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#long-term-streaming-platform-tests" class="md-nav__link">
+    Long-term Streaming Platform Tests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -623,6 +649,41 @@ of the computers I tested.  With the Z1 drawing 0.440 Amps, the battery will dra
 <p>After the camera passes 90 percent charge, the charging rate appears to slow down. After a long
 4K streaming session on the Nano, the Z1 is staying happy at 95 percent charge.</p>
 <p><img alt="Z1 charge" src="../images/camera/z1_charge.png" /></p>
+<h3 id="long-term-streaming-platform-tests">Long-term Streaming Platform Tests</h3>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acer Predator 300 laptop with onboard USB 3.1 ports</td>
+<td>success. battery charged while streaming</td>
+</tr>
+<tr>
+<td>Jetson Nano with external powered USB hub with BC 1.2</td>
+<td>success. battery charged.</td>
+</tr>
+<tr>
+<td>Jetson Nano using onboard USB 3 ports</td>
+<td>fail. battery drained.</td>
+</tr>
+<tr>
+<td>Desktop computer with Intel X99 Wellsburg motherboard and USB 3.1 ports</td>
+<td>fail. battery drained</td>
+</tr>
+<tr>
+<td>Asus Zephyrus laptop with USB 3.2 ports</td>
+<td>fail. battery drained</td>
+</tr>
+<tr>
+<td>desktop computer with Intel B85 motherboard and USB 3.0 ports</td>
+<td>fail. battery drained</td>
+</tr>
+</tbody>
+</table>
 <h2 id="sleep-and-power-overview">Sleep and Power Overview</h2>
 <p>The camera has three power states:</p>
 <ol>
