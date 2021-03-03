@@ -20,7 +20,43 @@ You can specify the resolution in [gst_viewer.c](https://github.com/ricohapi/lib
 
 With firmware 1.60.1 or newer, the Z1 can stream indefinitely.
 The battery will charge when streaming at 4K.  To stream indefinitely,
-you need the proper equipment.  After testing streaming on 5 different
+you need the proper equipment.  
+
+The USB port supplying charge to the RICOH THETA needs to supply approximately 900mA of
+current.
+
+In my tests, most USB 3.0, 3.1, and 3.2 ports on Linux computers did not supply the
+required electrical current.
+
+If your computer does not supply 900mA of charge while streaming data, you will need
+to use a powered hub with the proper specification.
+
+There are different standards for Battery Charging 1.2 for the USB electrical
+specification. You will need BC 1.2 CDP to provide 1.5A data plus charge.  The
+THETA Z1 will only consume 0.9A of the 1.5A capacity.
+
+
+![Battery Charging 1.2 table](images/camera/bc_1_2_table.png)
+
+
+It's likely that USB Type-C (not USB 3.0 with a USB-C connector) and USB PD can
+also deliver over 900mA, but I did not test these.  Note that my Asus Zephyrus laptop
+has USB-C connector ports directly the laptop body, but these physical ports comply to the
+USB 3.2 specification, not USB-C.  USB 3.2 does not require USB Power Delivery.
+
+From the table below, it would appear that USB 3.2 Gen 2 would deliver the required
+electrical current.  However, I wasn't able to keep the Z1 charged indefinitely at 4K
+with my ROG Zephyrus G14 GA401.
+
+
+
+![USB Power Table](images/camera/usb_power.png)
+
+Here's the specifications on my laptop.
+
+![Zephyrus laptop specifications](images/camera/zephyrus.png)
+
+After testing streaming on 5 different
 computers, I could only achieve continuous non-stop streaming on one computer.
 
 From our community tests, it appears that the USB 3.0 (or 3.1, 3.2) port needs
