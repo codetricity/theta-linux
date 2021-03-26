@@ -527,6 +527,22 @@ the width and height bigger as well. </p>
 </code></pre>
 
 <p><img alt="h264" src="../images/examples/gst_play_h264.jpg" /></p>
+<p>Community member Nakamura_Lab indicated that the he experienced significant
+frame loss when using lossless Huffman to save to file with the Xavier NX.
+He could save to file with H.264.  However for his use case with multiple
+face detection, he needed higher resolution than provided by H.264.</p>
+<p>He ended up using H.265 encoding to save to file, which provided both
+high quality and no frame loss.</p>
+<pre><code>gst-launch-1.0 v4l2src num-buffers=600 \
+device=/dev/video0 \
+! video/x-raw \
+! nvvidconv \
+! nvv4l2h265enc \
+! h265parse \
+! qtmux \
+! filesink location=test.mp4 -e
+</code></pre>
+
 <h2 id="stream-from-raspberry-pi-4-to-a-windows-pc">Stream From Raspberry Pi 4 to a Windows PC</h2>
 <p>Thanks to Shun Yamashita of <a href="https://fulldepth.co.jp/">fulldepth</a> for this solution
 to stream the Z1 video to a Raspberry Pi 4 with USB then restream it to a Windows PC.</p>
