@@ -138,6 +138,25 @@ gst-launch-1.0 playbin uri=file:///path-to-file/vid_test.mkv
 
 ![h264](images/examples/gst_play_h264.jpg)
 
+Community member [Nakamura_Lab](https://community.theta360.guide/u/Nakamura_Lab)
+indicated that the he experienced significant
+frame loss when using lossless Huffman to save to file with the Xavier NX.
+He could save to file with H.264.  However for his use case with multiple
+face detection, he needed higher resolution than provided by H.264.
+
+He ended up using H.265 encoding to save to file, which provided both
+high quality and no frame loss.
+
+```
+gst-launch-1.0 v4l2src num-buffers=600 \
+device=/dev/video0 \
+! video/x-raw \
+! nvvidconv \
+! nvv4l2h265enc \
+! h265parse \
+! qtmux \
+! filesink location=test.mp4 -e
+```
 
 ## Stream From Raspberry Pi 4 to a Windows PC
 
