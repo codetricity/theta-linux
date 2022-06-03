@@ -8,14 +8,12 @@ google_analytics: ['UA-73311422-1', 'auto']
 
 theme:
   name: material
-  custom_dir: 'theme'
+  # custom_dir: 'theme'
   palette:
     primary: 'light green'
     accent: 'lime'
   logo: images/logo-white.png
   favicon: images/logo-white.png
-  icon:
-    logo: assets/images/logo.png
 
 extra:
   social:
@@ -25,6 +23,9 @@ extra:
       link: 'https://twitter.com/theta360dev'
     - icon: fontawesome/brands/facebook
       link: 'https://www.facebook.com/theta360guide/'
+  analytics:
+    provider: google
+    property: UA-73311422-1        
 
 nav:
   - Home: index.md
@@ -39,8 +40,8 @@ nav:
   - Meetup Archive: meetup.md
 
 
-plugins:
-  - search
+# plugins:
+#   - search
   # - pdf-export:
   #     media_type: print
   #     combined: true  
