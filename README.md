@@ -1,36 +1,12 @@
-# RICOH THETA USB API on Jetson Nano
+# RICOH THETA Streaming and USB API on Linux
 
-Install guide.
-
-## How to Run This Document Locally
-
-Uses MkDocs and Material MkDocs.
-
-If you do not have pipenv installed, 
-
-```
-$ pip3 install pipenv
-```
-## Installation
-
-Tested on Ubuntu 20.04
-
-```bash
-$ git clone https://github.com/codetricity/theta-linux.git
-Cloning into 'theta-linux'...
-...
-$ cd theta-linux
-$ pipenv install
-$ pipenv install mkdocs
-$ pipenv install mkdocs-material
-$ pipenv install mkdocs-material-extensions
-$ pipenv shell
-$ mkdocs serve
-```
+[Go to document](https://codetricity.github.io/theta-linux/)
 
 ## Content Reference
 
-
+* [discussion](https://community.theta360.guide/t/live-streaming-over-usb-on-ubuntu-and-linux-nvidia-jetson/4359)
+* [gstthetauvc](https://github.com/nickel110/gstthetauvc)
+* [libuvc with theta modification](https://github.com/nickel110/libuvc)
 
 ## Document Creation References
 
