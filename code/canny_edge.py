@@ -1,26 +1,28 @@
 
 import sys
 import argparse
+from tokenize import String
 import cv2
 import numpy as np
 
 def parse_cli_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--video_device", dest="video_device",
+    parser.add_argument("--video_device", dest="video_device", 
                         help="Video device # of USB webcam (/dev/video?) [0]",
                         default=0, type=int)
+    parser.add_argument("--gsttheta", dest="gsttheta", help="nvdec, auto, none", default="none")
     arguments = parser.parse_args()
     return arguments
 
 
 # Open an external usb camera /dev/videoX
 def open_theta_device(device_number):
-    print("attempting to use v4l2loopback on /dev/video" + device_number)
+    print(f"attempting to use v4l2loopback on /dev/video {device_number}")
     return cv2.VideoCapture(device_number)
 
 # https://github.com/nickel110/gstthetauvc
 # example uses hardware acceleration
-def open_gst_thetauvc():
+def open_gst_thetauvc_nvdec():
     print("attempting hardware acceleration for NVIDIA GPU with gstthetauvc")
     return cv2.VideoCapture("thetauvcsrc \
     ! queue \
@@ -34,13 +36,13 @@ def open_gst_thetauvc():
     ! appsink")    
 
 # without hardware acceleration
-# def open_gst_thetauvc():
-#     return cv2.VideoCapture("thetauvcsrc \
-#         ! decodebin \
-#         ! autovideoconvert \
-#         ! video/x-raw,format=BGRx \
-#         ! queue ! videoconvert \
-#         ! video/x-raw,format=BGR ! queue ! appsink")
+def open_gst_thetauvc_auto():
+    return cv2.VideoCapture("thetauvcsrc \
+        ! decodebin \
+        ! autovideoconvert \
+        ! video/x-raw,format=BGRx \
+        ! queue ! videoconvert \
+        ! video/x-raw,format=BGR ! queue ! appsink")
 
 def read_cam(video_capture):
     if video_capture.isOpened():
@@ -127,8 +129,10 @@ if __name__ == '__main__':
     print(arguments)
     print("OpenCV version: {}".format(cv2.__version__))
     print("Device Number:",arguments.video_device)
-    if arguments.video_device==0:
-        video_capture=open_gst_thetauvc()
+    if arguments.gsttheta=='nvdec':
+        video_capture=open_gst_thetauvc_nvdec()
+    elif arguments.gsttheta == 'auto':
+        video_capture=open_gst_thetauvc_auto()
     else:
       video_capture=open_theta_device(arguments.video_device)
     read_cam(video_capture)
