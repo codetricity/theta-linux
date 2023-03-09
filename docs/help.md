@@ -49,3 +49,41 @@ Change to:
 
 "nvv4l2decoder ! nv3dsink sync=false" 
 
+### gstthetauvc showing _Found 1 Theta(s), but none available
+
+If you have another version of libuvc installed, please uninstall it first.
+
+See [this closed issue on GitHub](https://github.com/nickel110/gstthetauvc/issues/1#issuecomment-1100465786).
+
+This is the advice from nickel110, the author of the gstthetauvc.
+
+_That is a typical error when the program is loading the original libuvc.so.
+If libuvc package is installed on your system, uninstall it._
+
+This was the error message.
+
+```text
+Setting pipeline to PAUSED ...
+ERROR: Pipeline doesn't want to pause.
+ERROR: from element /GstPipeline:pipeline0/GstThetauvcsrc:thetauvcsrc0: Found 1 Theta(s), but none available.
+Additional debug info:
+gstthetauvcsrc.c(495): gst_thetauvcsrc_start (): /GstPipeline:pipeline0/GstThetauvcsrc:thetauvcsrc0
+Setting pipeline to NULL ...
+Freeing pipeline ...
+```
+
+This is another [error message from buburider](https://community.theta360.guide/t/live-streaming-over-usb-on-ubuntu-and-linux-nvidia-jetson/4359/339?u=craig).
+
+```text
+ERROR: Pipeline doesn't want to pause.
+Setting pipeline to NULL ...
+ERROR: from element /GstPipeline:pipeline0/GstThetauvcsrc:thetauvcsrc0: Found 1 Theta(s), but none available (No such device).
+Additional debug info:
+gstthetauvcsrc.c(493): gst_thetauvcsrc_start (): /GstPipeline:pipeline0/GstThetauvcsrc:thetauvcsrc0
+Freeing pipeline ...
+0:00:00.761629738     8 0x55dc6da40c00 DEBUG            thetauvcsrc gstthetauvcsrc.c:270:gst_thetauvcsrc_finalize:<thetauvcsrc0> finalize
+```
+
+This is his [solution](https://community.theta360.guide/t/live-streaming-over-usb-on-ubuntu-and-linux-nvidia-jetson/4359/347?u=craig).
+
+> I’ve just found the issue: my jetson computer had a previous libuvc library installed. So, instead of using libuvc-theta, the application loaded the native version. This is the reason why the same code was working in my laptop. In the laptop, the native version of libuvc didn’t exist. After resolving that, it works fine.

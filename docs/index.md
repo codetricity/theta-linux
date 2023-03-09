@@ -20,23 +20,23 @@ API.
 Up to date guides, events, and a general pile of great stuff is at the
 [theta360.guide Linux Streaming Site](https://theta360.guide/special/linuxstreaming/).
 
- It's an exciting world.  Let's getting started. 
+ It's an exciting world.  Let's getting started.
 
- If you're eager and using Ubuntu 20.04
+ If you're eager and using Ubuntu 20.04 or 22.04
 
 ```bash
-$ git clone https://github.com/ricohapi/libuvc-theta.git
-$ sudo apt install libjpeg-dev
-$ cd libuvc-theta
-$ mkdir build
-$ cd build
-$ cmake ..
-$ make
-$ sudo make install
-$ cd ../..
-$ git clone https://github.com/ricohapi/libuvc-theta-sample.git
-$ cd libuvc-theta-sample/gst
-$ make
+git clone https://github.com/ricohapi/libuvc-theta.git
+sudo apt install libjpeg-dev
+cd libuvc-theta
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+cd ../..
+git clone https://github.com/ricohapi/libuvc-theta-sample.git
+cd libuvc-theta-sample/gst
+make
 
 # THETA must be plugged into your computer and in 
 # live streaming mode
@@ -50,7 +50,7 @@ If the build fails, you may need a few gstreamer packages.
 The command below installs everything.  You do not need everything
 
 ```bash
-$ sudo apt-get install libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-doc gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio libgstreamer-plugins-base1.0-dev
+sudo apt-get install libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-doc gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio libgstreamer-plugins-base1.0-dev
 ```
 
 
