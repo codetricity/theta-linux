@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="../images/logo-white.png">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.0">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.15">
     
     
       
@@ -21,18 +21,16 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.2e8b5541.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.c382b1dc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cc9b2e1e.min.css">
         
           
           
           <meta name="theme-color" content="#8bc34b">
         
       
-      
-
     
     
     
@@ -45,7 +43,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -55,13 +53,10 @@
   
 
 
-  <script id="__analytics">function __md_analytics(){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-73311422-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");ga("send","event","feedback","click",t,e),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){ga("send","pageview",e.pathname)})});var e=document.createElement("script");e.async=!0,e.src="https://www.google-analytics.com/analytics.js",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-GKVKMSBLHK"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-GKVKMSBLHK",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GKVKMSBLHK"></script>
 
-  
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-  
 
-    
     
     
   </head>
@@ -137,7 +132,7 @@
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
@@ -494,45 +489,44 @@
               </div>
             
           
-          
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
                 
-                  
 
 
 <h1 id="usage-examples">Usage Examples</h1>
 <h2 id="stream-to-youtube-with-ffmpeg">stream to YouTube with ffmpeg</h2>
 <p>from <a href="https://community.theta360.guide/u/Paul_Gullett">Paul Gullett</a>.
 <a href="https://community.theta360.guide/t/live-streaming-over-usb-on-ubuntu-and-linux-nvidia-jetson/4359/117?u=craig">post</a></p>
-<pre><code>ffmpeg -f lavfi -i anullsrc \
--f v4l2 -s 3480x1920 -r 10 -i /dev/video0 \
--vcodec libx264 -pix_fmt yuv420p -preset ultrafast \
--strict experimental -r 25 -g 20 -b:v 2500k \
--codec:a libmp3lame -ar 44100 -b:a 11025 -bufsize 512k \
--f flv rtmp://a.rtmp.youtube.com/live2/secret-key
-</code></pre>
-<p>As my knowledge of ffmpeg is weak, I simplified Paul's
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ffmpeg -f lavfi -i anullsrc \
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>-f v4l2 -s 3480x1920 -r 10 -i /dev/video0 \
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>-vcodec libx264 -pix_fmt yuv420p -preset ultrafast \
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>-strict experimental -r 25 -g 20 -b:v 2500k \
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>-codec:a libmp3lame -ar 44100 -b:a 11025 -bufsize 512k \
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>-f flv rtmp://a.rtmp.youtube.com/live2/secret-key
+</span></code></pre></div>
+As my knowledge of ffmpeg is weak, I simplified Paul's
 video pipeline.</p>
-<pre><code> ffmpeg -f lavfi -i anullsrc -f v4l2 -s 1920x960 -r 10 -i /dev/video2 \
--vcodec libx264 -pix_fmt yuv420p \
- -b:v 2500k \
--codec:a libmp3lame -ar 44100 -b:a 11025 -bufsize 512k \
--f flv rtmp://a.rtmp.youtube.com/live2/$SECRET_KEY
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a> ffmpeg -f lavfi -i anullsrc -f v4l2 -s 1920x960 -r 10 -i /dev/video2 \
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>-vcodec libx264 -pix_fmt yuv420p \
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a> -b:v 2500k \
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>-codec:a libmp3lame -ar 44100 -b:a 11025 -bufsize 512k \
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>-f flv rtmp://a.rtmp.youtube.com/live2/$SECRET_KEY
+</span></code></pre></div>
 <p><img alt="YouTube panel" src="../images/examples/youtube.jpg" /></p>
 <h2 id="stream-to-another-computer-with-gstreamer">stream to another computer with gstreamer</h2>
 <p>by <a href="https://community.theta360.guide/u/zdydek">zdydek</a>. 
 <a href="https://community.theta360.guide/t/live-streaming-over-usb-on-ubuntu-and-linux-nvidia-jetson/4359/78?u=craig">post</a></p>
 <p>in gst_viewer.c</p>
-<pre><code>pipe_proc = &quot; rtph264pay name=pay0 pt=96 ! udpsink host=127.0.0.1 port=5000 sync=false &quot;;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pipe_proc = &quot; rtph264pay name=pay0 pt=96 ! udpsink host=127.0.0.1 port=5000 sync=false &quot;;
+</span></code></pre></div>
 <p>with gst-rtsp-server</p>
-<pre><code>./test-launch &quot;( udpsrc port=5000 ! application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264 ! rtph264depay ! h264parse ! rtph264pay name=pay0 pt=96 )&quot;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./test-launch &quot;( udpsrc port=5000 ! application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264 ! rtph264depay ! h264parse ! rtph264pay name=pay0 pt=96 )&quot;
+</span></code></pre></div>
 <p>Receive on ROS.</p>
-<pre><code>GSCAM_CONFIG=&quot;rtspsrc location=rtspt://10.0.16.1:8554/test latency=400 drop-on-latency=true ! application/x-rtp, encoding-name=H264 ! rtph264depay ! decodebin ! queue ! videoconvert&quot;  roslaunch gscam_nodelet.launch
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>GSCAM_CONFIG=&quot;rtspsrc location=rtspt://10.0.16.1:8554/test latency=400 drop-on-latency=true ! application/x-rtp, encoding-name=H264 ! rtph264depay ! decodebin ! queue ! videoconvert&quot;  roslaunch gscam_nodelet.launch
+</span></code></pre></div>
 <h2 id="simplified-computer-to-computer-streaming-with-rtsp-and-gstreamer">Simplified computer to computer streaming with rtsp and gstreamer</h2>
 <p>This was tested going from an x86 machine to a Jetson Nano.
 The THETA Z1 is connected to the x86 Linux machine.  It is not 
@@ -541,19 +535,19 @@ working with the Jetson as the sender.</p>
 <p>Modify the pipeline in <code>gst_viewer.c</code></p>
 <p>This example has the IP address hardcoded in.  Switch to a variable in
 your code.</p>
-<pre><code class="language-c">pipe_proc = &quot; decodebin ! jpegenc ! rtpjpegpay ! udpsink host=192.168.2.100 port=5000 qos=false sync=false&quot;;
-</code></pre>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">pipe_proc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot; decodebin ! jpegenc ! rtpjpegpay ! udpsink host=192.168.2.100 port=5000 qos=false sync=false&quot;</span><span class="p">;</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="modify pipeline" src="../images/demos/pipeline_mod.png" /></p>
 <p>If you are looking for the IP address of the receiver, you can use arp-scan on 
 the command line.</p>
 <p>Example:</p>
-<pre><code>sudo arp-scan --interface=eth0 --localnet
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo arp-scan --interface=eth0 --localnet
+</span></code></pre></div>
 <p>On the receiving device, if the receiver is a NVIDIA Jetson Nano.</p>
-<pre><code class="language-bash">$ cat receive_udp.sh 
-gst-launch-1.0 udpsrc port=5000 !  application/x-rtp,encoding-name=JPEG,payload=26 ! rtpjpegdepay ! jpegdec ! videoscale ! video/x-raw,width=640,height=320 ! nveglglessink
-</code></pre>
-<p>If you're on x86, change nveglglessink to autovideosink.  You may want to make
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$ cat receive_udp.sh 
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>gst-launch-1.0 udpsrc <span class="nv">port</span><span class="o">=</span><span class="m">5000</span> !  application/x-rtp,encoding-name<span class="o">=</span>JPEG,payload<span class="o">=</span><span class="m">26</span> ! rtpjpegdepay ! jpegdec ! videoscale ! video/x-raw,width<span class="o">=</span><span class="m">640</span>,height<span class="o">=</span><span class="m">320</span> ! nveglglessink
+</span></code></pre></div>
+If you're on x86, change nveglglessink to autovideosink.  You may want to make
 the width and height bigger as well. </p>
 <p><img alt="streaming screenshot" src="../images/demos/streaming_screenshot.png" /></p>
 <h2 id="save-to-file">Save to File</h2>
@@ -563,20 +557,20 @@ the width and height bigger as well. </p>
 <p>Using the v4l2loopback capability and thetaV loopback example, here are 2 example gstreamer pipelines to grab the video:</p>
 </blockquote>
 <p>As a lossless huffman encoded raw file:</p>
-<pre><code class="language-bash">gst-launch-1.0 v4l2src device=/dev/video99 ! video/x-raw,framerate=30/1 \
-! videoconvert \
-! videoscale \
-! avenc_huffyuv \
-! avimux \
-! filesink location=raw.hfyu
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>gst-launch-1.0 v4l2src <span class="nv">device</span><span class="o">=</span>/dev/video99 ! video/x-raw,framerate<span class="o">=</span><span class="m">30</span>/1 <span class="se">\</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>! videoconvert <span class="se">\</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>! videoscale <span class="se">\</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>! avenc_huffyuv <span class="se">\</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>! avimux <span class="se">\</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>! filesink <span class="nv">location</span><span class="o">=</span>raw.hfyu
+</span></code></pre></div>
 <p>And with default h.264 encoding on a Jetson:</p>
-<pre><code>gst-launch-1.0 v4l2src device=/dev/video99 ! video/x-raw,framerate=30/1 \
-! nvvidconv \
-! omxh264enc \
-! h264parse ! matroskamux \
-! filesink location=vid99.mkv
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>gst-launch-1.0 v4l2src device=/dev/video99 ! video/x-raw,framerate=30/1 \
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>! nvvidconv \
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>! omxh264enc \
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>! h264parse ! matroskamux \
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>! filesink location=vid99.mkv
+</span></code></pre></div>
 <blockquote>
 <p>Pro tip, when you install v4l2loopback, use the video_nr option to create the video device somewhere high so it does not get displaced by PnP of other cameras.</p>
 </blockquote>
@@ -584,11 +578,11 @@ the width and height bigger as well. </p>
 <p>Here's a shot of me playing a file that I generated with Les's pipeline.</p>
 <p><img alt="huffyuv" src="../images/examples/huffyuv.jpg" /></p>
 <p>On x86, this is the pipeline I used to save to a H.264 file.</p>
-<pre><code>$ gst-launch-1.0 v4l2src device=/dev/video2 ! video/x-raw,framerate=30/1 ! autovideoconvert ! nvh264enc ! h264parse ! matroskamux ! filesink location=vid_test.mkv
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$ gst-launch-1.0 v4l2src device=/dev/video2 ! video/x-raw,framerate=30/1 ! autovideoconvert ! nvh264enc ! h264parse ! matroskamux ! filesink location=vid_test.mkv
+</span></code></pre></div>
 <p>Example of playing file with gst-launch.</p>
-<pre><code>gst-launch-1.0 playbin uri=file:///path-to-file/vid_test.mkv
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>gst-launch-1.0 playbin uri=file:///path-to-file/vid_test.mkv
+</span></code></pre></div>
 <p><img alt="h264" src="../images/examples/gst_play_h264.jpg" /></p>
 <p>Community member <a href="https://community.theta360.guide/u/Nakamura_Lab">Nakamura_Lab</a>
 indicated that the he experienced significant
@@ -597,15 +591,15 @@ He could save to file with H.264.  However for his use case with multiple
 face detection, he needed higher resolution than provided by H.264.</p>
 <p>He ended up using H.265 encoding to save to file, which provided both
 high quality and no frame loss.</p>
-<pre><code>gst-launch-1.0 v4l2src num-buffers=600 \
-device=/dev/video0 \
-! video/x-raw \
-! nvvidconv \
-! nvv4l2h265enc \
-! h265parse \
-! qtmux \
-! filesink location=test.mp4 -e
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>gst-launch-1.0 v4l2src num-buffers=600 \
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>device=/dev/video0 \
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>! video/x-raw \
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>! nvvidconv \
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>! nvv4l2h265enc \
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>! h265parse \
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>! qtmux \
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>! filesink location=test.mp4 -e
+</span></code></pre></div>
 <h2 id="stream-from-raspberry-pi-4-to-a-windows-pc">Stream From Raspberry Pi 4 to a Windows PC</h2>
 <p>Thanks to Shun Yamashita of <a href="https://fulldepth.co.jp/">fulldepth</a> for this solution
 to stream the Z1 video to a Raspberry Pi 4 with USB then restream it to a Windows PC.</p>
@@ -617,31 +611,22 @@ that the RPi4 can't use hardware decoding for 4K H.264.</li>
 <li>Tested with Raspberry Pi4 modelB with 4GB of RAM running Raspberry Pi OS</li>
 </ul>
 <p>On the Raspberry Pi, the following was changed in the GStreamer pipeline in <code>gst/gst_viewer.c</code>.</p>
-<pre><code class="language-c">src.pipeline = gst_parse_launch(
-        &quot; appsrc name=ap ! queue ! h264parse ! queue&quot;
-        &quot; ! rtph264pay ! udpsink host=192.168.0.15 port=9000&quot;,
-        NULL);
-</code></pre>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">src</span><span class="p">.</span><span class="n">pipeline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gst_parse_launch</span><span class="p">(</span><span class="w"></span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">        </span><span class="s">&quot; appsrc name=ap ! queue ! h264parse ! queue&quot;</span><span class="w"></span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">        </span><span class="s">&quot; ! rtph264pay ! udpsink host=192.168.0.15 port=9000&quot;</span><span class="p">,</span><span class="w"></span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">        </span><span class="nb">NULL</span><span class="p">);</span><span class="w"></span>
+</span></code></pre></div>
 
-
-  
-
-
-
-
-                
-              </article>
-            </div>
-          
-          
+              
+            </article>
+          </div>
         </div>
         
       </main>
       
         <footer class="md-footer">
   
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
         <a href="../demos/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Demos" rel="prev">
@@ -696,7 +681,7 @@ that the RPi4 can't use hardware decoding for 4K H.264.</li>
       
     
     <a href="https://github.com/theta360developers" target="_blank" rel="noopener" title="github.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
     </a>
   
     
@@ -705,7 +690,7 @@ that the RPi4 can't use hardware decoding for 4K H.264.</li>
       
     
     <a href="https://twitter.com/theta360dev" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
     </a>
   
     
@@ -714,7 +699,7 @@ that the RPi4 can't use hardware decoding for 4K H.264.</li>
       
     
     <a href="https://www.facebook.com/theta360guide/" target="_blank" rel="noopener" title="www.facebook.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
     </a>
   
 </div>
@@ -727,11 +712,10 @@ that the RPi4 can't use hardware decoding for 4K H.264.</li>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
-    
-      <script src="../assets/javascripts/bundle.48f2be22.min.js"></script>
+      <script src="../assets/javascripts/bundle.a6c66575.min.js"></script>
       
     
   </body>

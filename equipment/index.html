@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="../images/logo-white.png">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.0">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.15">
     
     
       
@@ -21,18 +21,16 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.2e8b5541.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.c382b1dc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cc9b2e1e.min.css">
         
           
           
           <meta name="theme-color" content="#8bc34b">
         
       
-      
-
     
     
     
@@ -45,7 +43,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -55,13 +53,10 @@
   
 
 
-  <script id="__analytics">function __md_analytics(){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-73311422-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");ga("send","event","feedback","click",t,e),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){ga("send","pageview",e.pathname)})});var e=document.createElement("script");e.async=!0,e.src="https://www.google-analytics.com/analytics.js",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-GKVKMSBLHK"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-GKVKMSBLHK",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GKVKMSBLHK"></script>
 
-  
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-  
 
-    
     
     
   </head>
@@ -137,7 +132,7 @@
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
@@ -700,11 +695,10 @@
               </div>
             
           
-          
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
                 
-                  
 
 
   <h1>Equipment</h1>
@@ -751,11 +745,11 @@ x86 computer.  It works fine.  Thanks to commuity member Yu You
 for this fix to gst_view.c.  Note the addition of <code>qos=false</code> to
 the pipeline.  This is currently on 
 <a href="https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L190">line 190</a>.</p>
-<pre><code class="language-c">if (strcmp(cmd_name, &quot;gst_loopback&quot;) == 0)
-    pipe_proc = &quot;decodebin ! autovideoconvert ! &quot;
-        &quot;video/x-raw,format=I420 ! identity drop-allocation=true !&quot;
-        &quot;v4l2sink device=/dev/video0 qos=false sync=false&quot;;
-</code></pre>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">cmd_name</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gst_loopback&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">pipe_proc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;decodebin ! autovideoconvert ! &quot;</span><span class="w"></span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="s">&quot;video/x-raw,format=I420 ! identity drop-allocation=true !&quot;</span><span class="w"></span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="s">&quot;v4l2sink device=/dev/video0 qos=false sync=false&quot;</span><span class="p">;</span><span class="w"></span>
+</span></code></pre></div>
 <p>Screenshot of loopback running on <code>/dev/video0</code>, tested with vlc.</p>
 <p><img alt="x86 and vlc" src="../images/hardware/x_86.png" /></p>
 <h4 id="addtional-x86-information">Addtional x86 Information</h4>
@@ -773,11 +767,11 @@ dedicated graphics card on x86. In our tests on Ubuntu 20, Focal Fossa, the gstr
 <p>This is a <a href="https://youtu.be/9_lG5m806uE">video test clip of a THETA Z1 running with the X.Org
 driver</a> on Intel i7-6800K CPU and NVIDIA GeForce GTX 950 GPU.</p>
 <p>You can check the graphics driver with one of these commands.</p>
-<pre><code>$ glxinfo -B
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ glxinfo -B
+</span></code></pre></div>
 <p>or </p>
-<pre><code>$ sudo lshw -c video
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$ sudo lshw -c video
+</span></code></pre></div>
 <h3 id="raspberry-pi">Raspberry Pi</h3>
 <p>The Raspberry Pi will work great with the USB API.  However, you 
 will not have a good experience streaming 4K, even with the 
@@ -802,30 +796,30 @@ identify performance bottlenecks.</p>
 <p>On NVIDIA Jetson, <code>tegrastats</code> is useful for seeing information on the GPU.
 In the example below, I've inserted line breaks to make the output easier to read.
 The output is shown before streaming starts.</p>
-<pre><code>craig@jetson:~$ tegrastats 
-RAM 1122/3964MB (lfb 28x4MB)
-SWAP 211/1982MB (cached 20MB)
-CPU [5%@102,9%@102,0%@102,0%@102]
-EMC_FREQ 0% 
-GR3D_FREQ 0% 
-PLL@25.5C CPU@27C PMIC@100C 
-GPU@27.5C AO@35C thermal@27.5C 
-POM_5V_IN 1805/1805 
-POM_5V_GPU 0/0 
-POM_5V_CPU 123/123
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>craig@jetson:~$ tegrastats 
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>RAM 1122/3964MB (lfb 28x4MB)
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>SWAP 211/1982MB (cached 20MB)
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>CPU [5%@102,9%@102,0%@102,0%@102]
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>EMC_FREQ 0% 
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>GR3D_FREQ 0% 
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>PLL@25.5C CPU@27C PMIC@100C 
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>GPU@27.5C AO@35C thermal@27.5C 
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>POM_5V_IN 1805/1805 
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>POM_5V_GPU 0/0 
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>POM_5V_CPU 123/123
+</span></code></pre></div>
 <p>Let's start the stream and review it again.</p>
-<pre><code>RAM 1288/3964MB (lfb 28x4MB) 
-SWAP 210/1982MB (cached 20MB) 
-CPU [100%@1479,89%@1479,85%@1479,86%@1479] 
-EMC_FREQ 0% 
-GR3D_FREQ 35% 
-PLL@32C CPU@35C PMIC@100C 
-GPU@30.5C AO@40.5C thermal@32.25C 
-POM_5V_IN 5607/5561 
-POM_5V_GPU 118/98 
-POM_5V_CPU 2843/2791
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>RAM 1288/3964MB (lfb 28x4MB) 
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>SWAP 210/1982MB (cached 20MB) 
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>CPU [100%@1479,89%@1479,85%@1479,86%@1479] 
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>EMC_FREQ 0% 
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>GR3D_FREQ 35% 
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>PLL@32C CPU@35C PMIC@100C 
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>GPU@30.5C AO@40.5C thermal@32.25C 
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>POM_5V_IN 5607/5561 
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>POM_5V_GPU 118/98 
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>POM_5V_CPU 2843/2791
+</span></code></pre></div>
 <p>The GR3D_FREQ and POM_5V_GPU provide information on the GPU.  GR3D is the
 Jetson GPU engine.  More information on tegrastatus is 
 <a href="https://docs.nvidia.com/jetson/archives/l4t-archived/l4t-3231/index.html#page/Tegra%20Linux%20Driver%20Package%20Development%20Guide/AppendixTegraStats.html">here</a>.</p>
@@ -843,17 +837,17 @@ shows OpenCV and a Python script for canny edge detection.</p>
 <h3 id="x86">x86</h3>
 <h4 id="gstreamer-plug-in">gstreamer plug-in</h4>
 <p>You can check to see if the nvdec plug-in is installed with:</p>
-<pre><code>$ gst-inspect-1.0 nvdec
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$ gst-inspect-1.0 nvdec
+</span></code></pre></div>
 <p>If you see this, the plug-in is not installed.</p>
-<pre><code>No such element or plugin 'nvdec'
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>No such element or plugin &#39;nvdec&#39;
+</span></code></pre></div>
 <p>If nvdec and nvenc are installed, you should see this:</p>
-<pre><code>$ gst-inspect-1.0 | grep nvenc
-nvenc:  nvh264enc: NVENC H.264 Video Encoder
-$ gst-inspect-1.0 | grep nvdec
-nvdec:  nvdec: NVDEC video decoder
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$ gst-inspect-1.0 | grep nvenc
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>nvenc:  nvh264enc: NVENC H.264 Video Encoder
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>$ gst-inspect-1.0 | grep nvdec
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>nvdec:  nvdec: NVDEC video decoder
+</span></code></pre></div>
 <p>There are several online tutorials for installing nvdec and nvenc.</p>
 <ul>
 <li><a href="http://lifestyletransfer.com/how-to-install-nvidia-gstreamer-plugins-nvenc-nvdec-on-ubuntu/">LifeStyle transfer: How to install Nvidia Gstreamer plugins (nvenc, nvdec) on Ubuntu?</a> by Taras Lishchenko</li>
@@ -861,83 +855,73 @@ nvdec:  nvdec: NVDEC video decoder
 <li><a href="https://gist.github.com/corenel/a615b6f7eb5b5425aa49343a7b409200">gist from corenel</a></li>
 </ul>
 <p><strong>plugin build example</strong></p>
-<pre><code>$ NVENCODE_CFLAGS=&quot;-I/home/craig/Development/gstreamer/gst-plugins-bad/sys/nvenc&quot; ./autogen.sh --disable-gtk-doc --with-cuda-prefix=&quot;/usr/local/cuda&quot;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$ NVENCODE_CFLAGS=&quot;-I/home/craig/Development/gstreamer/gst-plugins-bad/sys/nvenc&quot; ./autogen.sh --disable-gtk-doc --with-cuda-prefix=&quot;/usr/local/cuda&quot;
+</span></code></pre></div>
 <p><img alt="plug-in build" src="../images/hardware/gstreamer_plugin/autogen_confirm.png" /></p>
 <p><img alt="gst-inspect confirmation" src="../images/hardware/gstreamer_plugin/gst_inspect_confirm.png" /></p>
 <h4 id="monitoring-tools">Monitoring Tools</h4>
 <p>Prior to starting the stream.</p>
-<pre><code>$ nvidia-smi 
-Mon Sep 14 06:14:55 2020       
-+-----------------------------------------------------------------------------+
-| NVIDIA-SMI 440.100      Driver Version: 440.100      CUDA Version: 10.2     |
-|-------------------------------+----------------------+----------------------+
-| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-|===============================+======================+======================|
-|   0  GeForce GTX 950     Off  | 00000000:02:00.0  On |                  N/A |
-|  1%   52C    P5    14W /  99W |    355MiB /  1999MiB |      0%      Default |
-+-------------------------------+----------------------+----------------------+
-
-+-----------------------------------------------------------------------------+
-| Processes:                                                       GPU Memory |
-|  GPU       PID   Type   Process name                             Usage      |
-|=============================================================================|
-|    0      1051      G   /usr/lib/xorg/Xorg                            52MiB |
-|    0      1619      G   /usr/lib/xorg/Xorg                           113MiB |
-|    0      1820      G   /usr/bin/gnome-shell                         102MiB |
-|    0      2822      G   ...AAAAAAAAAAAACAAAAAAAAAA= --shared-files    73MiB |
-+-----------------------------------------------------------------------------+
-
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$ nvidia-smi 
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Mon Sep 14 06:14:55 2020       
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>+-----------------------------------------------------------------------------+
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>| NVIDIA-SMI 440.100      Driver Version: 440.100      CUDA Version: 10.2     |
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>|-------------------------------+----------------------+----------------------+
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>|===============================+======================+======================|
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>|   0  GeForce GTX 950     Off  | 00000000:02:00.0  On |                  N/A |
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>|  1%   52C    P5    14W /  99W |    355MiB /  1999MiB |      0%      Default |
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>+-------------------------------+----------------------+----------------------+
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>+-----------------------------------------------------------------------------+
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>| Processes:                                                       GPU Memory |
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>|  GPU       PID   Type   Process name                             Usage      |
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>|=============================================================================|
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>|    0      1051      G   /usr/lib/xorg/Xorg                            52MiB |
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>|    0      1619      G   /usr/lib/xorg/Xorg                           113MiB |
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>|    0      1820      G   /usr/bin/gnome-shell                         102MiB |
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>|    0      2822      G   ...AAAAAAAAAAAACAAAAAAAAAA= --shared-files    73MiB |
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>+-----------------------------------------------------------------------------+
+</span></code></pre></div>
 <p>With gst-viewer running.</p>
-<pre><code>$ nvidia-smi 
-Tue Sep 29 16:29:33 2020       
-+-----------------------------------------------------------------------------+
-| NVIDIA-SMI 450.66       Driver Version: 450.66       CUDA Version: 11.0     |
-|-------------------------------+----------------------+----------------------+
-| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-|                               |                      |               MIG M. |
-|===============================+======================+======================|
-|   0  GeForce GTX 950     Off  | 00000000:02:00.0  On |                  N/A |
-|  9%   56C    P0    28W /  99W |    543MiB /  1999MiB |      9%      Default |
-|                               |                      |                  N/A |
-+-------------------------------+----------------------+----------------------+
-
-+-----------------------------------------------------------------------------+
-| Processes:                                                                  |
-|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
-|        ID   ID                                                   Usage      |
-|=============================================================================|
-|    0   N/A  N/A      1100      G   /usr/lib/xorg/Xorg                 51MiB |
-|    0   N/A  N/A      1588      G   /usr/lib/xorg/Xorg                188MiB |
-|    0   N/A  N/A      1719      G   /usr/bin/gnome-shell              144MiB |
-|    0   N/A  N/A      2132      G   ...AAAAAAAAA= --shared-files       71MiB |
-|    0   N/A  N/A      6606      G   ...AAAAAAAAA= --shared-files       73MiB |
-+-----------------------------------------------------------------------------+
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$ nvidia-smi 
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Tue Sep 29 16:29:33 2020       
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>+-----------------------------------------------------------------------------+
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>| NVIDIA-SMI 450.66       Driver Version: 450.66       CUDA Version: 11.0     |
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>|-------------------------------+----------------------+----------------------+
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>|                               |                      |               MIG M. |
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>|===============================+======================+======================|
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>|   0  GeForce GTX 950     Off  | 00000000:02:00.0  On |                  N/A |
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>|  9%   56C    P0    28W /  99W |    543MiB /  1999MiB |      9%      Default |
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>|                               |                      |                  N/A |
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>+-------------------------------+----------------------+----------------------+
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>+-----------------------------------------------------------------------------+
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>| Processes:                                                                  |
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>|        ID   ID                                                   Usage      |
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>|=============================================================================|
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>|    0   N/A  N/A      1100      G   /usr/lib/xorg/Xorg                 51MiB |
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>|    0   N/A  N/A      1588      G   /usr/lib/xorg/Xorg                188MiB |
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>|    0   N/A  N/A      1719      G   /usr/bin/gnome-shell              144MiB |
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>|    0   N/A  N/A      2132      G   ...AAAAAAAAA= --shared-files       71MiB |
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>|    0   N/A  N/A      6606      G   ...AAAAAAAAA= --shared-files       73MiB |
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a>+-----------------------------------------------------------------------------+
+</span></code></pre></div>
 <p><img alt="GPU on" src="../images/hardware/gpu_on.png" /></p>
 
-
-  
-
-
-
-
-                
-              </article>
-            </div>
-          
-          
+              
+            </article>
+          </div>
         </div>
         
       </main>
       
         <footer class="md-footer">
   
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
         <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
@@ -992,7 +976,7 @@ Tue Sep 29 16:29:33 2020
       
     
     <a href="https://github.com/theta360developers" target="_blank" rel="noopener" title="github.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
     </a>
   
     
@@ -1001,7 +985,7 @@ Tue Sep 29 16:29:33 2020
       
     
     <a href="https://twitter.com/theta360dev" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
     </a>
   
     
@@ -1010,7 +994,7 @@ Tue Sep 29 16:29:33 2020
       
     
     <a href="https://www.facebook.com/theta360guide/" target="_blank" rel="noopener" title="www.facebook.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
     </a>
   
 </div>
@@ -1023,11 +1007,10 @@ Tue Sep 29 16:29:33 2020
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
-    
-      <script src="../assets/javascripts/bundle.48f2be22.min.js"></script>
+      <script src="../assets/javascripts/bundle.a6c66575.min.js"></script>
       
     
   </body>

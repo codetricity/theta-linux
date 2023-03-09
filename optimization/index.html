@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="../images/logo-white.png">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.0">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.15">
     
     
       
@@ -21,18 +21,16 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.2e8b5541.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.c382b1dc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cc9b2e1e.min.css">
         
           
           
           <meta name="theme-color" content="#8bc34b">
         
       
-      
-
     
     
     
@@ -45,7 +43,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -55,13 +53,10 @@
   
 
 
-  <script id="__analytics">function __md_analytics(){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-73311422-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");ga("send","event","feedback","click",t,e),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){ga("send","pageview",e.pathname)})});var e=document.createElement("script");e.async=!0,e.src="https://www.google-analytics.com/analytics.js",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-GKVKMSBLHK"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-GKVKMSBLHK",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GKVKMSBLHK"></script>
 
-  
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-  
 
-    
     
     
   </head>
@@ -137,7 +132,7 @@
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
@@ -820,11 +815,10 @@
               </div>
             
           
-          
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
                 
-                  
 
 
 <h1 id="gstreamer-and-ffmpeg-hardware-acceleration-and-optimization">gstreamer and ffmpeg hardware acceleration and optimization</h1>
@@ -870,8 +864,8 @@ in JetPack, the Jetson OS you download from NVIDIA.
 On Jetson, the sink is nv3dsink.</p>
 <p>If you are using x86 and do not have streaming working
 at all, you should first try this pipeline.</p>
-<pre><code>pipe_proc = &quot; decodebin ! autovideosink sync=false qos=false&quot;;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pipe_proc = &quot; decodebin ! autovideosink sync=false qos=false&quot;;
+</span></code></pre></div>
 <p>Note that both sync and qos are false.</p>
 <p>If you have enabled the pipeline above and your framerate is
 still extremely slow, you can try installing all the gstreamer
@@ -884,15 +878,15 @@ live streaming working and is interested in trying to reduce
 latency.</p>
 <h3 id="tests">Tests</h3>
 <h4 id="nvdec-and-glimagesink">nvdec and glimagesink</h4>
-<pre><code>pipe_proc = &quot;nvdec ! glimagesink qos=false sync=false&quot;;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pipe_proc = &quot;nvdec ! glimagesink qos=false sync=false&quot;;
+</span></code></pre></div>
 <p><img alt="gstreamer nvdec" src="../images/optimization/gstreamer_nvdec.png" /></p>
 <p>foreground: 59.182</p>
 <p>THETA video: 58.932</p>
 <p>Latency: 250ms</p>
 <h4 id="default-decodebin-and-autovideosink">Default decodebin and autovideosink</h4>
-<pre><code>pipe_proc = &quot; decodebin ! autovideosink sync=false&quot;;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pipe_proc = &quot; decodebin ! autovideosink sync=false&quot;;
+</span></code></pre></div>
 <p><img alt="gstreamer nvdec" src="../images/optimization/gstreamer_default.png" /></p>
 <p>foreground: 691</p>
 <p>THETA video: 141</p>
@@ -925,57 +919,57 @@ latency.</p>
 </ol>
 <h3 id="tips">Tips</h3>
 <h4 id="verify-if-you-have-nvdec-installed">Verify if you have nvdec installed.</h4>
-<pre><code>$ gst-inspect-1.0 nvdec
-No such element or plugin 'nvdec'
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ gst-inspect-1.0 nvdec
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>No such element or plugin &#39;nvdec&#39;
+</span></code></pre></div>
 <p>If nvdec is installed, you will see this:</p>
-<pre><code>$ gst-inspect-1.0 | grep nvdec
-nvdec:  nvdec: NVDEC video decoder
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$ gst-inspect-1.0 | grep nvdec
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>nvdec:  nvdec: NVDEC video decoder
+</span></code></pre></div>
 <h4 id="download-the-gst-plugins-bad">Download the gst-plugins-bad</h4>
 <p>After you clone the repo, you need
 to checkout the branch that is the same
 as the version of gstreamer you have
 installed.</p>
 <p>Clone repo.</p>
-<pre><code>git clone git://anongit.freedesktop.org/gstreamer/gst-plugins-bad
-cd gst-plugins-bad/
-
-# verify gstreamer version
-$ gst-inspect-1.0 --version
-gst-inspect-1.0 version 1.16.2
-GStreamer 1.16.2
-
-$ git checkout 1.16.2
-HEAD is now at a6f26408f Release 1.16.2
-
-# verify that you're on the correct branch
-$ git branch
-* (HEAD detached at 1.16.2)
-  master
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git clone git://anongit.freedesktop.org/gstreamer/gst-plugins-bad
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>cd gst-plugins-bad/
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a># verify gstreamer version
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>$ gst-inspect-1.0 --version
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>gst-inspect-1.0 version 1.16.2
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>GStreamer 1.16.2
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>$ git checkout 1.16.2
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>HEAD is now at a6f26408f Release 1.16.2
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a># verify that you&#39;re on the correct branch
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>$ git branch
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>* (HEAD detached at 1.16.2)
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>  master
+</span></code></pre></div>
 <h4 id="install-nvidia-codec-sdk">Install NVIDIA CODEC SDK</h4>
 <ol>
 <li>Download <a href="https://developer.nvidia.com/nvidia-video-codec-sdk/download">NVIDIA CODEC SDK</a>.</li>
 <li>Unzip to <code>/path/to/video/codec/sdk</code></li>
 </ol>
-<pre><code>cd /path/to/video/codec/sdk
-cp /usr/local/cuda/include/cuda.h /path/to/gst-plugins-bad/sys/nvenc
-cp Interface/nvEncodeAPI.h /path/to/gst-plugins-bad/sys/nvenc
-cp Interface/cuviddec.h /path/to/gst-plugins-bad/sys/nvdec
-cp Interface/nvcuvid.h /path/to/gst-plugins-bad/sys/nvdec
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cd /path/to/video/codec/sdk
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>cp /usr/local/cuda/include/cuda.h /path/to/gst-plugins-bad/sys/nvenc
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>cp Interface/nvEncodeAPI.h /path/to/gst-plugins-bad/sys/nvenc
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>cp Interface/cuviddec.h /path/to/gst-plugins-bad/sys/nvdec
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>cp Interface/nvcuvid.h /path/to/gst-plugins-bad/sys/nvdec
+</span></code></pre></div>
 <h4 id="build-and-install-plug-in">Build and Install Plug-in</h4>
 <p>Configure and build.</p>
-<pre><code>$ NVENCODE_CFLAGS=&quot;-I/home/craig/Development/gstreamer/gst-plugins-bad/sys/nvenc&quot; ./autogen.sh --disable-gtk-doc --with-cuda-prefix=&quot;/usr/local/cuda&quot;
-
-cd sys/nvenc
-make
-sudo cp .libs/libgstnvenc.so /usr/lib/x86_64-linux-gnu/gstreamer-1.0/
-cd ../nvdec
-make
-sudo cp .libs/libgstnvdec.so /usr/lib/x86_64-linux-gnu/gstreamer-1.0/
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$ NVENCODE_CFLAGS=&quot;-I/home/craig/Development/gstreamer/gst-plugins-bad/sys/nvenc&quot; ./autogen.sh --disable-gtk-doc --with-cuda-prefix=&quot;/usr/local/cuda&quot;
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>cd sys/nvenc
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>make
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>sudo cp .libs/libgstnvenc.so /usr/lib/x86_64-linux-gnu/gstreamer-1.0/
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>cd ../nvdec
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>make
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>sudo cp .libs/libgstnvdec.so /usr/lib/x86_64-linux-gnu/gstreamer-1.0/
+</span></code></pre></div>
 <p>Confirm that autogen configured project to
 build nvdec.</p>
 <p><img alt="autogen confirm" src="../images/optimization/autogen_confirm.png" /></p>
@@ -984,12 +978,12 @@ build nvdec.</p>
 <h4 id="configure-gst_viewerc">Configure gst_viewer.c</h4>
 <p>Pipeline is roughly around line
 192.  GitHub permalink is <a href="https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L192">here</a>.</p>
-<pre><code>    else
-        // original pipeline
-        // pipe_proc = &quot; decodebin ! autovideosink sync=false&quot;;
-        // use gstreamer plug-in for hardware acceleration
-        pipe_proc = &quot;nvdec ! glimagesink qos=false sync=false&quot;;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>    else
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>        // original pipeline
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>        // pipe_proc = &quot; decodebin ! autovideosink sync=false&quot;;
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>        // use gstreamer plug-in for hardware acceleration
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>        pipe_proc = &quot;nvdec ! glimagesink qos=false sync=false&quot;;
+</span></code></pre></div>
 <h3 id="results">Results</h3>
 <h4 id="original-pipeline">Original Pipeline</h4>
 <p>The left video is a Logitech C920 USB webcam. The right video is the THETA. </p>
@@ -1002,17 +996,17 @@ build nvdec.</p>
 <p>To use nvdec with v4l2loopback, I needed to download the OpenGL textures from the GPU to video frames.  This introduced some latency.
 However, testing with vlc still showed 
 improvement over the standard pipeline.</p>
-<pre><code>    if (strcmp(cmd_name, &quot;gst_loopback&quot;) == 0)
-    // original pipeline
-        // pipe_proc = &quot;decodebin ! autovideoconvert ! &quot;
-        //  &quot;video/x-raw,format=I420 ! identity drop-allocation=true !&quot;
-        //  &quot;v4l2sink device=/dev/video2 qos=false sync=false&quot;;
-        //
-        //modified pipeline below
-        pipe_proc = &quot;nvdec ! gldownload ! videoconvert n-thread=0 ! &quot;
-            &quot;video/x-raw,format=I420 ! identity drop-allocation=true !&quot;
-            &quot;v4l2sink device=/dev/video2 qos=false sync=false&quot;;     
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>    if (strcmp(cmd_name, &quot;gst_loopback&quot;) == 0)
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    // original pipeline
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>        // pipe_proc = &quot;decodebin ! autovideoconvert ! &quot;
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>        //  &quot;video/x-raw,format=I420 ! identity drop-allocation=true !&quot;
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>        //  &quot;v4l2sink device=/dev/video2 qos=false sync=false&quot;;
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>        //
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>        //modified pipeline below
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>        pipe_proc = &quot;nvdec ! gldownload ! videoconvert n-thread=0 ! &quot;
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>            &quot;video/x-raw,format=I420 ! identity drop-allocation=true !&quot;
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>            &quot;v4l2sink device=/dev/video2 qos=false sync=false&quot;;     
+</span></code></pre></div>
 <p>More information on using gldownload is available <a href="https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-gl-plugins/html/gst-plugins-gl-plugins-gldownload.html">here</a>.</p>
 <h4 id="v4l2loopback-and-vlc-example">v4l2loopback and vlc example</h4>
 <p>vlc is accessing the camera on <code>/dev/video2</code>.  I'm doing the test at night in a darkened room.</p>
@@ -1043,25 +1037,16 @@ go to the Multimedia section.</p>
 <p>but use the ffmpeg git repo mentioned in the jetson-ffmpeg github as part of the ffmpeg compilation.</p>
 </blockquote>
 
-
-  
-
-
-
-
-                
-              </article>
-            </div>
-          
-          
+              
+            </article>
+          </div>
         </div>
         
       </main>
       
         <footer class="md-footer">
   
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
         <a href="../camera/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Camera" rel="prev">
@@ -1116,7 +1101,7 @@ go to the Multimedia section.</p>
       
     
     <a href="https://github.com/theta360developers" target="_blank" rel="noopener" title="github.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
     </a>
   
     
@@ -1125,7 +1110,7 @@ go to the Multimedia section.</p>
       
     
     <a href="https://twitter.com/theta360dev" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
     </a>
   
     
@@ -1134,7 +1119,7 @@ go to the Multimedia section.</p>
       
     
     <a href="https://www.facebook.com/theta360guide/" target="_blank" rel="noopener" title="www.facebook.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
     </a>
   
 </div>
@@ -1147,11 +1132,10 @@ go to the Multimedia section.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
-    
-      <script src="../assets/javascripts/bundle.48f2be22.min.js"></script>
+      <script src="../assets/javascripts/bundle.a6c66575.min.js"></script>
       
     
   </body>

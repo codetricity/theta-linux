@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="../images/logo-white.png">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.0">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.15">
     
     
       
@@ -21,18 +21,16 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.2e8b5541.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.c382b1dc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cc9b2e1e.min.css">
         
           
           
           <meta name="theme-color" content="#8bc34b">
         
       
-      
-
     
     
     
@@ -45,7 +43,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -55,13 +53,10 @@
   
 
 
-  <script id="__analytics">function __md_analytics(){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-73311422-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");ga("send","event","feedback","click",t,e),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){ga("send","pageview",e.pathname)})});var e=document.createElement("script");e.async=!0,e.src="https://www.google-analytics.com/analytics.js",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-GKVKMSBLHK"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-GKVKMSBLHK",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GKVKMSBLHK"></script>
 
-  
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-  
 
-    
     
     
   </head>
@@ -137,7 +132,7 @@
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
@@ -580,11 +575,10 @@
               </div>
             
           
-          
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
                 
-                  
 
 
   <h1>Demos</h1>
@@ -618,19 +612,19 @@ side of the shutter button, the program did detect me.</p>
 <p>To proceed, you will likely need a database of fisheye or 
 equirectangular images to build your own model. </p>
 <h4 id="sample-code">Sample Code</h4>
-<pre><code class="language-python">import jetson.inference
-import jetson.utils
-
-net = jetson.inference.detectNet(&quot;ssd-mobilenet-v2&quot;, threshold=0.5)
-camera = jetson.utils.gstCamera(1280, 720, &quot;/dev/video0&quot;)
-display = jetson.utils.glDisplay()
-
-while display.IsOpen():
-    img, width, height = camera.CaptureRGBA()
-    detections = net.Detect(img, width, height)
-    display.RenderOnce(img, width, height)
-    display.SetTitle(&quot;RICOH THETA Detection | Network {:.0f} FPS&quot;.format(net.GetNetworkFPS()))
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">jetson.inference</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span> <span class="nn">jetson.utils</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">net</span> <span class="o">=</span> <span class="n">jetson</span><span class="o">.</span><span class="n">inference</span><span class="o">.</span><span class="n">detectNet</span><span class="p">(</span><span class="s2">&quot;ssd-mobilenet-v2&quot;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">camera</span> <span class="o">=</span> <span class="n">jetson</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">gstCamera</span><span class="p">(</span><span class="mi">1280</span><span class="p">,</span> <span class="mi">720</span><span class="p">,</span> <span class="s2">&quot;/dev/video0&quot;</span><span class="p">)</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">display</span> <span class="o">=</span> <span class="n">jetson</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">glDisplay</span><span class="p">()</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">while</span> <span class="n">display</span><span class="o">.</span><span class="n">IsOpen</span><span class="p">():</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">img</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">CaptureRGBA</span><span class="p">()</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">detections</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">Detect</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">display</span><span class="o">.</span><span class="n">RenderOnce</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">display</span><span class="o">.</span><span class="n">SetTitle</span><span class="p">(</span><span class="s2">&quot;RICOH THETA Detection | Network </span><span class="si">{:.0f}</span><span class="s2"> FPS&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">GetNetworkFPS</span><span class="p">()))</span>
+</span></code></pre></div>
 <h3 id="opencv-python">OpenCV Python</h3>
 <p><img alt="canny demo" src="../images/demos/canny_only.png" /></p>
 <p>Works on live stream.  </p>
@@ -647,26 +641,26 @@ while display.IsOpen():
 May take 2.5 hours if you compile on the Nano.</p>
 <h4 id="simple-python-cv2-test">Simple Python cv2 Test</h4>
 <p>Frame resize test.</p>
-<pre><code class="language-python">import cv2
-
-cap = cv2.VideoCapture(0)
-
-# Check if the webcam is opened correctly
-if not cap.isOpened():
-    raise IOError(&quot;Cannot open webcam&quot;)
-
-while True:
-    ret, frame = cap.read()
-    frame = cv2.resize(frame, None, fx=0.25, fy=0.25, interpolation=cv2.INTER_AREA)
-    cv2.imshow('Input', frame)
-
-    c = cv2.waitKey(1)
-    if c == 27:
-        break
-
-cap.release()
-cv2.destroyAllWindows()
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">cv2</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># Check if the webcam is opened correctly</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">cap</span><span class="o">.</span><span class="n">isOpened</span><span class="p">():</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;Cannot open webcam&quot;</span><span class="p">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">fx</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">fy</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">INTER_AREA</span><span class="p">)</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Input&#39;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="n">c</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="k">break</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">cap</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</span></code></pre></div>
 <h4 id="build-opencv">Build OpenCV</h4>
 <p>One script to install OpenCV 4.3 is from AastaNV <a href="https://github.com/AastaNV/JEP/blob/master/script/install_opencv4.3.0_Jetson.sh">here</a>.</p>
 <p>The script I used is from mdegans <a href="https://github.com/AastaNV/JEP/blob/master/script/install_opencv4.3.0_Jetson.sh">here</a></p>
@@ -676,147 +670,136 @@ cv2.destroyAllWindows()
 lines on black background. </li>
 <li><a href="https://youtu.be/_p1cJZTqotg">video demo</a></li>
 </ul>
-<pre><code class="language-python">
-import sys
-import argparse
-import cv2
-import numpy as np
-
-def parse_cli_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument(&quot;--video_device&quot;, dest=&quot;video_device&quot;,
-                        help=&quot;Video device # of USB webcam (/dev/video?) [0]&quot;,
-                        default=0, type=int)
-    arguments = parser.parse_args()
-    return arguments
-
-# On versions of L4T previous to L4T 28.1, flip-method=2
-# Use the Jetson onboard camera
-def open_onboard_camera():
-    return cv2.VideoCapture(0)
-
-# Open an external usb camera /dev/videoX
-def open_camera_device(device_number):
-    return cv2.VideoCapture(device_number)
-
-
-def read_cam(video_capture):
-    if video_capture.isOpened():
-        windowName = &quot;main_canny&quot;
-        cv2.namedWindow(windowName, cv2.WINDOW_NORMAL)
-        cv2.resizeWindow(windowName,1280,720)
-        cv2.moveWindow(windowName,0,0)
-        cv2.setWindowTitle(windowName,&quot;RICOH THETA OpenCV Python Demo&quot;)
-        showWindow=3  # Show all stages
-        showHelp = True
-        font = cv2.FONT_HERSHEY_PLAIN
-        helpText=&quot;'Esc' to Quit, '1' for Camera Feed, '2' for Canny Detection, '3' for All Stages. '4' to hide help&quot;
-        edgeThreshold=40
-        showFullScreen = False
-        while True:
-            if cv2.getWindowProperty(windowName, 0) &lt; 0: # Check to see if the user closed the window
-                # This will fail if the user closed the window; Nasties get printed to the console
-                break;
-            ret_val, frame = video_capture.read();
-            hsv=cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            blur=cv2.GaussianBlur(hsv,(7,7),1.5)
-            edges=cv2.Canny(blur,0,edgeThreshold)
-            if showWindow == 3:  # Need to show the 4 stages
-                # Composite the 2x2 window
-                # Feed from the camera is RGB, the others gray
-                # To composite, convert gray images to color. 
-                # All images must be of the same type to display in a window
-                frameRs=cv2.resize(frame, (640,360))
-                hsvRs=cv2.resize(hsv,(640,360))
-                vidBuf = np.concatenate((frameRs, cv2.cvtColor(hsvRs,cv2.COLOR_GRAY2BGR)), axis=1)
-                blurRs=cv2.resize(blur,(640,360))
-                edgesRs=cv2.resize(edges,(640,360))
-                vidBuf1 = np.concatenate( (cv2.cvtColor(blurRs,cv2.COLOR_GRAY2BGR),cv2.cvtColor(edgesRs,cv2.COLOR_GRAY2BGR)), axis=1)
-                vidBuf = np.concatenate( (vidBuf, vidBuf1), axis=0)
-
-            if showWindow==1: # Show Camera Frame
-                displayBuf = frame 
-            elif showWindow == 2: # Show Canny Edge Detection
-                displayBuf = edges
-            elif showWindow == 3: # Show All Stages
-                displayBuf = vidBuf
-
-            if showHelp == True:
-                cv2.putText(displayBuf, helpText, (11,20), font, 1.0, (32,32,32), 4, cv2.LINE_AA)
-                cv2.putText(displayBuf, helpText, (10,20), font, 1.0, (240,240,240), 1, cv2.LINE_AA)
-            cv2.imshow(windowName,displayBuf)
-            key=cv2.waitKey(10)
-            if key == 27: # Check for ESC key
-                cv2.destroyAllWindows()
-                break ;
-            elif key==49: # 1 key, show frame
-                cv2.setWindowTitle(windowName,&quot;Camera Feed&quot;)
-                showWindow=1
-            elif key==50: # 2 key, show Canny
-                cv2.setWindowTitle(windowName,&quot;Canny Edge Detection&quot;)
-                showWindow=2
-            elif key==51: # 3 key, show Stages
-                cv2.setWindowTitle(windowName,&quot;Camera, Gray scale, Gaussian Blur, Canny Edge Detection&quot;)
-                showWindow=3
-            elif key==52: # 4 key, toggle help
-                showHelp = not showHelp
-            elif key==44: # , lower canny edge threshold
-                edgeThreshold=max(0,edgeThreshold-1)
-                print ('Canny Edge Threshold Maximum: ',edgeThreshold)
-            elif key==46: # , raise canny edge threshold
-                edgeThreshold=edgeThreshold+1
-                print ('Canny Edge Threshold Maximum: ', edgeThreshold)
-            elif key==74: # Toggle fullscreen; This is the F3 key on this particular keyboard
-                # Toggle full screen mode
-                if showFullScreen == False : 
-                    cv2.setWindowProperty(windowName, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
-                else:
-                    cv2.setWindowProperty(windowName, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_NORMAL) 
-                showFullScreen = not showFullScreen
-
-    else:
-     print (&quot;camera open failed&quot;)
-
-
-
-if __name__ == '__main__':
-    arguments = parse_cli_args()
-    print(&quot;Called with args:&quot;)
-    print(arguments)
-    print(&quot;OpenCV version: {}&quot;.format(cv2.__version__))
-    print(&quot;Device Number:&quot;,arguments.video_device)
-    if arguments.video_device==0:
-      video_capture=open_onboard_camera()
-    else:
-      video_capture=open_camera_device(arguments.video_device)
-    read_cam(video_capture)
-    video_capture.release()
-    cv2.destroyAllWindows()
-
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">sys</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span> <span class="nn">argparse</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">import</span> <span class="nn">cv2</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">def</span> <span class="nf">parse_cli_args</span><span class="p">():</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--video_device&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;video_device&quot;</span><span class="p">,</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Video device # of USB webcam (/dev/video?) [0]&quot;</span><span class="p">,</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>                        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">arguments</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="k">return</span> <span class="n">arguments</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="c1"># On versions of L4T previous to L4T 28.1, flip-method=2</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="c1"># Use the Jetson onboard camera</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="k">def</span> <span class="nf">open_onboard_camera</span><span class="p">():</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="c1"># Open an external usb camera /dev/videoX</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="k">def</span> <span class="nf">open_camera_device</span><span class="p">(</span><span class="n">device_number</span><span class="p">):</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="n">device_number</span><span class="p">)</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="k">def</span> <span class="nf">read_cam</span><span class="p">(</span><span class="n">video_capture</span><span class="p">):</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>    <span class="k">if</span> <span class="n">video_capture</span><span class="o">.</span><span class="n">isOpened</span><span class="p">():</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>        <span class="n">windowName</span> <span class="o">=</span> <span class="s2">&quot;main_canny&quot;</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="n">windowName</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_NORMAL</span><span class="p">)</span>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">resizeWindow</span><span class="p">(</span><span class="n">windowName</span><span class="p">,</span><span class="mi">1280</span><span class="p">,</span><span class="mi">720</span><span class="p">)</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">moveWindow</span><span class="p">(</span><span class="n">windowName</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="n">windowName</span><span class="p">,</span><span class="s2">&quot;RICOH THETA OpenCV Python Demo&quot;</span><span class="p">)</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>        <span class="n">showWindow</span><span class="o">=</span><span class="mi">3</span>  <span class="c1"># Show all stages</span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>        <span class="n">showHelp</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>        <span class="n">font</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_PLAIN</span>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>        <span class="n">helpText</span><span class="o">=</span><span class="s2">&quot;&#39;Esc&#39; to Quit, &#39;1&#39; for Camera Feed, &#39;2&#39; for Canny Detection, &#39;3&#39; for All Stages. &#39;4&#39; to hide help&quot;</span>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>        <span class="n">edgeThreshold</span><span class="o">=</span><span class="mi">40</span>
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>        <span class="n">showFullScreen</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>            <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getWindowProperty</span><span class="p">(</span><span class="n">windowName</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># Check to see if the user closed the window</span>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>                <span class="c1"># This will fail if the user closed the window; Nasties get printed to the console</span>
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>                <span class="k">break</span><span class="p">;</span>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>            <span class="n">ret_val</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">video_capture</span><span class="o">.</span><span class="n">read</span><span class="p">();</span>
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>            <span class="n">hsv</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>            <span class="n">blur</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">hsv</span><span class="p">,(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span><span class="mf">1.5</span><span class="p">)</span>
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>            <span class="n">edges</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">Canny</span><span class="p">(</span><span class="n">blur</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">edgeThreshold</span><span class="p">)</span>
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>            <span class="k">if</span> <span class="n">showWindow</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># Need to show the 4 stages</span>
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>                <span class="c1"># Composite the 2x2 window</span>
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>                <span class="c1"># Feed from the camera is RGB, the others gray</span>
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>                <span class="c1"># To composite, convert gray images to color. </span>
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>                <span class="c1"># All images must be of the same type to display in a window</span>
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>                <span class="n">frameRs</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="p">(</span><span class="mi">640</span><span class="p">,</span><span class="mi">360</span><span class="p">))</span>
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>                <span class="n">hsvRs</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">hsv</span><span class="p">,(</span><span class="mi">640</span><span class="p">,</span><span class="mi">360</span><span class="p">))</span>
+</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>                <span class="n">vidBuf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">frameRs</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">hsvRs</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_GRAY2BGR</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a>                <span class="n">blurRs</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">blur</span><span class="p">,(</span><span class="mi">640</span><span class="p">,</span><span class="mi">360</span><span class="p">))</span>
+</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>                <span class="n">edgesRs</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">edges</span><span class="p">,(</span><span class="mi">640</span><span class="p">,</span><span class="mi">360</span><span class="p">))</span>
+</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a>                <span class="n">vidBuf1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span> <span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">blurRs</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_GRAY2BGR</span><span class="p">),</span><span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">edgesRs</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_GRAY2BGR</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a>                <span class="n">vidBuf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span> <span class="p">(</span><span class="n">vidBuf</span><span class="p">,</span> <span class="n">vidBuf1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a>
+</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>            <span class="k">if</span> <span class="n">showWindow</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="c1"># Show Camera Frame</span>
+</span><span id="__span-2-59"><a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a>                <span class="n">displayBuf</span> <span class="o">=</span> <span class="n">frame</span> 
+</span><span id="__span-2-60"><a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a>            <span class="k">elif</span> <span class="n">showWindow</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> <span class="c1"># Show Canny Edge Detection</span>
+</span><span id="__span-2-61"><a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a>                <span class="n">displayBuf</span> <span class="o">=</span> <span class="n">edges</span>
+</span><span id="__span-2-62"><a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a>            <span class="k">elif</span> <span class="n">showWindow</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span> <span class="c1"># Show All Stages</span>
+</span><span id="__span-2-63"><a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a>                <span class="n">displayBuf</span> <span class="o">=</span> <span class="n">vidBuf</span>
+</span><span id="__span-2-64"><a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a>
+</span><span id="__span-2-65"><a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a>            <span class="k">if</span> <span class="n">showHelp</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="__span-2-66"><a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a>                <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">displayBuf</span><span class="p">,</span> <span class="n">helpText</span><span class="p">,</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">font</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="p">(</span><span class="mi">32</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">32</span><span class="p">),</span> <span class="mi">4</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">LINE_AA</span><span class="p">)</span>
+</span><span id="__span-2-67"><a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a>                <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">displayBuf</span><span class="p">,</span> <span class="n">helpText</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">font</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="p">(</span><span class="mi">240</span><span class="p">,</span><span class="mi">240</span><span class="p">,</span><span class="mi">240</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">LINE_AA</span><span class="p">)</span>
+</span><span id="__span-2-68"><a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a>            <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">windowName</span><span class="p">,</span><span class="n">displayBuf</span><span class="p">)</span>
+</span><span id="__span-2-69"><a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a>            <span class="n">key</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span><span id="__span-2-70"><a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a>            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span> <span class="c1"># Check for ESC key</span>
+</span><span id="__span-2-71"><a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a>                <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</span><span id="__span-2-72"><a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a>                <span class="k">break</span> <span class="p">;</span>
+</span><span id="__span-2-73"><a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a>            <span class="k">elif</span> <span class="n">key</span><span class="o">==</span><span class="mi">49</span><span class="p">:</span> <span class="c1"># 1 key, show frame</span>
+</span><span id="__span-2-74"><a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a>                <span class="n">cv2</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="n">windowName</span><span class="p">,</span><span class="s2">&quot;Camera Feed&quot;</span><span class="p">)</span>
+</span><span id="__span-2-75"><a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a>                <span class="n">showWindow</span><span class="o">=</span><span class="mi">1</span>
+</span><span id="__span-2-76"><a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a>            <span class="k">elif</span> <span class="n">key</span><span class="o">==</span><span class="mi">50</span><span class="p">:</span> <span class="c1"># 2 key, show Canny</span>
+</span><span id="__span-2-77"><a id="__codelineno-2-77" name="__codelineno-2-77" href="#__codelineno-2-77"></a>                <span class="n">cv2</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="n">windowName</span><span class="p">,</span><span class="s2">&quot;Canny Edge Detection&quot;</span><span class="p">)</span>
+</span><span id="__span-2-78"><a id="__codelineno-2-78" name="__codelineno-2-78" href="#__codelineno-2-78"></a>                <span class="n">showWindow</span><span class="o">=</span><span class="mi">2</span>
+</span><span id="__span-2-79"><a id="__codelineno-2-79" name="__codelineno-2-79" href="#__codelineno-2-79"></a>            <span class="k">elif</span> <span class="n">key</span><span class="o">==</span><span class="mi">51</span><span class="p">:</span> <span class="c1"># 3 key, show Stages</span>
+</span><span id="__span-2-80"><a id="__codelineno-2-80" name="__codelineno-2-80" href="#__codelineno-2-80"></a>                <span class="n">cv2</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="n">windowName</span><span class="p">,</span><span class="s2">&quot;Camera, Gray scale, Gaussian Blur, Canny Edge Detection&quot;</span><span class="p">)</span>
+</span><span id="__span-2-81"><a id="__codelineno-2-81" name="__codelineno-2-81" href="#__codelineno-2-81"></a>                <span class="n">showWindow</span><span class="o">=</span><span class="mi">3</span>
+</span><span id="__span-2-82"><a id="__codelineno-2-82" name="__codelineno-2-82" href="#__codelineno-2-82"></a>            <span class="k">elif</span> <span class="n">key</span><span class="o">==</span><span class="mi">52</span><span class="p">:</span> <span class="c1"># 4 key, toggle help</span>
+</span><span id="__span-2-83"><a id="__codelineno-2-83" name="__codelineno-2-83" href="#__codelineno-2-83"></a>                <span class="n">showHelp</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">showHelp</span>
+</span><span id="__span-2-84"><a id="__codelineno-2-84" name="__codelineno-2-84" href="#__codelineno-2-84"></a>            <span class="k">elif</span> <span class="n">key</span><span class="o">==</span><span class="mi">44</span><span class="p">:</span> <span class="c1"># , lower canny edge threshold</span>
+</span><span id="__span-2-85"><a id="__codelineno-2-85" name="__codelineno-2-85" href="#__codelineno-2-85"></a>                <span class="n">edgeThreshold</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">edgeThreshold</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-2-86"><a id="__codelineno-2-86" name="__codelineno-2-86" href="#__codelineno-2-86"></a>                <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Canny Edge Threshold Maximum: &#39;</span><span class="p">,</span><span class="n">edgeThreshold</span><span class="p">)</span>
+</span><span id="__span-2-87"><a id="__codelineno-2-87" name="__codelineno-2-87" href="#__codelineno-2-87"></a>            <span class="k">elif</span> <span class="n">key</span><span class="o">==</span><span class="mi">46</span><span class="p">:</span> <span class="c1"># , raise canny edge threshold</span>
+</span><span id="__span-2-88"><a id="__codelineno-2-88" name="__codelineno-2-88" href="#__codelineno-2-88"></a>                <span class="n">edgeThreshold</span><span class="o">=</span><span class="n">edgeThreshold</span><span class="o">+</span><span class="mi">1</span>
+</span><span id="__span-2-89"><a id="__codelineno-2-89" name="__codelineno-2-89" href="#__codelineno-2-89"></a>                <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Canny Edge Threshold Maximum: &#39;</span><span class="p">,</span> <span class="n">edgeThreshold</span><span class="p">)</span>
+</span><span id="__span-2-90"><a id="__codelineno-2-90" name="__codelineno-2-90" href="#__codelineno-2-90"></a>            <span class="k">elif</span> <span class="n">key</span><span class="o">==</span><span class="mi">74</span><span class="p">:</span> <span class="c1"># Toggle fullscreen; This is the F3 key on this particular keyboard</span>
+</span><span id="__span-2-91"><a id="__codelineno-2-91" name="__codelineno-2-91" href="#__codelineno-2-91"></a>                <span class="c1"># Toggle full screen mode</span>
+</span><span id="__span-2-92"><a id="__codelineno-2-92" name="__codelineno-2-92" href="#__codelineno-2-92"></a>                <span class="k">if</span> <span class="n">showFullScreen</span> <span class="o">==</span> <span class="kc">False</span> <span class="p">:</span> 
+</span><span id="__span-2-93"><a id="__codelineno-2-93" name="__codelineno-2-93" href="#__codelineno-2-93"></a>                    <span class="n">cv2</span><span class="o">.</span><span class="n">setWindowProperty</span><span class="p">(</span><span class="n">windowName</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WND_PROP_FULLSCREEN</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_FULLSCREEN</span><span class="p">)</span>
+</span><span id="__span-2-94"><a id="__codelineno-2-94" name="__codelineno-2-94" href="#__codelineno-2-94"></a>                <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-2-95"><a id="__codelineno-2-95" name="__codelineno-2-95" href="#__codelineno-2-95"></a>                    <span class="n">cv2</span><span class="o">.</span><span class="n">setWindowProperty</span><span class="p">(</span><span class="n">windowName</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WND_PROP_FULLSCREEN</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_NORMAL</span><span class="p">)</span> 
+</span><span id="__span-2-96"><a id="__codelineno-2-96" name="__codelineno-2-96" href="#__codelineno-2-96"></a>                <span class="n">showFullScreen</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">showFullScreen</span>
+</span><span id="__span-2-97"><a id="__codelineno-2-97" name="__codelineno-2-97" href="#__codelineno-2-97"></a>
+</span><span id="__span-2-98"><a id="__codelineno-2-98" name="__codelineno-2-98" href="#__codelineno-2-98"></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-2-99"><a id="__codelineno-2-99" name="__codelineno-2-99" href="#__codelineno-2-99"></a>     <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;camera open failed&quot;</span><span class="p">)</span>
+</span><span id="__span-2-100"><a id="__codelineno-2-100" name="__codelineno-2-100" href="#__codelineno-2-100"></a>
+</span><span id="__span-2-101"><a id="__codelineno-2-101" name="__codelineno-2-101" href="#__codelineno-2-101"></a>
+</span><span id="__span-2-102"><a id="__codelineno-2-102" name="__codelineno-2-102" href="#__codelineno-2-102"></a>
+</span><span id="__span-2-103"><a id="__codelineno-2-103" name="__codelineno-2-103" href="#__codelineno-2-103"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span id="__span-2-104"><a id="__codelineno-2-104" name="__codelineno-2-104" href="#__codelineno-2-104"></a>    <span class="n">arguments</span> <span class="o">=</span> <span class="n">parse_cli_args</span><span class="p">()</span>
+</span><span id="__span-2-105"><a id="__codelineno-2-105" name="__codelineno-2-105" href="#__codelineno-2-105"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Called with args:&quot;</span><span class="p">)</span>
+</span><span id="__span-2-106"><a id="__codelineno-2-106" name="__codelineno-2-106" href="#__codelineno-2-106"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span>
+</span><span id="__span-2-107"><a id="__codelineno-2-107" name="__codelineno-2-107" href="#__codelineno-2-107"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;OpenCV version: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">__version__</span><span class="p">))</span>
+</span><span id="__span-2-108"><a id="__codelineno-2-108" name="__codelineno-2-108" href="#__codelineno-2-108"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Device Number:&quot;</span><span class="p">,</span><span class="n">arguments</span><span class="o">.</span><span class="n">video_device</span><span class="p">)</span>
+</span><span id="__span-2-109"><a id="__codelineno-2-109" name="__codelineno-2-109" href="#__codelineno-2-109"></a>    <span class="k">if</span> <span class="n">arguments</span><span class="o">.</span><span class="n">video_device</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-2-110"><a id="__codelineno-2-110" name="__codelineno-2-110" href="#__codelineno-2-110"></a>      <span class="n">video_capture</span><span class="o">=</span><span class="n">open_onboard_camera</span><span class="p">()</span>
+</span><span id="__span-2-111"><a id="__codelineno-2-111" name="__codelineno-2-111" href="#__codelineno-2-111"></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-2-112"><a id="__codelineno-2-112" name="__codelineno-2-112" href="#__codelineno-2-112"></a>      <span class="n">video_capture</span><span class="o">=</span><span class="n">open_camera_device</span><span class="p">(</span><span class="n">arguments</span><span class="o">.</span><span class="n">video_device</span><span class="p">)</span>
+</span><span id="__span-2-113"><a id="__codelineno-2-113" name="__codelineno-2-113" href="#__codelineno-2-113"></a>    <span class="n">read_cam</span><span class="p">(</span><span class="n">video_capture</span><span class="p">)</span>
+</span><span id="__span-2-114"><a id="__codelineno-2-114" name="__codelineno-2-114" href="#__codelineno-2-114"></a>    <span class="n">video_capture</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+</span><span id="__span-2-115"><a id="__codelineno-2-115" name="__codelineno-2-115" href="#__codelineno-2-115"></a>    <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</span></code></pre></div>
 <h3 id="openpose">OpenPose</h3>
 <p>Works on live stream with Jetpack 4.3, not 4.4.</p>
 <p><img alt="open pose" src="../images/demos/stickman.jpg" /></p>
 
-
-  
-
-
-
-
-                
-              </article>
-            </div>
-          
-          
+              
+            </article>
+          </div>
         </div>
         
       </main>
       
         <footer class="md-footer">
   
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
         <a href="../software/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Software" rel="prev">
@@ -871,7 +854,7 @@ if __name__ == '__main__':
       
     
     <a href="https://github.com/theta360developers" target="_blank" rel="noopener" title="github.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
     </a>
   
     
@@ -880,7 +863,7 @@ if __name__ == '__main__':
       
     
     <a href="https://twitter.com/theta360dev" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
     </a>
   
     
@@ -889,7 +872,7 @@ if __name__ == '__main__':
       
     
     <a href="https://www.facebook.com/theta360guide/" target="_blank" rel="noopener" title="www.facebook.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
     </a>
   
 </div>
@@ -902,11 +885,10 @@ if __name__ == '__main__':
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
-    
-      <script src="../assets/javascripts/bundle.48f2be22.min.js"></script>
+      <script src="../assets/javascripts/bundle.a6c66575.min.js"></script>
       
     
   </body>
