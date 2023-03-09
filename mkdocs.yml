@@ -4,7 +4,6 @@ site_description: Configure Linux computers like the Jetson Nano to stream and u
 repo_url: 
 repo_name: 
 site_author: Oppkey
-google_analytics: ['UA-73311422-1', 'auto']
 
 theme:
   name: material
@@ -14,7 +13,9 @@ theme:
     accent: 'lime'
   logo: images/logo-white.png
   favicon: images/logo-white.png
-
+  features:
+    - content.code.copy
+    
 extra:
   social:
     - icon: fontawesome/brands/github-alt
@@ -25,7 +26,7 @@ extra:
       link: 'https://www.facebook.com/theta360guide/'
   analytics:
     provider: google
-    property: UA-73311422-1        
+    property: G-GKVKMSBLHK    
 
 nav:
   - Home: index.md
@@ -40,7 +41,16 @@ nav:
   - Help: help.md
   - Meetup Archive: meetup.md
 
-
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
 # plugins:
 #   - search
   # - pdf-export:
