@@ -2,7 +2,7 @@
 
 RICOH THETA cameras can be controlled and powered
 indefinitely over a USB cable using the
-[THETA USB API](https://api.ricoh/docs/theta-usb-api/).
+[THETA USB API](https://github.com/ricohapi/theta-api-specs/tree/main/theta-usb-api).
 This is an extension of Media Transfer Protocol (MTP).
 Any library or application that uses MTP can access
 the camera.
@@ -290,7 +290,7 @@ $ ptpcam --set-property=0x5013 --val=0x8005
 ![set to live streaming mode](images/usb_api/11_change_to_live_stream.png)
 
 Using the official 
-[RICOH USB API documentation](https://api.ricoh/docs/theta-usb-api/property/still_capture_mode/), you can verify that
+[RICOH USB API documentation](https://github.com/ricohapi/theta-api-specs/blob/main/theta-usb-api/property/still_capture_mode.md), you can verify that
 `0x8005` is live streaming mode.  The camera LED should show that
 the THETA is in LIVE mode.
 
@@ -371,7 +371,7 @@ ERROR: Could not open session!
 ```
 
 In the future, I'll run more tests using the
-camera [FunctionalMode](https://api.ricoh/docs/theta-usb-api/property/functional_mode/)
+camera [FunctionalMode](https://github.com/ricohapi/theta-api-specs/blob/main/theta-usb-api/property/functional_mode.md)
 to check status.
 
 This is another example with x86.  Initially, the camera is asleep.
@@ -518,7 +518,7 @@ ptpcam -R 0x101c,0,0,1
 
 ### Using Raw PTP Commands
 
-Get camera [info](https://api.ricoh/docs/theta-usb-api/operation/get_device_info/). 
+Get camera [info](https://github.com/ricohapi/theta-api-specs/blob/main/theta-usb-api/operation/get_device_info.md). 
 
 ```
 $ ptpcam -R 0x1001
@@ -720,7 +720,7 @@ It works!
 
 #### Check Camera Mode (still image, video, streaming)
 
-[StillCaptureMode API reference](https://api.ricoh/docs/theta-usb-api/property/still_capture_mode/)
+[StillCaptureMode API reference](https://github.com/ricohapi/theta-api-specs/blob/main/theta-usb-api/property/still_capture_mode.md)
 
 ```
 $ gphoto2 --get-config=5013
@@ -748,7 +748,7 @@ If the camera is mounted, the commands may not work.
 
 #### set to video mode
 
-Using the [API reference](https://api.ricoh/docs/theta-usb-api/property/still_capture_mode/), we can see that video mode is hex `0x8002` or 32770 in base 10.
+Using the [API reference](https://github.com/ricohapi/theta-api-specs/blob/main/theta-usb-api/property/still_capture_mode.md), we can see that video mode is hex `0x8002` or 32770 in base 10.
 
 ```
 $ gphoto2 --set-config=5013=32770
