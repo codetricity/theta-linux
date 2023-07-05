@@ -34,7 +34,7 @@ explained in the [camera section](camera.md).
 
 We tested the USB API on the following platforms:
 
-* x86 on Ubuntu 20.04.  In the past, we used 18.04, 16.04, and 14.04.
+* x86 on Ubuntu 22.04.  In the past, we used 22.04, 18.04, 16.04, and 14.04.
 * NVIDIA Jetson Nano with JetPack 4.4 (Ubuntu 18.04).  Othere versions of hardware and software should work.
 * Raspberry Pi 3 with Raspian 10, buster.  Any version and any model should work.
 Note that the Rasbperry Pi 3 and earlier models cannot stream the THETA over
