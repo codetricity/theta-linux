@@ -34,27 +34,47 @@ explained in the [camera section](camera.md).
 
 We tested the USB API on the following platforms:
 
-* x86 on Ubuntu 22.04.  In the past, we used 22.04, 18.04, 16.04, and 14.04.
-* NVIDIA Jetson Nano with JetPack 4.4 (Ubuntu 18.04).  Othere versions of hardware and software should work.
+* x86 on Ubuntu 22.04.  In the past, we used 20.04, 18.04, 16.04, and 14.04.
+* NVIDIA Jetson Nano with JetPack 4.6.1 R32 revision 7.1 (Ubuntu 18.04).  Other versions of hardware and software should work.
 * Raspberry Pi 3 with Raspian 10, buster.  Any version and any model should work.
 Note that the Rasbperry Pi 3 and earlier models cannot stream the THETA over
 a USB cable.
 
+### Seeing Version of Ubuntu
+
+```text
+lsb_release -a
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 20.04.6 LTS
+Release:	20.04
+Codename:	focal
+```
+
+### Getting Vesion of Linux Tegra
+
+```text
+cat /etc/nv_tegra_release 
+# R32 (release), REVISION: 7.1
+```
 
 ### MTP software
 
 This document covers two different strategies:
 
-1. libptp - either as library or with command line ptpcam
-2. gphoto2 - command line and Python bindings to library
+1. gphoto2 - command line and Python bindings to library
+2. libptp2 - either as library or with command line ptpcam
 
-The most common technique is to use the command line program
-of libptp called ptpcam.  You can put ptpcam in a bash
+As of July 2023, the most common approach is to use libgphoto2 with gphoto.
+Up until 2021, we were primarily using ptpcam, the command line interface to
+libptp2.
+
+You can put ptpcam and gphoto2 in a bash
 shell script or run a system process from the language
 you are using. For example, in Python, you can use the 
 [subprocess](https://docs.python.org/3/library/subprocess.html) module.
 
-In Dart, you can use the [Process class](https://api.dart.dev/stable/2.9.3/dart-io/Process-class.html). I am using the [process_run](https://pub.dev/packages/process_run) package.
+In Dart, you can use the [Process class](https://api.dart.dev/stable/3.0.5/dart-io/Process-class.html). I am using the [process_run](https://pub.dev/packages/process_run) package.
 
 As a demonstration of the USB API, I put a GUI wrapper around ptpcam
 using Flutter and Dart.
@@ -69,6 +89,11 @@ and waking it up.
 There are several workarounds and fixes that we're using.
 Feel free to ask questions.
 
+### MTP bindings
+
+You can also use [python-gphoto2](https://github.com/jim-easterbrook/python-gphoto2/tree/main)
+or other projects to access MTP libraries from inside of
+the language you are using.  Python is the most common language.  People also use bash.
 
 ## libptp and ptpcam
 
