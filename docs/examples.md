@@ -73,7 +73,7 @@ the command line.
 
 Example:
 
-```
+```text
 sudo arp-scan --interface=eth0 --localnet
 ```
 
@@ -177,4 +177,17 @@ src.pipeline = gst_parse_launch(
         " appsrc name=ap ! queue ! h264parse ! queue"
         " ! rtph264pay ! udpsink host=192.168.0.15 port=9000",
         NULL);
+```
+
+## RViz in ROS2 Dual-Camera Setup with OpenCV
+
+Robot displays live images from two THETA V cameras on [RViz](https://wiki.ros.org/rviz) in ROS2 using the following pipeline and OpenCV.
+
+credit: [H. Usuba](https://community.theta360.guide/u/h.usuba/summary)
+from [Kufusha](https://www.kufusha.com/) - Robotics development
+
+[original discussion](https://community.theta360.guide/t/connecting-jetson-orin-and-theta-v-to-use-live-images/9840?u=craig)
+
+```text
+thetauvcsrc mode=2K ! queue ! h264parse ! nvv4l2decoder ! queue ! nvvidconv ! video/x-raw, format=BGRx ! videoconvert ! video/x-raw, format=BGR ! queue ! appsink
 ```
