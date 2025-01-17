@@ -3,9 +3,11 @@ You need a THETA V, Z1, or X.  These cameras live stream
 with UVC 1.5 in equirectangular.
 You can also use a THETA S to stream motionJPEG in dual-fisheye.
 The SC2 cannot stream over a USB cable.  However, all models, including the SC2,
-can show a live preview in motionJPEG over WiFi or Ethernet. Refer
+can show a live preview in motionJPEG over WiFi. Refer
 to [ricoh_theta_mjpeg_opencv](https://github.com/codetricity/ricoh_theta_mjpeg_opencv)
-for a mjpeg example with OpenCV.
+for a mjpeg example with OpenCV. The THETA X can also display live preview motionJPEG over
+Ethernet.  I recommend you use the USB cable with the X. The live preview is of
+lower resolution and framerate.
 
 As of January 2024, most people are using the Z1 or the X for streaming over a
 USB cable
