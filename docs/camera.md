@@ -1,7 +1,14 @@
 
-You need a THETA V or Z1.  These cameras live stream
+You need a THETA V, Z1, or X.  These cameras live stream
 with UVC 1.5 in equirectangular.
 You can also use a THETA S to stream motionJPEG in dual-fisheye.
+The SC2 cannot stream over a USB cable.  However, all models, including the SC2,
+can show a live preview in motionJPEG over WiFi or Ethernet. Refer
+to [ricoh_theta_mjpeg_opencv](https://github.com/codetricity/ricoh_theta_mjpeg_opencv)
+for a mjpeg example with OpenCV.
+
+As of January 2024, most people are using the Z1 or the X for streaming over a
+USB cable
 
 ## Streaming Specifications
 
@@ -10,7 +17,15 @@ V and Z1 USB streaming.
 * 4K，H264: 3840×1920/29.97fps/120Mbps
 * 2K，H264: 1920×960/29.97fps/42Mbps
 
-The modes for the sample program 
+X USB streaming:
+
+* 4K 3840×1920/30fps/100Mbps
+
+As of January 2025, there is a notice on the [RICOH360 site](https://www.ricoh360.com/theta/) for the THETA X live streaming:
+
+> The maximum time for streaming 4K/30 fps live streaming is approx 25 minutes (at an ambient temperature of 25°C). The firmware update adds 2K mode, which means that the maximum time for 2K/30 fps live streaming can be distributed for even longer periods of time. If the temperature in the camera rises rapidly due to the surrounding environment or shooting conditions, the shooting time will be even shorter.
+
+The modes for the sample program
 are specified in [thetauvc.c](https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/thetauvc.c#L55).
 
 You can specify the resolution in [gst_viewer.c](https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L248).  An example of changing the resolution is [here](https://github.com/codetricity/libuvc-theta-sample).

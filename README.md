@@ -2,6 +2,12 @@
 
 [Go to document](https://codetricity.github.io/theta-linux/)
 
+```text
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
 ## Content Reference
 
 * [discussion](https://community.theta360.guide/t/live-streaming-over-usb-on-ubuntu-and-linux-nvidia-jetson/4359)
