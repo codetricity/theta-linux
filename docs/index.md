@@ -43,8 +43,6 @@ make
 
 $ ./gst_viewer
 ```
-This assumes you have a non-THETA webcam on `/dev/video0` (your laptop or desktop cam).  
-You may need to edit the source if your THETA is the only camera on your computer.
 
 If the build fails, you may need a few gstreamer packages.
 The command below installs everything.  You do not need everything
@@ -52,10 +50,3 @@ The command below installs everything.  You do not need everything
 ```bash
 sudo apt-get install libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-doc gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio libgstreamer-plugins-base1.0-dev
 ```
-
-
-
-
-
-
-
