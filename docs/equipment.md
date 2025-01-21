@@ -5,13 +5,19 @@
 ### Jetson Nano - Reference Platform
 
 Our reference platform is the NVIDIA Jetson Nano,
-[ref](https://developer.nvidia.com/embedded/jetson-nano-developer-kit). 
-We are using B01, but A02 should also work. 
+[ref](https://developer.nvidia.com/embedded/jetson-nano-developer-kit).
+I am using B01, but A02 should also work.
 
-running JetPack 4.4, which is Ubuntu 18.04.
+Initially, the Jetson was running JetPack 4.4, which is Ubuntu 18.04. Tests
+were [updated to JetPack 4.6.4](https://community.theta360.guide/t/live-streaming-over-usb-on-ubuntu-and-linux-nvidia-jetson/4359/350?u=craig).
+
+```text
+cat /etc/nv_tegra_release 
+# R32 (release), REVISION: 7.1
+```
+
 The Nano is an ARM A57 with a 128-core Maxwell GPU,
 4GB 64-bit LPDDR4.
-
 
 The nano is powered by a 5V 4A barrel connector,
 not the microUSB which is 5V 2A.  Our Nano has
@@ -22,20 +28,19 @@ microSD card.
 
 * [NVIDIA Jetson Nano Developer Kit B01](https://amzn.to/3396bbI)
 * [SMAKIN DC 5V/4A power supply with barrel connector](https://amzn.to/3290mvu)
-* [Waveshare 5V PWM fan - cheaper option](https://amzn.to/3h9A3cT) - we used this one as we are frugal.  It worked. 
+* [Waveshare 5V PWM fan - cheaper option](https://amzn.to/3h9A3cT) - we used this one as we are frugal.  It worked.
 * [Noctua 5V PWM fan - better option, around $15](https://amzn.to/3m1IDxT) - most people use this one.
 * For Z1 streaming [10' USB-C live streaming cable](https://amzn.to/328P6za) - it works for me,
 but it is over the recommended length.  I only have the long cable for convenience. You
-should use as short a cable as possible. 
-
+should use as short a cable as possible.
 
 ### NVIDIA Jetson Xavier
 
-The Xavier is better for testing.  However, it is more expensive.  If your 
+The Xavier is better for testing.  However, it is more expensive.  If your
 budget permits, it is better to get the Xavier.  You may have problems
 with 4K AI processing with the Nano.
 
-On Jetson Xavier, auto plugin selection of the gstreamer seems to be not working well, replacing "decodebin ! autovideosink sync=false" to "nvv4l2decoder ! nv3dsink sync=false" will solve the problem. Edit this 
+On Jetson Xavier, auto plugin selection of the gstreamer seems to be not working well, replacing "decodebin ! autovideosink sync=false" to "nvv4l2decoder ! nv3dsink sync=false" will solve the problem. Edit this
 [line](https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L192) in the sample code and recompile.
 
 ### x86 Linux
@@ -55,7 +60,7 @@ A video showing latency on x86 is [here](https://youtu.be/WMKF5pWTb-w).
 We've tested v4l2loopback with gst_loopback on a low-end Pentium
 x86 computer.  It works fine.  Thanks to commuity member Yu You
 for this fix to gst_view.c.  Note the addition of `qos=false` to
-the pipeline.  This is currently on 
+the pipeline.  This is currently on
 [line 190](https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L190).
 
 ```c
@@ -93,16 +98,15 @@ driver](https://youtu.be/9_lG5m806uE) on Intel i7-6800K CPU and NVIDIA GeForce G
 
 You can check the graphics driver with one of these commands.
 
-```
-$ glxinfo -B
-```
-
-or 
-
-```
-$ sudo lshw -c video
+```bash
+glxinfo -B
 ```
 
+or
+
+```bash
+sudo lshw -c video
+```
 
 ### Raspberry Pi
 
@@ -126,12 +130,17 @@ with AI processing.
 The fan is 5V pwm.  I've also used a 12V fan before I
 ordered the 5V fan from Amazon.
 
+The example below is running R32 REVISION 7.1 on NVIDIA Jetson
+Nano.
+
+![running stream](images/hardware/jetson_nano_running.jpeg)
+
 ## Hardware Acceleration
 
 You will need to use hardware acceleration to get reasonable performance.
 
 To verify that you are using GPU acceleration, you can use `tegrastats` on
-Jetson and `nvidia-smi` on x86. 
+Jetson and `nvidia-smi` on x86.
 
 ### Jetson
 
@@ -144,7 +153,7 @@ On NVIDIA Jetson, `tegrastats` is useful for seeing information on the GPU.
 In the example below, I've inserted line breaks to make the output easier to read.
 The output is shown before streaming starts.
 
-```
+```text
 craig@jetson:~$ tegrastats 
 RAM 1122/3964MB (lfb 28x4MB)
 SWAP 211/1982MB (cached 20MB)
@@ -160,7 +169,7 @@ POM_5V_CPU 123/123
 
 Let's start the stream and review it again.
 
-```
+```text
 RAM 1288/3964MB (lfb 28x4MB) 
 SWAP 210/1982MB (cached 20MB) 
 CPU [100%@1479,89%@1479,85%@1479,86%@1479] 
@@ -185,7 +194,7 @@ You can verify if your base libraries such as OpenCV have features such as CUDA 
 
 ![jtop_info](images/hardware/jetson_monitor/jtop_info.png)
 
-Prior to streaming, your system should show very little load. 
+Prior to streaming, your system should show very little load.
 
 ![jtop no load](images/hardware/jetson_monitor/jtop-no-load.gif)
 
@@ -198,31 +207,29 @@ The example below is using OpenCV to convert the color space.
 
 ![jtop opencv color](images/hardware/jetson_monitor/opencv_color.gif)
 
-
-
-
 ### x86
 
 #### gstreamer plug-in
 
 You can check to see if the nvdec plug-in is installed with:
 
-```
-$ gst-inspect-1.0 nvdec
+```bash
+gst-inspect-1.0 nvdec
 ```
 
 If you see this, the plug-in is not installed.
 
-```
+```text
 No such element or plugin 'nvdec'
 ```
 
 If nvdec and nvenc are installed, you should see this:
 
-```
-$ gst-inspect-1.0 | grep nvenc
+```text
+gst-inspect-1.0 | grep nvenc
 nvenc:  nvh264enc: NVENC H.264 Video Encoder
-$ gst-inspect-1.0 | grep nvdec
+
+gst-inspect-1.0 | grep nvdec
 nvdec:  nvdec: NVDEC video decoder
 ```
 

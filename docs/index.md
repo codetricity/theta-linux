@@ -1,6 +1,6 @@
 # RICOH THETA Development on Linux
 
-![header](images/banner.jpg)
+![header](images/front/banner_splash.jpg)
 
 ## Overview
 
