@@ -847,10 +847,14 @@
 <p><img alt="nano with fan" src="../images/usb_api/nano_fan.jpeg" /></p>
 <h3 id="jetson-nano-reference-platform">Jetson Nano - Reference Platform</h3>
 <p>Our reference platform is the NVIDIA Jetson Nano,
-<a href="https://developer.nvidia.com/embedded/jetson-nano-developer-kit">ref</a>. 
-We are using B01, but A02 should also work. </p>
-<p>running JetPack 4.4, which is Ubuntu 18.04.
-The Nano is an ARM A57 with a 128-core Maxwell GPU,
+<a href="https://developer.nvidia.com/embedded/jetson-nano-developer-kit">ref</a>.
+I am using B01, but A02 should also work.</p>
+<p>Initially, the Jetson was running JetPack 4.4, which is Ubuntu 18.04. Tests
+were <a href="https://community.theta360.guide/t/live-streaming-over-usb-on-ubuntu-and-linux-nvidia-jetson/4359/350?u=craig">updated to JetPack 4.6.4</a>.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cat /etc/nv_tegra_release 
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a># R32 (release), REVISION: 7.1
+</span></code></pre></div>
+<p>The Nano is an ARM A57 with a 128-core Maxwell GPU,
 4GB 64-bit LPDDR4.</p>
 <p>The nano is powered by a 5V 4A barrel connector,
 not the microUSB which is 5V 2A.  Our Nano has
@@ -860,17 +864,17 @@ microSD card.</p>
 <ul>
 <li><a href="https://amzn.to/3396bbI">NVIDIA Jetson Nano Developer Kit B01</a></li>
 <li><a href="https://amzn.to/3290mvu">SMAKIN DC 5V/4A power supply with barrel connector</a></li>
-<li><a href="https://amzn.to/3h9A3cT">Waveshare 5V PWM fan - cheaper option</a> - we used this one as we are frugal.  It worked. </li>
+<li><a href="https://amzn.to/3h9A3cT">Waveshare 5V PWM fan - cheaper option</a> - we used this one as we are frugal.  It worked.</li>
 <li><a href="https://amzn.to/3m1IDxT">Noctua 5V PWM fan - better option, around $15</a> - most people use this one.</li>
 <li>For Z1 streaming <a href="https://amzn.to/328P6za">10' USB-C live streaming cable</a> - it works for me,
 but it is over the recommended length.  I only have the long cable for convenience. You
-should use as short a cable as possible. </li>
+should use as short a cable as possible.</li>
 </ul>
 <h3 id="nvidia-jetson-xavier">NVIDIA Jetson Xavier</h3>
-<p>The Xavier is better for testing.  However, it is more expensive.  If your 
+<p>The Xavier is better for testing.  However, it is more expensive.  If your
 budget permits, it is better to get the Xavier.  You may have problems
 with 4K AI processing with the Nano.</p>
-<p>On Jetson Xavier, auto plugin selection of the gstreamer seems to be not working well, replacing "decodebin ! autovideosink sync=false" to "nvv4l2decoder ! nv3dsink sync=false" will solve the problem. Edit this 
+<p>On Jetson Xavier, auto plugin selection of the gstreamer seems to be not working well, replacing "decodebin ! autovideosink sync=false" to "nvv4l2decoder ! nv3dsink sync=false" will solve the problem. Edit this
 <a href="https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L192">line</a> in the sample code and recompile.</p>
 <h3 id="x86-linux">x86 Linux</h3>
 <p>We've also tested the libuvc-theta (streaming) and
@@ -883,12 +887,12 @@ on x86 64bit Linux using Ubuntu 20.04 LTS, Focal Fossa.</p>
 <p>We've tested v4l2loopback with gst_loopback on a low-end Pentium
 x86 computer.  It works fine.  Thanks to commuity member Yu You
 for this fix to gst_view.c.  Note the addition of <code>qos=false</code> to
-the pipeline.  This is currently on 
+the pipeline.  This is currently on
 <a href="https://github.com/ricohapi/libuvc-theta-sample/blob/f8c3caa32bf996b29c741827bd552be605e3e2e2/gst/gst_viewer.c#L190">line 190</a>.</p>
-<div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">cmd_name</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gst_loopback&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">pipe_proc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;decodebin ! autovideoconvert ! &quot;</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="s">&quot;video/x-raw,format=I420 ! identity drop-allocation=true !&quot;</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="s">&quot;v4l2sink device=/dev/video0 qos=false sync=false&quot;</span><span class="p">;</span>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">cmd_name</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gst_loopback&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">pipe_proc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;decodebin ! autovideoconvert ! &quot;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="s">&quot;video/x-raw,format=I420 ! identity drop-allocation=true !&quot;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="s">&quot;v4l2sink device=/dev/video0 qos=false sync=false&quot;</span><span class="p">;</span>
 </span></code></pre></div>
 <p>Screenshot of loopback running on <code>/dev/video0</code>, tested with vlc.</p>
 <p><img alt="x86 and vlc" src="../images/hardware/x_86.png" /></p>
@@ -907,10 +911,10 @@ dedicated graphics card on x86. In our tests on Ubuntu 20, Focal Fossa, the gstr
 <p>This is a <a href="https://youtu.be/9_lG5m806uE">video test clip of a THETA Z1 running with the X.Org
 driver</a> on Intel i7-6800K CPU and NVIDIA GeForce GTX 950 GPU.</p>
 <p>You can check the graphics driver with one of these commands.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ glxinfo -B
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>glxinfo<span class="w"> </span>-B
 </span></code></pre></div>
-<p>or </p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$ sudo lshw -c video
+<p>or</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>lshw<span class="w"> </span>-c<span class="w"> </span>video
 </span></code></pre></div>
 <h3 id="raspberry-pi">Raspberry Pi</h3>
 <p>The Raspberry Pi will work great with the USB API.  However, you 
@@ -925,10 +929,13 @@ with AI processing. </p>
 <p><img alt="nano with fan mount" src="../images/hardware/fan_mount.png" /></p>
 <p>The fan is 5V pwm.  I've also used a 12V fan before I
 ordered the 5V fan from Amazon.</p>
+<p>The example below is running R32 REVISION 7.1 on NVIDIA Jetson
+Nano.</p>
+<p><img alt="running stream" src="../images/hardware/jetson_nano_running.jpeg" /></p>
 <h2 id="hardware-acceleration">Hardware Acceleration</h2>
 <p>You will need to use hardware acceleration to get reasonable performance.</p>
 <p>To verify that you are using GPU acceleration, you can use <code>tegrastats</code> on
-Jetson and <code>nvidia-smi</code> on x86. </p>
+Jetson and <code>nvidia-smi</code> on x86.</p>
 <h3 id="jetson">Jetson</h3>
 <p>You can either use tegrastats or jetson-stats to see information on your CPU and GPU to
 identify performance bottlenecks.</p>
@@ -936,29 +943,29 @@ identify performance bottlenecks.</p>
 <p>On NVIDIA Jetson, <code>tegrastats</code> is useful for seeing information on the GPU.
 In the example below, I've inserted line breaks to make the output easier to read.
 The output is shown before streaming starts.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>craig@jetson:~$ tegrastats 
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>RAM 1122/3964MB (lfb 28x4MB)
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>SWAP 211/1982MB (cached 20MB)
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>CPU [5%@102,9%@102,0%@102,0%@102]
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>EMC_FREQ 0% 
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>GR3D_FREQ 0% 
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>PLL@25.5C CPU@27C PMIC@100C 
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>GPU@27.5C AO@35C thermal@27.5C 
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>POM_5V_IN 1805/1805 
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>POM_5V_GPU 0/0 
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>POM_5V_CPU 123/123
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>craig@jetson:~$ tegrastats 
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>RAM 1122/3964MB (lfb 28x4MB)
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>SWAP 211/1982MB (cached 20MB)
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>CPU [5%@102,9%@102,0%@102,0%@102]
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>EMC_FREQ 0% 
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>GR3D_FREQ 0% 
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>PLL@25.5C CPU@27C PMIC@100C 
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>GPU@27.5C AO@35C thermal@27.5C 
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>POM_5V_IN 1805/1805 
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>POM_5V_GPU 0/0 
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>POM_5V_CPU 123/123
 </span></code></pre></div>
 <p>Let's start the stream and review it again.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>RAM 1288/3964MB (lfb 28x4MB) 
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>SWAP 210/1982MB (cached 20MB) 
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>CPU [100%@1479,89%@1479,85%@1479,86%@1479] 
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>EMC_FREQ 0% 
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>GR3D_FREQ 35% 
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>PLL@32C CPU@35C PMIC@100C 
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>GPU@30.5C AO@40.5C thermal@32.25C 
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>POM_5V_IN 5607/5561 
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>POM_5V_GPU 118/98 
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>POM_5V_CPU 2843/2791
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>RAM 1288/3964MB (lfb 28x4MB) 
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>SWAP 210/1982MB (cached 20MB) 
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>CPU [100%@1479,89%@1479,85%@1479,86%@1479] 
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>EMC_FREQ 0% 
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>GR3D_FREQ 35% 
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>PLL@32C CPU@35C PMIC@100C 
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>GPU@30.5C AO@40.5C thermal@32.25C 
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>POM_5V_IN 5607/5561 
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>POM_5V_GPU 118/98 
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>POM_5V_CPU 2843/2791
 </span></code></pre></div>
 <p>The GR3D_FREQ and POM_5V_GPU provide information on the GPU.  GR3D is the
 Jetson GPU engine.  More information on tegrastatus is 
@@ -967,7 +974,7 @@ Jetson GPU engine.  More information on tegrastatus is
 <p>Another nice package is <a href="https://github.com/rbonghi/jetson_stats">jetson-stats</a>.</p>
 <p>You can verify if your base libraries such as OpenCV have features such as CUDA enabled.</p>
 <p><img alt="jtop_info" src="../images/hardware/jetson_monitor/jtop_info.png" /></p>
-<p>Prior to streaming, your system should show very little load. </p>
+<p>Prior to streaming, your system should show very little load.</p>
 <p><img alt="jtop no load" src="../images/hardware/jetson_monitor/jtop-no-load.gif" /></p>
 <p>Once streaming starts, the load on your GPU should increase.  The example below
 shows OpenCV and a Python script for canny edge detection.</p>
@@ -977,16 +984,17 @@ shows OpenCV and a Python script for canny edge detection.</p>
 <h3 id="x86">x86</h3>
 <h4 id="gstreamer-plug-in">gstreamer plug-in</h4>
 <p>You can check to see if the nvdec plug-in is installed with:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$ gst-inspect-1.0 nvdec
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>gst-inspect-1.0<span class="w"> </span>nvdec
 </span></code></pre></div>
 <p>If you see this, the plug-in is not installed.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>No such element or plugin &#39;nvdec&#39;
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>No such element or plugin &#39;nvdec&#39;
 </span></code></pre></div>
 <p>If nvdec and nvenc are installed, you should see this:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$ gst-inspect-1.0 | grep nvenc
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>nvenc:  nvh264enc: NVENC H.264 Video Encoder
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>$ gst-inspect-1.0 | grep nvdec
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>nvdec:  nvdec: NVDEC video decoder
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>gst-inspect-1.0 | grep nvenc
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>nvenc:  nvh264enc: NVENC H.264 Video Encoder
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>gst-inspect-1.0 | grep nvdec
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>nvdec:  nvdec: NVDEC video decoder
 </span></code></pre></div>
 <p>There are several online tutorials for installing nvdec and nvenc.</p>
 <ul>
@@ -995,60 +1003,60 @@ shows OpenCV and a Python script for canny edge detection.</p>
 <li><a href="https://gist.github.com/corenel/a615b6f7eb5b5425aa49343a7b409200">gist from corenel</a></li>
 </ul>
 <p><strong>plugin build example</strong></p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$ NVENCODE_CFLAGS=&quot;-I/home/craig/Development/gstreamer/gst-plugins-bad/sys/nvenc&quot; ./autogen.sh --disable-gtk-doc --with-cuda-prefix=&quot;/usr/local/cuda&quot;
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$ NVENCODE_CFLAGS=&quot;-I/home/craig/Development/gstreamer/gst-plugins-bad/sys/nvenc&quot; ./autogen.sh --disable-gtk-doc --with-cuda-prefix=&quot;/usr/local/cuda&quot;
 </span></code></pre></div>
 <p><img alt="plug-in build" src="../images/hardware/gstreamer_plugin/autogen_confirm.png" /></p>
 <p><img alt="gst-inspect confirmation" src="../images/hardware/gstreamer_plugin/gst_inspect_confirm.png" /></p>
 <h4 id="monitoring-tools">Monitoring Tools</h4>
 <p>Prior to starting the stream.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$ nvidia-smi 
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Mon Sep 14 06:14:55 2020       
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>+-----------------------------------------------------------------------------+
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>| NVIDIA-SMI 440.100      Driver Version: 440.100      CUDA Version: 10.2     |
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>|-------------------------------+----------------------+----------------------+
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>|===============================+======================+======================|
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>|   0  GeForce GTX 950     Off  | 00000000:02:00.0  On |                  N/A |
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>|  1%   52C    P5    14W /  99W |    355MiB /  1999MiB |      0%      Default |
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>+-------------------------------+----------------------+----------------------+
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
-</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>+-----------------------------------------------------------------------------+
-</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>| Processes:                                                       GPU Memory |
-</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>|  GPU       PID   Type   Process name                             Usage      |
-</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>|=============================================================================|
-</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>|    0      1051      G   /usr/lib/xorg/Xorg                            52MiB |
-</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>|    0      1619      G   /usr/lib/xorg/Xorg                           113MiB |
-</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>|    0      1820      G   /usr/bin/gnome-shell                         102MiB |
-</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>|    0      2822      G   ...AAAAAAAAAAAACAAAAAAAAAA= --shared-files    73MiB |
-</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>+-----------------------------------------------------------------------------+
-</span></code></pre></div>
-<p>With gst-viewer running.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$ nvidia-smi 
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Tue Sep 29 16:29:33 2020       
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Mon Sep 14 06:14:55 2020       
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>+-----------------------------------------------------------------------------+
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>| NVIDIA-SMI 450.66       Driver Version: 450.66       CUDA Version: 11.0     |
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>| NVIDIA-SMI 440.100      Driver Version: 440.100      CUDA Version: 10.2     |
 </span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>|-------------------------------+----------------------+----------------------+
 </span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
 </span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>|                               |                      |               MIG M. |
-</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>|===============================+======================+======================|
-</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>|   0  GeForce GTX 950     Off  | 00000000:02:00.0  On |                  N/A |
-</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>|  9%   56C    P0    28W /  99W |    543MiB /  1999MiB |      9%      Default |
-</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>|                               |                      |                  N/A |
-</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>+-------------------------------+----------------------+----------------------+
-</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>
-</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>+-----------------------------------------------------------------------------+
-</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>| Processes:                                                                  |
-</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
-</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>|        ID   ID                                                   Usage      |
-</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>|=============================================================================|
-</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>|    0   N/A  N/A      1100      G   /usr/lib/xorg/Xorg                 51MiB |
-</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>|    0   N/A  N/A      1588      G   /usr/lib/xorg/Xorg                188MiB |
-</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>|    0   N/A  N/A      1719      G   /usr/bin/gnome-shell              144MiB |
-</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>|    0   N/A  N/A      2132      G   ...AAAAAAAAA= --shared-files       71MiB |
-</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>|    0   N/A  N/A      6606      G   ...AAAAAAAAA= --shared-files       73MiB |
-</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a>+-----------------------------------------------------------------------------+
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>|===============================+======================+======================|
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>|   0  GeForce GTX 950     Off  | 00000000:02:00.0  On |                  N/A |
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>|  1%   52C    P5    14W /  99W |    355MiB /  1999MiB |      0%      Default |
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>+-------------------------------+----------------------+----------------------+
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>+-----------------------------------------------------------------------------+
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>| Processes:                                                       GPU Memory |
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>|  GPU       PID   Type   Process name                             Usage      |
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>|=============================================================================|
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>|    0      1051      G   /usr/lib/xorg/Xorg                            52MiB |
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>|    0      1619      G   /usr/lib/xorg/Xorg                           113MiB |
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>|    0      1820      G   /usr/bin/gnome-shell                         102MiB |
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>|    0      2822      G   ...AAAAAAAAAAAACAAAAAAAAAA= --shared-files    73MiB |
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>+-----------------------------------------------------------------------------+
+</span></code></pre></div>
+<p>With gst-viewer running.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>$ nvidia-smi 
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Tue Sep 29 16:29:33 2020       
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>+-----------------------------------------------------------------------------+
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>| NVIDIA-SMI 450.66       Driver Version: 450.66       CUDA Version: 11.0     |
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>|-------------------------------+----------------------+----------------------+
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>|                               |                      |               MIG M. |
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>|===============================+======================+======================|
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>|   0  GeForce GTX 950     Off  | 00000000:02:00.0  On |                  N/A |
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>|  9%   56C    P0    28W /  99W |    543MiB /  1999MiB |      9%      Default |
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>|                               |                      |                  N/A |
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>+-------------------------------+----------------------+----------------------+
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>+-----------------------------------------------------------------------------+
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>| Processes:                                                                  |
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>|        ID   ID                                                   Usage      |
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>|=============================================================================|
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>|    0   N/A  N/A      1100      G   /usr/lib/xorg/Xorg                 51MiB |
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>|    0   N/A  N/A      1588      G   /usr/lib/xorg/Xorg                188MiB |
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>|    0   N/A  N/A      1719      G   /usr/bin/gnome-shell              144MiB |
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>|    0   N/A  N/A      2132      G   ...AAAAAAAAA= --shared-files       71MiB |
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>|    0   N/A  N/A      6606      G   ...AAAAAAAAA= --shared-files       73MiB |
+</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>+-----------------------------------------------------------------------------+
 </span></code></pre></div>
 <p><img alt="GPU on" src="../images/hardware/gpu_on.png" /></p>
 
