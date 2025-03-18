@@ -30,7 +30,16 @@ extra:
 
 nav:
   - Home: index.md
-
+  - Equipment: equipment.md
+  - Software: software.md
+  - Demos: demos.md
+  - Examples: examples.md
+  - USB API: usb_api.md
+  - Camera: camera.md
+  - Optimization: optimization.md
+  - Image Viewer: viewer.md
+  - Help: help.md
+  - Meetup Archive: meetup.md
 
 markdown_extensions:
   - pymdownx.highlight:
